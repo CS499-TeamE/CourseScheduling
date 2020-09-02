@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+   testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
+}
+test {
+    useJUnitPlatform()
+}
+javafx {
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+task(runMain, dependsOn: 'classes', type: JavaExec) {
+    main = 'Application'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
