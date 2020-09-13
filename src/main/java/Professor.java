@@ -11,7 +11,7 @@ public class Professor {
      */
     private String name;
     private String preference;
-    private ArrayList<String> courses;
+    private ArrayList<String> taughtCourses;
 
     /**
      * Default Constructor
@@ -59,8 +59,8 @@ public class Professor {
      * Returns the list of courses that is taught by the Professor
      * @return an ArrayList of strings
      */
-    public ArrayList<String> getCourses() {
-        return this.courses;
+    public ArrayList<String> getTaughtCourses() {
+        return this.taughtCourses;
     }
 
     /**
