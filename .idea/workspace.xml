@@ -18,14 +18,41 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CourseScheduler" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CourseScheduler" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CourseScheduler" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
       </state>
     </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -37,6 +64,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -87,5 +115,44 @@
       <updated>1599007576189</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="-1730" y="257" key="#com.intellij.ide.util.MemberChooser" timestamp="1599973145511">
+      <screen x="-2560" y="0" width="2048" height="1112" />
+    </state>
+    <state x="-1730" y="257" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-2560.0.2048.1112@-2560.0.2048.1112" timestamp="1599973145511" />
+    <state x="-2194" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1599959783833">
+      <screen x="-2560" y="0" width="2048" height="1112" />
+    </state>
+    <state x="-2194" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/-2560.0.2048.1112@-2560.0.2048.1112" timestamp="1599959783833" />
+    <state width="1877" height="2" key="GridCell.Tab.0.bottom" timestamp="1599025029357">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="2" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1599025029357" />
+    <state width="1877" height="2" key="GridCell.Tab.0.center" timestamp="1599025029357">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="2" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1599025029357" />
+    <state width="1877" height="2" key="GridCell.Tab.0.left" timestamp="1599025029357">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="2" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1599025029357" />
+    <state width="1877" height="2" key="GridCell.Tab.0.right" timestamp="1599025029357">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="2" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1599025029357" />
+    <state x="-2068" y="176" key="SettingsEditor" timestamp="1599944789043">
+      <screen x="-2560" y="0" width="2048" height="1112" />
+    </state>
+    <state x="-2068" y="176" key="SettingsEditor/0.0.1920.1040/-2560.0.2048.1112@-2560.0.2048.1112" timestamp="1599944789043" />
+    <state x="461" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1599688740888" />
+    <state x="0" y="0" width="1585" height="1099" key="dock-window-1" timestamp="1599972924696">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="0" y="0" width="1585" height="1099" key="dock-window-1/0.0.1920.1040/-2560.0.2048.1112@-2560.0.2048.1112" timestamp="1599972924696" />
+    <state x="-1873" y="243" width="672" height="678" key="search.everywhere.popup" timestamp="1599944688993">
+      <screen x="-2560" y="0" width="2048" height="1112" />
+    </state>
+    <state x="-1873" y="243" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-2560.0.2048.1112@-2560.0.2048.1112" timestamp="1599944688993" />
   </component>
 </project>

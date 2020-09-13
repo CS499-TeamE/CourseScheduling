@@ -39,7 +39,7 @@ public class Department {
      * Returns an ArrayList of Professor objects
      * @return ArrayList of Professor objects
      */
-    public ArrayList<Professor> getProfessorsList() {
+    public ArrayList<Professor> getProfessorList() {
         return this.ProfessorsList;
     }
 }
