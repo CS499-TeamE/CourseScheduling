@@ -4,11 +4,12 @@
  * @author Youssef Sleiman
  */
 public class Course {
+
     /**
      * Class variables
      */
     private String courseId;
-    private int RoomPreference;
+    private int RoomPreference =0;
 
     /**
      * Default constructor. Sets Variables to null
