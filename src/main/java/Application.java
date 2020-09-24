@@ -9,7 +9,7 @@ public class Application {
     private Data info;
 
     public static void main(String[] args) {
-        
+        ChooseFile.main(args);
         System.out.println("Hello World");
 
     }
