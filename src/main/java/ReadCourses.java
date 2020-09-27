@@ -1,7 +1,9 @@
-import java.io.File;  // Import the File class
-import java.io.FileNotFoundException;  // Import this class to handle errors
-import java.util.Scanner; // Import the Scanner class to read text files.
-import java.util.ArrayList; //Import the ArrayList class
+package CourseScheduling.src.main.java;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * ReadCourses class. This class takes the department class data input and converts into an object.
@@ -148,6 +150,26 @@ public class ReadCourses {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public ArrayList<String> getCourses() {
+        return courses;
+    }
+
+    public ArrayList<String> getClassroomPreferences() {
+        return classroomPreferences;
+    }
+
+    public ArrayList<Faculty> getProfessors() {
+        return professors;
     }
 
     /**
