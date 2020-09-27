@@ -15,7 +15,9 @@ public class ChooseFile extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ChooseFile.fxml"));
         Parent root = (Parent) fxmlLoader.load();
         ((ChooseFileController) fxmlLoader.getController()).setStage(primaryStage);
-        primaryStage.setResizable(false);
+        primaryStage.setResizable(true);
+        primaryStage.centerOnScreen();
+        primaryStage.sizeToScene();
         primaryStage.setTitle("Open Input File");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

@@ -18,6 +18,7 @@ test {
     useJUnitPlatform()
 }
 javafx {
+    version = "14";
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 task(runMain, dependsOn: 'classes', type: JavaExec) {
