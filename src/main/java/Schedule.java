@@ -21,7 +21,7 @@ public class Schedule
     public Schedule(Data info)
     {
         this.info = info;
-        possibleClassList = new ArrayList<PossibleClass>(info.getNumberOfClasses());
+        //possibleClassList = new ArrayList<PossibleClass>(info.getNumberOfClasses());
     }
 
     /**
@@ -31,23 +31,23 @@ public class Schedule
      */
     public Schedule createSchedule()
     {
-        for (Department dept : info.getDeptList())
-        {
-            for (Professor professor : dept.getProfessorList())
-            {
-                for (Course course : professor.getTaughtCourses())
-                {
-                    PossibleClass n = new PossibleClass(classAmount++, professor, dept);
-                    n.setCourse(course); // assigns a course
-                    if (n.getCourse().getRoomPreference() != 0) n.setRoom(n.getCourse().getRoomPreference()); // set room to the course preference
-                    else n.setRoom(info.getRoomList().get((int) Math.random() * info.getRoomList().size())); // randomly assigns a room
-                    if (n.getProfessor().getPreference() != "") handleTimePref(n, n.getProfessor().getPreference()); // set time to professor's preference
-                    else n.setMeetingTime(info.getMeetingTimeList().get((int) Math.random() * info.getMeetingTimeList().size())); // randomly assigns a meeting time
-                    possibleClassList.add(n);
-                }
-            }
-        }
-        return this;
+//        for (Department dept : info.getDeptList())
+//        {
+//            for (Professor professor : dept.getProfessorList())
+//            {
+//                for (Course course : professor.getTaughtCourses())
+//                {
+//                    PossibleClass n = new PossibleClass(classAmount++, professor, dept);
+//                    n.setCourse(course); // assigns a course
+//                    if (n.getCourse().getRoomPreference() != 0) n.setRoom(n.getCourse().getRoomPreference()); // set room to the course preference
+//                    else n.setRoom(info.getRoomList().get((int) Math.random() * info.getRoomList().size())); // randomly assigns a room
+//                    if (n.getProfessor().getPreference() != "") handleTimePref(n, n.getProfessor().getPreference()); // set time to professor's preference
+//                    else n.setMeetingTime(info.getMeetingTimeList().get((int) Math.random() * info.getMeetingTimeList().size())); // randomly assigns a meeting time
+//                    possibleClassList.add(n);
+//                }
+//            }
+//        }
+      return this;
     }
 
     /**

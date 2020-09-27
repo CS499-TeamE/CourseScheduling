@@ -5,5 +5,5 @@
     <resource url="http://javafx.com/fxml/1" location="$PROJECT_DIR$" />
     <resource url="http://javafx.com/javafx/11.0.1" location="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_14" default="false" project-jdk-name="14" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_14" default="true" project-jdk-name="14" project-jdk-type="JavaSDK" />
 </project>
