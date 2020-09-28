@@ -125,8 +125,8 @@ public class ReadClassTimes {
      * @param args input read from command line
      */
     public static void main(String[] args) {
-        //ReadClassTimes t = new ReadClassTimes();
-        ReadClassTimes t = new ReadClassTimes("D:\\Temp\\ClassTimes.csv");
+        ReadClassTimes t = new ReadClassTimes();
+        //ReadClassTimes t = new ReadClassTimes("D:\\Temp\\ClassTimes.csv");
         //ReadClassTimes t = new ReadClassTimes("D:\\Temp\\ClassTimes.tsv");
         t.printClass();
     }

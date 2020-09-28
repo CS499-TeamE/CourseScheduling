@@ -5,10 +5,16 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+/**
+ * ReadRooms class. This class takes the classroom data input and converts into an object.
+ *
+ * @author Ed Brown
+ * @version 0.1
+ * @since 9/26/2020
+ */
 public class ReadClassRooms {
     //Class Variables
-    private ArrayList<String> rooms = new ArrayList<>();
+    private ArrayList<Room> rooms = new ArrayList<>(); //collection of class rooms
 
     /**
      * Class constructor. Asks the user for the file name
@@ -22,7 +28,7 @@ public class ReadClassRooms {
         System.out.print("Input File Name For Class Rooms: ");
         inputFileName = user.nextLine().trim();
 
-        this.determineDataType(inputFileName);
+        this.determineFileType(inputFileName);
     }
 
     /**
@@ -30,27 +36,32 @@ public class ReadClassRooms {
      * @param inputFileName string of file name
      */
     public ReadClassRooms(String inputFileName){
-        this.determineDataType(inputFileName);
+        this.determineFileType(inputFileName);
     }
 
     /**
-     *
+     * This function determines the file type of input file
      * @param fileName
      */
-    private void determineDataType(String fileName){
+    private void determineFileType(String fileName){
         int parse = fileName.indexOf("."); //find index of "." which separates file type
-        String sub = fileName.substring(parse+1);
+        String sub = fileName.substring(parse+1); //this string will be the file extension
         //System.out.println(sub); //debug line
         if (sub.equals("csv")){
             this.gatherData(fileName, ",");
         }else if(sub.equals("tsv")){
-            this.gatherData(fileName, "/t");
+            this.gatherData(fileName, "\t");
         }else{
             System.out.println("Invalid file type");
         }
 
     }
 
+    /**
+     *
+     * @param filename
+     * @param delimiter
+     */
     private void gatherData(String filename, String delimiter){
         try {
             File myObj = new File(filename);
@@ -60,35 +71,27 @@ public class ReadClassRooms {
 
             while (myReader.hasNextLine()) {
                 data = myReader.nextLine();
-                int parse = data.indexOf(":"); //find index of delimiter which separates string for useful info
+                int parse = data.indexOf(delimiter); //find index of delimiter which separates string for useful info
                 String sub = data.substring(0,parse);
                 //System.out.println(sub); //debug line
 
                 //collect time data
-                if(sub.equals("Available Classrooms")){
-                    data=myReader.nextLine(); //read next line, this should be the first line with class rooms
+                if(sub.equals("Classroom")){
+                    data=myReader.nextLine(); //read next line, this should be the first line with a classroom
                     while(!data.equals("")){ //as long as next line is not blank continue
                         //System.out.println(data); //debug line
                         parse = data.indexOf(delimiter); //find first delimiter
-                        sub = data;
-                        while (parse != -1){ //as long as there is still a delimiter
-                            String newTime = sub.substring(0,parse);
-                            //System.out.println(newTime); //debug line
-                            this.rooms.add(newTime);
-                            sub = sub.substring(parse+1);
-                            //System.out.println(sub); //debug line
-                            parse = sub.indexOf(delimiter); //find next delimiter
-                        }
-                        //save in last room on the current row
-                        this.rooms.add(sub);
-                        //System.out.println(sub); //debug line
-                        //t.printClassTimes(); //debug line
+                        String roomNum = data.substring(0,parse); //string value of room number
+                        String roomCap = data.substring(parse+1); //the rest of the line without room number
+                        int roomCapacity = Integer.parseInt(roomCap);
+                        Room r = new Room(roomNum,roomCapacity);
+                        this.rooms.add(r);
 
                         //if there is a next line continue to read
                         if (myReader.hasNextLine()){
                             data=myReader.nextLine(); //read next line;
                         }else{
-                            break;
+                             break;
                         }
                     }
                 }
@@ -101,7 +104,7 @@ public class ReadClassRooms {
     }
 
 
-    public ArrayList<String> getRooms() {
+    public ArrayList<Room> getRooms() {
         return rooms;
     }
 
@@ -109,7 +112,7 @@ public class ReadClassRooms {
      * Print values stored in class. This function is mostly for debugging purposes.
      */
     public void printClass(){
-        System.out.println(this.rooms);
+        this.rooms.forEach(p-> p.printRoom());
     }
 
 
