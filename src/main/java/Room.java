@@ -9,41 +9,35 @@ package CourseScheduling.src.main.java;
  */
 public class Room {
     //variables
-    private String roomNumber; //classroom number
+    private int roomNumber; //classroom number
+    private String building; //building classroom is in
     private int roomCapacity; //maximum number of student capacity
 
     /**
      * Default Constructor
      */
     public Room(){
-        this.roomNumber = null;
+        this.roomNumber = -1;
         this.roomCapacity = -1;
+        this.building = null;
     }
 
-    /**
-     * Overload constructor
-     * @param roomNumber room number of classroom
-     */
-    public Room(String roomNumber) {
-        this.roomNumber = roomNumber;
-        this.roomCapacity = -1;
-    }
-
-    /**
+     /**
      * Overload constructor
      * @param roomNumber room number of classroom
      * @param roomCapacity maximum number of desks in room
      */
-    public Room(String roomNumber, int roomCapacity) {
+    public Room(String build, int roomNumber, int roomCapacity) {
         this.roomNumber = roomNumber;
         this.roomCapacity = roomCapacity;
+        this.building = build;
     }
 
     /**
      * Room number getter
      * @return string of the room number
      */
-    public String getRoomNumber() {
+    public int getRoomNumber() {
         return roomNumber;
     }
 
@@ -51,7 +45,7 @@ public class Room {
      * Room number setter
      * @param roomNumber room number of classroom
      */
-    public void setRoomNumber(String roomNumber) {
+    public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
     }
 
@@ -75,6 +69,6 @@ public class Room {
      * This function prints values of this class to the console
      */
     public void printRoom(){
-        System.out.println("Room '" + this.roomNumber +"' has a maximum capacity of " + this.roomCapacity);
+        System.out.println("Room '" + this.building + " " + this.roomNumber +"' has a maximum capacity of " + this.roomCapacity);
     }
 }

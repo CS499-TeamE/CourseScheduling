@@ -81,10 +81,14 @@ public class ReadClassRooms {
                     while(!data.equals("")){ //as long as next line is not blank continue
                         //System.out.println(data); //debug line
                         parse = data.indexOf(delimiter); //find first delimiter
-                        String roomNum = data.substring(0,parse); //string value of room number
+                        String room = data.substring(0,parse); //string value of room number
+                        int spaceParse = room.indexOf(" ");
+                        String building = room.substring(0,spaceParse);
+                        String roomNumber = room.substring(spaceParse+1);
+                        int roomNum = Integer.parseInt(roomNumber);
                         String roomCap = data.substring(parse+1); //the rest of the line without room number
                         int roomCapacity = Integer.parseInt(roomCap);
-                        Room r = new Room(roomNum,roomCapacity);
+                        Room r = new Room(building,roomNum,roomCapacity);
                         this.rooms.add(r);
 
                         //if there is a next line continue to read
