@@ -17,7 +17,7 @@ public class Faculty {
     private String preference;
 
     /**
-     * Class constructor
+     * PossibleClass constructor
      */
     public Faculty(){
         this.name = null;

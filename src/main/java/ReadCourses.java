@@ -13,7 +13,7 @@ import java.util.Scanner;
  * @since 8/29/2020
  */
 public class ReadCourses {
-    //Class Variables
+    //PossibleClass Variables
     private String department;
     private String location;
     private ArrayList<String> courses = new ArrayList<String>();
@@ -21,7 +21,7 @@ public class ReadCourses {
     private ArrayList<Faculty> professors = new ArrayList<>();
 
     /**
-     * Class constructor. Asks the user for the file name
+     * PossibleClass constructor. Asks the user for the file name
      */
     public ReadCourses(){
         // Scanner for user input
@@ -94,7 +94,7 @@ public class ReadCourses {
     /**
      * Takes a file name and collects input data
      * This function assumes that input data is in correct format
-     * @param filename string of filename containing Department Class data
+     * @param filename string of filename containing Department PossibleClass data
      */
     private void gatherData(String filename){
         try {

@@ -1,3 +1,4 @@
+
 package CourseScheduling.src.main.java;
 
 /**
@@ -70,5 +71,5 @@ public class Room {
      */
     public void printRoom(){
         System.out.println("Room '" + this.building + " " + this.roomNumber +"' has a maximum capacity of " + this.roomCapacity);
-    }
+
 }
