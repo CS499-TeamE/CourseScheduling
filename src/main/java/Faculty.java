@@ -1,3 +1,5 @@
+package CourseScheduling.src.main.java;
+
 import java.util.ArrayList; //Import the ArrayList class
 
 /**
@@ -45,6 +47,19 @@ public class Faculty {
     public void setPreference(String pref){
         this.preference = pref;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public ArrayList<String> getCanTeach() {
+        return canTeach;
+    }
+
+    public String getPreference() {
+        return preference;
+    }
+
 
     /**
      * Debugging tool. Print out all information for faculty member.
