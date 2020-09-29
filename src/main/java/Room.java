@@ -1,40 +1,75 @@
+
+package CourseScheduling.src.main.java;
+
 /**
- * Room class that contains room information, such as Room Number
+ * Room class. This class stores information about available rooms
  *
- * @author Youssef Sleiman
+ * @author Ed Brown
+ * @version 0.1
+ * @since 9/27/2020
  */
 public class Room {
-    /**
-     * Class Variable
-     */
-    private int roomNum;
+    //variables
+    private int roomNumber; //classroom number
+    private String building; //building classroom is in
+    private int roomCapacity; //maximum number of student capacity
 
     /**
-     * Default constructor. Does not set room number.
+     * Default Constructor
      */
-    public Room() {}
+    public Room(){
+        this.roomNumber = -1;
+        this.roomCapacity = -1;
+        this.building = null;
+    }
 
-    /**
-     * Overloaded constructor for if the room number is known
-     * @param roomNum integer that represents the room number
+     /**
+     * Overload constructor
+     * @param roomNumber room number of classroom
+     * @param roomCapacity maximum number of desks in room
      */
-    public Room(int roomNum) {
-        this.roomNum = roomNum;
+    public Room(String build, int roomNumber, int roomCapacity) {
+        this.roomNumber = roomNumber;
+        this.roomCapacity = roomCapacity;
+        this.building = build;
     }
 
     /**
-     * Returns the value of the room number
-     * @return an integer that represents the room number
+     * Room number getter
+     * @return string of the room number
      */
-    public int getRoomNum() {
-        return this.roomNum;
+    public int getRoomNumber() {
+        return roomNumber;
     }
 
     /**
-     * Updates the value of the room number
-     * @param roomNum integer that represents the room number
+     * Room number setter
+     * @param roomNumber room number of classroom
      */
-    public void setRoomNum(int roomNum) {
-        this.roomNum = roomNum;
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
     }
+
+    /**
+     * Room Capacity getter
+     * @return string of the capacity of the room
+     */
+    public int getRoomCapacity() {
+        return roomCapacity;
+    }
+
+    /**
+     * Room capacity setter
+     * @param roomCapacity capacity of the room
+     */
+    public void setRoomCapacity(int roomCapacity) {
+        this.roomCapacity = roomCapacity;
+    }
+
+    /**
+     * This function prints values of this class to the console
+     */
+    public void printRoom(){
+        System.out.println("Room '" + this.building + " " + this.roomNumber +"' has a maximum capacity of " + this.roomCapacity);
+
 }
