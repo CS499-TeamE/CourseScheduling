@@ -1,3 +1,5 @@
+package CourseScheduling.src.main.java;
+
 /**
  * Course Class that contains the information of the Course, such as Course ID and Room Preference.
  *
@@ -10,6 +12,7 @@ public class Course {
      */
     private String courseId;
     private int RoomPreference =0;
+    private int maxEnrollment = 0;
 
     /**
      * Default constructor. Sets Variables to null
@@ -66,5 +69,34 @@ public class Course {
      */
     public void setRoomPreference(int RoomPreference) {
         this.RoomPreference = RoomPreference;
+    }
+
+    /**
+     * Returns value of maxEnrollment
+     * @return int representing maximum number of students
+     */
+    public int getMaxEnrollment() {
+        return maxEnrollment ;
+    }
+
+    /**
+     * Updates value of maxEnrollment
+     * @param maxEnrollment int representing maximum number of students
+     */
+    public void setMaxStudents(int maxEnrollment) {
+        this.maxEnrollment = maxEnrollment;
+    }
+
+    /**
+     * Debugging function to print contents of course to console.
+     */
+    public void printCourse(){
+        System.out.print("\t"+this.getCourseId()); //print course ID
+        if(this.RoomPreference==0){
+            System.out.print(": No Room Preference");
+        }else{
+            System.out.print(": prefers room " + this.getRoomPreference());
+        }
+        System.out.println(". Max enrollment of " + this.getMaxEnrollment());
     }
 }

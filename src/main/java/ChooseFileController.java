@@ -1,3 +1,5 @@
+package CourseScheduling.src.main.java;
+
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
