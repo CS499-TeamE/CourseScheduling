@@ -1,3 +1,5 @@
+package CourseScheduling.src.main.java;
+
 import java.util.ArrayList; //Import the ArrayList class
 
 /**
@@ -11,7 +13,7 @@ public class Professor {
      */
     private String name;
     private String preference;
-    private ArrayList<Course> taughtCourses;
+    private ArrayList<Course> taughtCourses = new ArrayList<Course>();
 
     /**
      * Default Constructor
@@ -77,5 +79,24 @@ public class Professor {
      */
     public void setPreference(String preference) {
         this.preference = preference;
+    }
+
+    /**
+     *
+     * @param c
+     */
+    public void addCourse(Course c){
+        this.taughtCourses.add(c);
+    }
+
+    /**
+     * Debugging tool. Print out all information for faculty member.
+     */
+    public void displayProf(){
+        System.out.print("\t" + this.getName());
+        System.out.print("\tCan teach:");
+        this.taughtCourses.forEach(p->System.out.print(" "+p.getCourseId()+","));
+        System.out.print("\tPreference: "+ this.getPreference());
+        System.out.print("\n");
     }
 }

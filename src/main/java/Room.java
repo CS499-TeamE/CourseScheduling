@@ -69,7 +69,7 @@ public class Room {
     /**
      * This function prints values of this class to the console
      */
-    public void printRoom(){
-        System.out.println("Room '" + this.building + " " + this.roomNumber +"' has a maximum capacity of " + this.roomCapacity);
-
+    public void printRoom() {
+        System.out.println("Room '" + this.building + " " + this.roomNumber + "' has a maximum capacity of " + this.roomCapacity);
+    }
 }

@@ -1,3 +1,5 @@
+package CourseScheduling.src.main.java;
+
 /**
  * Class that represents the meeting time blocks for classes.
  *

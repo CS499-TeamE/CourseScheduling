@@ -11,7 +11,9 @@ import java.util.Scanner;
  * @author Ed Brown
  * @version 0.1
  * @since 9/26/2020
+ * @deprecated All input readers have been combined into ReadInputFile class
  */
+@Deprecated
 public class ReadClassRooms {
     //Class Variables
     private ArrayList<Room> rooms = new ArrayList<>(); //collection of class rooms
