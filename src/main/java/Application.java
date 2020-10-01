@@ -1,3 +1,4 @@
+package CourseScheduling.src.main.java;
 
 public class Application {
 

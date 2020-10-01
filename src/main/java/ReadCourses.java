@@ -11,7 +11,9 @@ import java.util.Scanner;
  * @author Ed Brown
  * @version 0.1
  * @since 8/29/2020
+ * @deprecated All input readers have been combined into ReadInputFile class
  */
+@Deprecated
 public class ReadCourses {
     //PossibleClass Variables
     private String department;
@@ -192,7 +194,7 @@ public class ReadCourses {
      * @param args input read from command line
      */
     public static void main(String[] args) {
-        ReadCourses s = new ReadCourses();
+        ReadCourses s = new ReadCourses("D:\\Temp\\Dept1ClassData.csv");
         s.printClass();
     }
 }

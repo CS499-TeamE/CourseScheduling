@@ -8,9 +8,9 @@ import java.util.ArrayList; //Import the ArrayList class
  * @author Ed Brown
  * @version 0.1
  * @since 8/29/2020
- *
- * @TODO Add getters
+ * @deprecated This class was a duplicate of the Professor class, use Professor instead
  */
+@Deprecated
 public class Faculty {
     private String name;
     private ArrayList<String> canTeach = new ArrayList<String>();

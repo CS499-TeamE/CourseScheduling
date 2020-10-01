@@ -5,6 +5,15 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * ReadClassTimes class. This class takes the class time data input and converts into an object.
+ *
+ * @author Ed Brown
+ * @version 0.1
+ * @since 9/26/2020
+ * @deprecated All input readers have been combined into ReadInputFile class
+ */
+@Deprecated
 public class ReadClassTimes {
     //Class Variables
     private ArrayList<ClassTimes> times = new ArrayList<>();
@@ -125,8 +134,8 @@ public class ReadClassTimes {
      * @param args input read from command line
      */
     public static void main(String[] args) {
-        ReadClassTimes t = new ReadClassTimes();
-        //ReadClassTimes t = new ReadClassTimes("D:\\Temp\\ClassTimes.csv");
+        //ReadClassTimes t = new ReadClassTimes();
+        ReadClassTimes t = new ReadClassTimes("D:\\Temp\\ClassTimes.csv");
         //ReadClassTimes t = new ReadClassTimes("D:\\Temp\\ClassTimes.tsv");
         t.printClass();
     }
