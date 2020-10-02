@@ -15,15 +15,15 @@ import java.util.stream.IntStream;
 
 public class Algorithm //crossover, mutation
 {
-    private Data info;
+    private Department dept;
 
     /**
      * Constructor for the Genetic model.Algorithm
-     * @param info
+     * @param dept
      */
-    public Algorithm(Data info)
+    public Algorithm(Department dept)
     {
-        this.info = info;
+        this.dept = dept;
     }
 
     /**
@@ -46,7 +46,7 @@ public class Algorithm //crossover, mutation
      */
     private Population parentsSelection(Population population)
     {
-        Population selectedParents = new Population(info, Application.PARENT_SELECTION_SIZE);
+        Population selectedParents = new Population(dept, Application.PARENT_SELECTION_SIZE);
         for(int i = 0; i < Application.PARENT_SELECTION_SIZE; i++)
         {
             selectedParents.getScheduleList().set(i, population.getScheduleList().get((int)Math.random() * population.getScheduleList().size()));
@@ -63,7 +63,7 @@ public class Algorithm //crossover, mutation
      */
     private Schedule crossoverSchedule(Schedule parent1, Schedule parent2)
     {
-        Schedule resultingSchedule = new Schedule(info).createSchedule();
+        Schedule resultingSchedule = new Schedule(dept).createSchedule();
         for(int i = 0; i  < resultingSchedule.getClassList().size(); i++)
         {
             if(Math.random() > 0.5)  resultingSchedule.getClassList().set(i, parent1.getClassList().get(i));
@@ -80,7 +80,7 @@ public class Algorithm //crossover, mutation
      */
     private Population crossoverPopulation(Population population)
     {
-        Population resultingPopulation = new Population(info, population.getScheduleList().size());
+        Population resultingPopulation = new Population(dept, population.getScheduleList().size());
         // First get the best schedules as elite schedules
         for(int i =0; i < Application.ELITE_SCHEDULE_NUM; i++)
         {
@@ -112,7 +112,7 @@ public class Algorithm //crossover, mutation
      */
     private Population mutatePopulation(Population population)
     {
-        Population mutatedPopulation = new Population(info, population.getScheduleList().size());
+        Population mutatedPopulation = new Population(dept, population.getScheduleList().size());
         ArrayList<Schedule> mutatedScheduleList = mutatedPopulation.getScheduleList();
         for(int i = 0; i < Application.ELITE_SCHEDULE_NUM; i++)
         {
@@ -134,7 +134,7 @@ public class Algorithm //crossover, mutation
      */
     private Schedule mutateSchedule(Schedule mutatedSchedule)
     {
-        Schedule classPool = new Schedule(info).createSchedule();
+        Schedule classPool = new Schedule(dept).createSchedule();
         for( int i =0; i < mutatedSchedule.getClassList().size(); i++)
         {
             if(Application.RATE_OF_MUTATION > Math.random())

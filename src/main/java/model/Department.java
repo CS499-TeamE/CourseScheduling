@@ -1,6 +1,8 @@
 package model;
 
 import java.util.ArrayList; //imports the ArrayList class
+import java.util.List;
+import java.util.Random;
 
 /**
  * Department class that contains the list of courses, rooms, and Professors for that department.
@@ -17,6 +19,7 @@ public class Department {
     private ArrayList<Room> roomsList;
     private ArrayList<Professor> ProfessorsList;
     private ArrayList<ClassTimes> meetingTimes;
+    Random random = new Random();
 
     /**
      * Default constructor
@@ -106,12 +109,26 @@ public class Department {
 
 
 
-    public ArrayList<ClassTimes> getMeetingTimes() {
+    public ArrayList<ClassTimes> getMeetingTimes()
+    {
         return meetingTimes;
     }
 
     public void setMeetingTimes(ArrayList<ClassTimes> meetingTimes) {
         this.meetingTimes = meetingTimes;
+    }
+
+    /**
+     * Looks at the possible class times and sets a random combination
+     * @return randomTime
+     */
+    public ClassTimes getRandomMeetingTime(int day, List<String> times)
+    {
+        ClassTimes randomTime = new ClassTimes();
+
+        randomTime.setRandomTime(this.getMeetingTimes().get(day).getDay() + ": " +
+                                 times.get(random.nextInt(times.size())));
+        return randomTime;
     }
 
     public void printDepartmentInfo(){

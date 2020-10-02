@@ -9,17 +9,17 @@ public class Population
 
     /**
      * Constructor for the Population class
-     * @param info
+     * @param dept
      * @param size
      */
-    public Population(Data info, int size)
+    public Population(Department dept, int size)
     {
         scheduleList = new ArrayList<Schedule>(size);
 
         // Initialize the data for the whole population of schedules
         for(int i=0; i<size; i++)
         {
-            scheduleList.add(new Schedule(info).createSchedule());
+            scheduleList.add(new Schedule(dept).createSchedule());
         }
     }
 

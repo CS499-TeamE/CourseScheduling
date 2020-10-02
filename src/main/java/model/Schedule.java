@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Schedule
@@ -13,16 +14,17 @@ public class Schedule
 
     private ArrayList<PossibleClass> possibleClassList;
     private List<PossibleClass> filteredPossibleClassList;
-    private Data info;
+    private Department dept;
+    Random random = new Random();
 
     /**
      * Constructor for model.Schedule
-     * @param info
+     * @param dept
      */
-    public Schedule(Data info)
+    public Schedule(Department dept)
     {
-        this.info = info;
-        //possibleClassList = new ArrayList<model.PossibleClass>(info.getNumberOfClasses());
+        this.dept = dept;
+        possibleClassList = new ArrayList<PossibleClass>(dept.getCoursesList().size());
     }
 
     /**
@@ -32,58 +34,107 @@ public class Schedule
      */
     public Schedule createSchedule()
     {
-//        for (model.Department dept : info.getDeptList())
-//        {
-//            for (model.Professor professor : dept.getProfessorList())
-//            {
-//                for (model.Course course : professor.getTaughtCourses())
-//                {
-//                    model.PossibleClass n = new model.PossibleClass(classAmount++, professor, dept);
-//                    n.setCourse(course); // assigns a course
-//                    if (n.getCourse().getRoomPreference() != 0) n.setRoom(n.getCourse().getRoomPreference()); // set room to the course preference
-//                    else n.setRoom(info.getRoomList().get((int) Math.random() * info.getRoomList().size())); // randomly assigns a room
-//                    if (n.getProfessor().getPreference() != "") handleTimePref(n, n.getProfessor().getPreference()); // set time to professor's preference
-//                    else n.setMeetingTime(info.getMeetingTimeList().get((int) Math.random() * info.getMeetingTimeList().size())); // randomly assigns a meeting time
-//                    possibleClassList.add(n);
-//                }
-//            }
-//        }
+            for (Professor professor : dept.getProfessorList())
+            {
+                for (Course course : professor.getTaughtCourses())
+                {
+                    PossibleClass n = new PossibleClass(classAmount++, professor, dept);
+                    handleCourse(n,course); // handles the course information assignment
+                    handleProfessor(n,professor); // handles the professor information
+                    handleRoom(n); // handles the room information
+                    handleMeetingTime(n); // Handles the meeting time information
+                    possibleClassList.add(n);
+                }
+            }
       return this;
+    }
+
+
+    private void handleCourse(PossibleClass n, Course course)
+    {
+        n.setCourse(course);
+    }
+
+    private void handleProfessor(PossibleClass n, Professor professor)
+    {
+        n.setProfessor(professor);
+    }
+
+    private void handleRoom(PossibleClass n)
+    {
+        if(n.getCourse().getRoomPreference() == 0)
+        {
+            n.setRoom(dept.getRoomsList().get((int) Math.random() * dept.getRoomsList().size())); // Get a random room if there is no preference
+        }
+        else
+        {
+            int searchTarget = n.getCourse().getRoomPreference();
+            for (Room room : dept.getRoomsList())
+            {
+                if(room.getRoomNumber() == searchTarget);
+                {
+                    n.setRoom(room);
+                }
+            }
+        }
+    }
+
+    private void handleMeetingTime(PossibleClass n)
+    {
+        handleTimePref(n);
     }
 
     /**
      * Add a "random" meeting time based on teacher preference
      * @param n
-     * @param preference
+     *
      */
-    private void handleTimePref(PossibleClass n, String preference)
+    private void handleTimePref(PossibleClass n)
     {
-        switch(preference) //TODO Make this switch actually assign the correct times
+
+        switch(n.getProfessor().getPreference())
         {
             case ("All Tues-Thurs classes") :
             {
-                n.setMeetingTime("T/H: times");
+                n.setMeetingTime(dept.getRandomMeetingTime(1,dept.getMeetingTimes().get(1).getTimes()).getRandomTime()); // Get a random time from T/Th
                 break;
             }
             case ("All Mon-Wed classes") :
             {
-                n.setMeetingTime("M/W: times");
+                n.setMeetingTime(dept.getRandomMeetingTime(0,dept.getMeetingTimes().get(0).getTimes()).getRandomTime()); // Get a random time from M/W
                 break;
             }
             case ("Morning classes only") :
             {
-                n.setMeetingTime("Morning classes only");
+                int day = random.nextInt(dept.getMeetingTimes().size());
+                List<String> times = dept.getMeetingTimes().get(day).getTimes();
+                List<String> filteredTimes = times.subList(0,2);
+
+                n.setMeetingTime(dept.getRandomMeetingTime(day, filteredTimes).getRandomTime());
                 break;
             }
             case ("Afternoon classes only") :
             {
-                n.setMeetingTime("Afternoon classes only");
+                int day = random.nextInt(dept.getMeetingTimes().size());
+                List<String> times = dept.getMeetingTimes().get(day).getTimes();
+                List<String> filteredTimes = times.subList(3,5);
+
+                n.setMeetingTime(dept.getRandomMeetingTime(day, filteredTimes).getRandomTime());
                 break;
             }
             case ("Evening classes only") :
             {
-                n.setMeetingTime("Evening classes only");
+                int day = random.nextInt(dept.getMeetingTimes().size());
+                List<String> times = dept.getMeetingTimes().get(day).getTimes();
+                List<String> filteredTimes = times.subList(5,7);
+
+                n.setMeetingTime(dept.getRandomMeetingTime(day, filteredTimes).getRandomTime());
                 break;
+            }
+            default:
+            {
+                int day = random.nextInt(dept.getMeetingTimes().size());
+                n.setMeetingTime(dept.getRandomMeetingTime(day,dept.getMeetingTimes().get(day).getTimes()).getRandomTime());
             }
         }
     }
@@ -143,12 +194,4 @@ public class Schedule
         return conflictAmount;
     }
 
-    /**
-     *  Gets the available information from model.Data class
-     * @return all the available data
-     */
-    public Data getInfo()
-    {
-        return info;
-    }
 }
