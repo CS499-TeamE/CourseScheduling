@@ -1,4 +1,4 @@
-package model;
+package CourseScheduling.src.main.java.model;
 
 import java.util.ArrayList; //Import the ArrayList class
 

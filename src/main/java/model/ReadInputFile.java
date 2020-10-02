@@ -1,4 +1,4 @@
-package model;
+package CourseScheduling.src.main.java.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -295,14 +295,23 @@ public class ReadInputFile
 
         // 1. Faculty name
         String name = data.substring(0, parseLeft);
-        //System.out.println(name); //debug line
         p.setName(name);
 
         // 2. Courses
         String courses = data.substring(parseLeft+1, parseRight); //make a string of just the courses
-        int parseCourses = courses.indexOf(delimiter);
-        while(parseCourses!=-1){
-            String courseNumber = courses.substring(1,parseCourses); //make string of just course number
+        //System.out.println(courses); //debug line
+
+        int parseCourses;
+        do{
+            String courseNumber;
+            parseCourses = courses.indexOf(delimiter);
+            //System.out.println("parsing value: " + parseCourses); //debug line
+
+            if(parseCourses!=-1){
+                courseNumber = courses.substring(1,parseCourses); //make string of just course number
+            }else{ //last course number in the list
+                courseNumber = courses.substring(1,courses.length()-1); //make string of just course number
+            }
 
             //go through courses to find a match
             this.courses.forEach(pair-> {
@@ -313,8 +322,8 @@ public class ReadInputFile
 
             //Filter out class that was just added and recalculate parse position
             courses = courses.substring(parseCourses+1);
-            parseCourses = courses.indexOf(delimiter);
-        }
+            //System.out.println(courses +" + parsing value: " + parseCourses); //debug line
+        }while(parseCourses!=-1);
 
         // 3. Preferences
         String preference = data.substring(parsePref+1);
