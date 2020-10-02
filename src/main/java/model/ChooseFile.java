@@ -1,4 +1,4 @@
-package model;
+package CourseScheduling.src.main.java.model;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

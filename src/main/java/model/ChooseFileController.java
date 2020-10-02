@@ -1,4 +1,4 @@
-package model;
+package CourseScheduling.src.main.java.model;
 
 import javafx.event.ActionEvent;
 import javafx.event.Event;
