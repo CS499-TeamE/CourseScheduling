@@ -1,4 +1,4 @@
-package CourseScheduling.src.main.java.model;
+package model;
 
 /**
  * Course Class that contains the information of the Course, such as Course ID and Room Preference.

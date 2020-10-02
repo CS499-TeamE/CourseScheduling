@@ -1,4 +1,4 @@
-package CourseScheduling.src.main.java.model;
+package model;
 
 import java.io.File;
 import java.io.FileNotFoundException;

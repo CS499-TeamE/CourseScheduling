@@ -1,4 +1,4 @@
-package CourseScheduling.src.main.java.model;
+package model;
 
 import controller.ChooseFileController;
 import javafx.application.Application;

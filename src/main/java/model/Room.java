@@ -1,5 +1,5 @@
 
-package CourseScheduling.src.main.java.model;
+package model;
 
 /**
  * Room class. This class stores information about available rooms

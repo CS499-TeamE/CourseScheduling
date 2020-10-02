@@ -1,9 +1,7 @@
 package controller;
 
 import com.sun.tools.javac.Main;
-import model.Department;
-import model.ReadInputFile;
-import model.Schedule;
+import model.*;
 
 import java.util.ArrayList;
 
@@ -36,8 +34,8 @@ public class MainController
 
         for(Department dept : data)
         {
-            Schedule schedule = new Schedule(dept);
-            schedule.createSchedule();
+            Population population = new Population(dept, Application.INITIAL_POP_SIZE);
+
         }
 
     }
