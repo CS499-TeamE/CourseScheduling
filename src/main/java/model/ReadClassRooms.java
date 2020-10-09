@@ -1,4 +1,4 @@
-package CourseScheduling.src.main.java.model;
+package model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,6 +13,7 @@ import java.util.Scanner;
  * @since 9/26/2020
  * @deprecated All input readers have been combined into ReadInputFile class
  */
+
 @Deprecated
 public class ReadClassRooms {
     //Class Variables

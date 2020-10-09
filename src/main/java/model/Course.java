@@ -1,4 +1,4 @@
-package CourseScheduling.src.main.java.model;
+package model;
 
 /**
  * Course Class that contains the information of the Course, such as Course ID and Room Preference.
@@ -98,5 +98,10 @@ public class Course {
             System.out.print(": prefers room " + this.getRoomPreference());
         }
         System.out.println(". Max enrollment of " + this.getMaxEnrollment());
+    }
+
+    @Override
+    public String toString() {
+        return this.getCourseId();
     }
 }

@@ -1,12 +1,12 @@
-package CourseScheduling.src.main.java.model;
+package model;
 
 public class PossibleClass
 {
 
     private Course course;
-    private int room;
+    private Room room;
     private Professor professor;
-    private String timeslot;
+    private String timeslot ="";
 
     public PossibleClass(int i, Professor professor, Department dept)
     {
@@ -20,11 +20,11 @@ public class PossibleClass
         this.course = course;
     }
 
-    public int getRoom() {
+    public Room getRoom() {
         return room;
     }
 
-    public void setRoom(int room) {
+    public void setRoom(Room room) {
         this.room = room;
     }
 
@@ -40,6 +40,7 @@ public class PossibleClass
     {
         return professor;
     }
+
     public void setProfessor(Professor professor)
     {
         this.professor = professor;

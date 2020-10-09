@@ -1,6 +1,7 @@
-package CourseScheduling.src.main.java.model;
+package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ClassTimes class. This class stores information about a times classes are offered
@@ -12,7 +13,8 @@ import java.util.ArrayList;
 public class ClassTimes {
     //Class Variables
     private String day;
-    private ArrayList<String> times = new ArrayList<String>();
+    private String randomTime;
+    private List<String> times = new ArrayList<String>();
 
     /**
      * Class constructor
@@ -43,12 +45,35 @@ public class ClassTimes {
      * Getter for day(s)
      * @return
      */
-    public String getDay() {
+    public String getDay()
+    {
         return day;
     }
 
-    public ArrayList<String> getTimes() {
+    /**
+     * getter for times
+     * @return
+     */
+    public List<String> getTimes()
+    {
         return times;
+    }
+
+    /**
+     * setter for times
+     * @param times
+     */
+    public void setTimes(List<String> times)
+    {
+        this.times = times;
+    }
+
+    public String getRandomTime() {
+        return randomTime;
+    }
+
+    public void setRandomTime(String randomTime) {
+        this.randomTime = randomTime;
     }
 
     public void printClassTimes(){
@@ -57,6 +82,5 @@ public class ClassTimes {
         System.out.print("\tClass Times: ");
         System.out.println(this.times);
     }
-
 
 }
