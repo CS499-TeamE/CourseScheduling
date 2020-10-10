@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="529.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditCourseController">
+    <children>
+        <AnchorPane prefHeight="389.0" prefWidth="579.0">
+            <children>
+                <Button fx:id="submit" layoutX="179.0" layoutY="315.0" mnemonicParsing="false" onAction="#submit" text="Submit" />
+                <Button fx:id="cancel" layoutX="290.0" layoutY="315.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+                <TextField fx:id="courseCapText" layoutX="230.0" layoutY="181.0" />
+                <TextField fx:id="courseIdText" layoutX="230.0" layoutY="128.0" />
+                <Label layoutX="122.0" layoutY="131.0" prefHeight="19.0" prefWidth="60.0" text="Course ID:">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <Label layoutX="86.0" layoutY="184.0" prefHeight="19.0" prefWidth="96.0" text="Course Capacity:">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+            <Label layoutX="77.0" layoutY="238.0" text="Room Preference:">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="roomComboBox" layoutX="230.0" layoutY="235.0" prefWidth="150.0" />
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>

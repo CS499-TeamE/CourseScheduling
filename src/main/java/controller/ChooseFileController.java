@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import model.Department;
 
 @SuppressWarnings("unchecked")
 public class ChooseFileController {
@@ -33,7 +34,7 @@ public class ChooseFileController {
 
 
     private List<TextField> textFieldList = new ArrayList<>();
-
+    private ArrayList<String> files = new ArrayList<>();
     private Stage stage;
 
     public void setStage(Stage stage)
@@ -62,14 +63,20 @@ public class ChooseFileController {
             for(TextField fileName : textFieldList)
             {
                 String filePath = fileName.getText();
+                files.add(filePath);
                 System.out.println(filePath);
 
-                Parent pane = FXMLLoader.load(getClass().getResource("/FinalizeInput.fxml"));
-                Scene scene = new Scene(pane);
-                stage.setScene(scene);
-                resize();
             }
 
+            MainController mainController = MainController.getInstance();
+            mainController.initializeData(files);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FinalizeInput.fxml"));
+            Parent pane = (Parent) fxmlLoader.load();
+            ((FinalizeInputController) fxmlLoader.getController()).setStage(stage);
+            Scene scene = new Scene(pane);
+            stage.setScene(scene);
+            resize();
+            ((FinalizeInputController) fxmlLoader.getController()).initialize(mainController.getData());
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Cannot submit before selecting file path.");

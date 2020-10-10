@@ -1,4 +1,4 @@
-package CourseScheduling.src.main.java.model;
+package model;
 
 import java.util.ArrayList;
 
@@ -9,17 +9,17 @@ public class Population
 
     /**
      * Constructor for the Population class
-     * @param info
+     * @param dept
      * @param size
      */
-    public Population(Data info, int size)
+    public Population(Department dept, int size)
     {
         scheduleList = new ArrayList<Schedule>(size);
 
         // Initialize the data for the whole population of schedules
         for(int i=0; i<size; i++)
         {
-            scheduleList.add(new Schedule(info).createSchedule());
+            scheduleList.add(new Schedule(dept).createSchedule());
         }
     }
 
@@ -29,11 +29,11 @@ public class Population
      */
     public Population sortScheduleList()
     {
-         scheduleList.sort((scheduleN, scheduleM) -> {
-             int compareValue =0;
-             if(scheduleN.getFitness() > scheduleM.getFitness()) compareValue = -1;
-             else if(scheduleN.getFitness() < scheduleM.getFitness()) compareValue = 1;
-             return compareValue;
+        scheduleList.sort((scheduleN, scheduleM) -> {
+            int compareValue =0;
+            if(scheduleN.getFitness() > scheduleM.getFitness()) compareValue = -1;
+            else if(scheduleN.getFitness() < scheduleM.getFitness()) compareValue = 1;
+            return compareValue;
         });
         return this;
     }

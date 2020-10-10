@@ -1,4 +1,4 @@
-package CourseScheduling.src.main.java.model;
+package model;
 
 import java.util.ArrayList; //Import the ArrayList class
 
@@ -98,5 +98,10 @@ public class Professor {
         this.taughtCourses.forEach(p->System.out.print(" "+p.getCourseId()+","));
         System.out.print("\tPreference: "+ this.getPreference());
         System.out.print("\n");
+    }
+
+    @Override
+    public String toString() {
+        return this.getName();
     }
 }

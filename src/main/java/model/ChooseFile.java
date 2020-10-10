@@ -1,10 +1,13 @@
-package CourseScheduling.src.main.java.model;
+package model;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import controller.ChooseFileController;
+
+import java.util.ArrayList;
 
 public class ChooseFile extends Application {
 
