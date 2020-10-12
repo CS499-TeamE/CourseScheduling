@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.stream.IntStream;
 
 /**
@@ -16,6 +17,7 @@ import java.util.stream.IntStream;
 public class Algorithm //crossover, mutation
 {
     private Department dept;
+    Random random =new Random();
 
     /**
      * Constructor for the Genetic model.Algorithm
@@ -49,7 +51,7 @@ public class Algorithm //crossover, mutation
         Population selectedParents = new Population(dept, Application.PARENT_SELECTION_SIZE);
         for(int i = 0; i < Application.PARENT_SELECTION_SIZE; i++)
         {
-            selectedParents.getScheduleList().set(i, population.getScheduleList().get((int)Math.random() * population.getScheduleList().size()));
+            selectedParents.getScheduleList().set(i, population.getScheduleList().get(random.nextInt(population.getScheduleList().size())));
         }
         return selectedParents;
     }

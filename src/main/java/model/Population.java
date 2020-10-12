@@ -20,6 +20,8 @@ public class Population
         for(int i=0; i<size; i++)
         {
             scheduleList.add(new Schedule(dept).createSchedule());
+            //scheduleList.get(i).printScheduleInfo();
+            //System.out.println(scheduleList.get(i).getFitness());
         }
     }
 

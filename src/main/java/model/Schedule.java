@@ -12,7 +12,7 @@ public class Schedule
     private double fitness = -1;
     private boolean fitnessChange = true;
 
-    private ArrayList<PossibleClass> possibleClassList;
+    private List<PossibleClass> possibleClassList;
     private List<PossibleClass> filteredPossibleClassList;
     private Department dept;
     Random random = new Random();
@@ -64,7 +64,7 @@ public class Schedule
     {
         if(n.getCourse().getRoomPreference() == 0)
         {
-            n.setRoom(dept.getRoomsList().get((int) Math.random() * dept.getRoomsList().size())); // Get a random room if there is no preference
+            n.setRoom(dept.getRoomsList().get(random.nextInt(dept.getRoomsList().size()))); // Get a random room if there is no preference
         }
         else
         {
@@ -148,8 +148,8 @@ public class Schedule
         conflictAmount = 0;
         for (PossibleClass n  : possibleClassList)
         {
-            //if(n.getRoom().) will be if room capacity is less than course capacity //TODO once inputs are there for the course/room capacity
-            for(PossibleClass m : possibleClassList.stream().filter(m -> possibleClassList.indexOf(m) >= possibleClassList.indexOf(n)).collect(Collectors.toList()))
+            if(n.getRoom().getRoomCapacity() < n.getCourse().getMaxEnrollment()) conflictAmount++;
+            for(PossibleClass m : possibleClassList)
             {
                 // If two classes share a meeting time and are not the same class, check the room number and instructor to see if there are conflicts
                 if(n.getMeetingTime() == m.getMeetingTime() && n.getCourse() != m.getCourse())
@@ -179,7 +179,7 @@ public class Schedule
      * Gets the list of class combinations that have been made in an example schedule
      * @return
      */
-    public ArrayList<PossibleClass> getClassList()
+    public List<PossibleClass> getClassList()
     {
         fitnessChange = true;
         return possibleClassList;
@@ -194,4 +194,18 @@ public class Schedule
         return conflictAmount;
     }
 
+    public void printScheduleInfo(){ ;
+
+     for(PossibleClass combo : possibleClassList)
+     {
+         System.out.println("Course:");
+         System.out.println(combo.getCourse().getCourseId());
+         System.out.println("Professor:");
+         System.out.println(combo.getProfessor().getName());
+         System.out.println("Classroom:");
+         System.out.println(combo.getRoom().getRoomNumber());
+         System.out.println("Time:");
+         System.out.println(combo.getMeetingTime());
+     }
+    }
 }
