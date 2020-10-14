@@ -12,8 +12,8 @@ import javafx.stage.Stage;
 import model.Course;
 import model.Room;
 
-import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class EditCourseController {
     @FXML private TextField courseIdText;
@@ -25,7 +25,7 @@ public class EditCourseController {
     @FXML private Course course;
     private FinalizeInputController mainController;
     private boolean edit;
-    private ArrayList<Course> courseList;
+    private List<Course> courseList;
 
     public void setCourse(Course course) {
 
@@ -47,7 +47,7 @@ public class EditCourseController {
         this.mainController = controller;
     }
 
-    public void initialize(Course course, ArrayList<Course> courseList, ArrayList<Room> roomList) {
+    public void initialize(Course course, List<Course> courseList, List<Room> roomList) {
         this.stage.initModality(Modality.APPLICATION_MODAL);
         this.setCourse(course);
         this.courseList = courseList;

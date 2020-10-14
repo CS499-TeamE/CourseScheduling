@@ -14,6 +14,7 @@ import model.Professor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 
 public class EditProfessorController {
     @FXML private TextField professorNameText;
@@ -26,8 +27,8 @@ public class EditProfessorController {
     @FXML private Button add;
     private Stage stage;
     private Professor professor;
-    private ArrayList<Professor> professorList;
-    private ArrayList<Course> courseList;
+    private List<Professor> professorList;
+    private List<Course> courseList;
     private FinalizeInputController mainController;
     private boolean edit;
 
@@ -51,7 +52,7 @@ public class EditProfessorController {
         this.mainController = controller;
     }
 
-    public void initialize(Professor professor, ArrayList<Professor> professorList, ArrayList<Course> courseList) {
+    public void initialize(Professor professor, List<Professor> professorList, List<Course> courseList) {
         this.stage.initModality(Modality.APPLICATION_MODAL);
         this.setProfessor(professor);
         this.professorList = professorList;

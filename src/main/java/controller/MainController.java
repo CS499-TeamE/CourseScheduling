@@ -33,7 +33,7 @@ public class MainController
      *  Data is then used to create a new population of sudo random schedules
      * @param files
      */
-    public void initializeData(ArrayList<String> files)
+    public void initializeData(List<String> files)
     {
         for(String file: files)
         {
