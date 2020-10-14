@@ -99,4 +99,9 @@ public class Course {
         }
         System.out.println(". Max enrollment of " + this.getMaxEnrollment());
     }
+
+    @Override
+    public String toString() {
+        return this.getCourseId();
+    }
 }

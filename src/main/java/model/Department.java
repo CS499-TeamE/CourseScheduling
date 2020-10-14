@@ -142,4 +142,9 @@ public class Department {
         System.out.println("Available Classrooms:");
         this.roomsList.forEach(p->p.printRoom());
     }
+
+    @Override
+    public String toString() {
+        return this.getDepartmentName();
+    }
 }

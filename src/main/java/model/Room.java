@@ -1,4 +1,3 @@
-
 package model;
 
 /**
@@ -23,7 +22,7 @@ public class Room {
         this.building = null;
     }
 
-     /**
+    /**
      * Overload constructor
      * @param roomNumber room number of classroom
      * @param roomCapacity maximum number of desks in room
@@ -71,5 +70,13 @@ public class Room {
      */
     public void printRoom() {
         System.out.println("Room '" + this.building + " " + this.roomNumber + "' has a maximum capacity of " + this.roomCapacity);
+    }
+
+    @Override
+    public String toString() {
+        if (this.getRoomNumber() == 0) {
+            return "No Preference";
+        }
+        return String.valueOf(this.getRoomNumber());
     }
 }

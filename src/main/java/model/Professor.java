@@ -99,4 +99,9 @@ public class Professor {
         System.out.print("\tPreference: "+ this.getPreference());
         System.out.print("\n");
     }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
 }

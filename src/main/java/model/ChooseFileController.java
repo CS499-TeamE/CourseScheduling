@@ -1,24 +1,23 @@
-package controller;
+package CourseScheduling.src.main.java.model;
 
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.w3c.dom.Text;
 
+import javax.swing.*;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Department;
 
+@Deprecated
 @SuppressWarnings("unchecked")
 public class ChooseFileController {
     @FXML private Button clearButton;
@@ -34,11 +33,10 @@ public class ChooseFileController {
 
 
     private List<TextField> textFieldList = new ArrayList<>();
-    private ArrayList<String> files = new ArrayList<>();
+
     private Stage stage;
 
-    public void setStage(Stage stage)
-    {
+    public void setStage(Stage stage) {
         this.stage = stage;
 
     }
@@ -57,27 +55,14 @@ public class ChooseFileController {
         }
     }
 
-    public void submit(ActionEvent actionEvent) throws IOException {
+    public void submit(ActionEvent actionEvent) {
         if ( !(textFieldList.isEmpty()) )
         {
-
             for(TextField fileName : textFieldList)
             {
                 String filePath = fileName.getText();
-                files.add(filePath);
                 System.out.println(filePath);
             }
-
-            MainController mainController = MainController.getInstance();
-            mainController.initializeData(files);
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FinalizeInput.fxml"));
-            Parent pane = (Parent) fxmlLoader.load();
-            ((FinalizeInputController) fxmlLoader.getController()).setStage(stage);
-            Scene scene = new Scene(pane);
-            stage.setScene(scene);
-            resize();
-            ((FinalizeInputController) fxmlLoader.getController()).initialize(mainController.getData());
 
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -20,8 +20,6 @@ public class Population
         for(int i=0; i<size; i++)
         {
             scheduleList.add(new Schedule(dept).createSchedule());
-            //scheduleList.get(i).printScheduleInfo();
-            //System.out.println(scheduleList.get(i).getFitness());
         }
     }
 
@@ -31,11 +29,11 @@ public class Population
      */
     public Population sortScheduleList()
     {
-         scheduleList.sort((scheduleN, scheduleM) -> {
-             int compareValue =0;
-             if(scheduleN.getFitness() > scheduleM.getFitness()) compareValue = -1;
-             else if(scheduleN.getFitness() < scheduleM.getFitness()) compareValue = 1;
-             return compareValue;
+        scheduleList.sort((scheduleN, scheduleM) -> {
+            int compareValue =0;
+            if(scheduleN.getFitness() > scheduleM.getFitness()) compareValue = -1;
+            else if(scheduleN.getFitness() < scheduleM.getFitness()) compareValue = 1;
+            return compareValue;
         });
         return this;
     }

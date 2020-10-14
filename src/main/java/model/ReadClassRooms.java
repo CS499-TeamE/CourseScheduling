@@ -13,6 +13,7 @@ import java.util.Scanner;
  * @since 9/26/2020
  * @deprecated All input readers have been combined into ReadInputFile class
  */
+
 @Deprecated
 public class ReadClassRooms {
     //Class Variables
