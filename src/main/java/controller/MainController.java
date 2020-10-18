@@ -11,6 +11,7 @@ public class MainController
 
     private static List<Department> data = new ArrayList<>();
     private List<Population> populationList = new ArrayList<>();
+    private List <Schedule> scheduleList = new ArrayList<>();
     private static MainController instance;
     private int evolutions = 0;
     boolean perfect = false;
@@ -41,6 +42,9 @@ public class MainController
             data.add(parser.getDepartment());
         }
 
+    }
+    public void initializePopulation(List<Department> departments)
+    {
         for(Department dept : data)
         {
             Population population = new Population(dept, Application.INITIAL_POP_SIZE);
@@ -71,6 +75,7 @@ public class MainController
                     + populationList.get(i).getScheduleList().get(0).getFitness());
 
         }
+        scheduleList.add(populationList.get(i).getScheduleList().get(0));
     }
 
     private void printSchedule(Schedule schedule)
@@ -87,5 +92,9 @@ public class MainController
     public static void setData(List<Department> data)
     {
         MainController.data = data;
+    }
+
+    public List<Schedule> getScheduleList() {
+        return scheduleList;
     }
 }
