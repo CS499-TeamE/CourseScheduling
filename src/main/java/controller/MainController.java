@@ -93,4 +93,8 @@ public class MainController
     {
         MainController.data = data;
     }
+
+    public List<Schedule> getScheduleList() {
+        return scheduleList;
+    }
 }

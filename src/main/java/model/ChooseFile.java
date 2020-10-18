@@ -24,7 +24,7 @@ public class ChooseFile extends Application {
         primaryStage.setResizable(true);
         primaryStage.centerOnScreen();
         primaryStage.sizeToScene();
-        primaryStage.setTitle("Open Input File");
+        //primaryStage.setTitle("Open Input File");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }

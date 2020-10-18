@@ -209,7 +209,7 @@ public class Schedule
      }
     }
 
-    public List getScheduleInfo(Schedule schedule)
+    public static List getScheduleInfo(Schedule schedule)
     {
         List<String> output = new ArrayList<>();
         for(PossibleClass course : schedule.getClassList())
