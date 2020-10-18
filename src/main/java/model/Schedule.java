@@ -208,4 +208,19 @@ public class Schedule
          System.out.println(combo.getMeetingTime());
      }
     }
+
+    public List getScheduleInfo(Schedule schedule)
+    {
+        List<String> output = new ArrayList<>();
+        for(PossibleClass course : schedule.getClassList())
+        {
+            output.add(" Course: " + course.getCourse().getCourseId()
+                    + " Max Attendance: " + course.getCourse().getMaxEnrollment()
+                    + " Room: " + course.getRoom().getRoomNumber()
+                    + " Room Capacity: " + course.getRoom().getRoomCapacity()
+                    + " Professor: " + course.getProfessor()
+                    + " Meeting Time: " + course.getMeetingTime());
+        }
+        return output;
+    }
 }
