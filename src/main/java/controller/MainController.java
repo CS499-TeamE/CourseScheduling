@@ -41,6 +41,9 @@ public class MainController
             data.add(parser.getDepartment());
         }
 
+    }
+    public void initializePopulation(List<Department> departments)
+    {
         for(Department dept : data)
         {
             Population population = new Population(dept, Application.INITIAL_POP_SIZE);
