@@ -1,4 +1,4 @@
-package CourseScheduling.src.main.java.model;
+package model;
 
 /**
  * Class that represents the meeting time blocks for classes.

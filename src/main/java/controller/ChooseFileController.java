@@ -60,16 +60,17 @@ public class ChooseFileController {
     public void submit(ActionEvent actionEvent) throws IOException {
         if ( !(textFieldList.isEmpty()) )
         {
+
             for(TextField fileName : textFieldList)
             {
                 String filePath = fileName.getText();
                 files.add(filePath);
                 System.out.println(filePath);
-
             }
 
             MainController mainController = MainController.getInstance();
             mainController.initializeData(files);
+
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FinalizeInput.fxml"));
             Parent pane = (Parent) fxmlLoader.load();
             ((FinalizeInputController) fxmlLoader.getController()).setStage(stage);
@@ -77,6 +78,7 @@ public class ChooseFileController {
             stage.setScene(scene);
             resize();
             ((FinalizeInputController) fxmlLoader.getController()).initialize(mainController.getData());
+
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Cannot submit before selecting file path.");

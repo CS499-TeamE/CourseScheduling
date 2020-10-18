@@ -12,10 +12,9 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import model.*;
 
-import javax.swing.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class FinalizeInputController
 {
@@ -34,10 +33,10 @@ public class FinalizeInputController
     @FXML public Button roomEdit;
     @FXML public Button roomDelete;
     @FXML private Button submit;
-    private ArrayList<Department> departments;
-    private ArrayList<Room> roomList;
-    private ArrayList<Course> courseList;
-    private ArrayList<Professor> professorList;
+    private List<Department> departments;
+    private List<Room> roomList;
+    private List<Course> courseList;
+    private List<Professor> professorList;
 
     public FinalizeInputController() {
 
@@ -48,7 +47,7 @@ public class FinalizeInputController
 
     }
 
-    public void initialize(ArrayList<Department> departments) {
+    public void initialize(List<Department> departments) {
         this.departments = departments;
         this.departmentComboBox.setItems(FXCollections.observableArrayList(this.departments));
         this.setCombosDisable(true);

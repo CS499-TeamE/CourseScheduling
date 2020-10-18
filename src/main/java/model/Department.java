@@ -127,7 +127,7 @@ public class Department {
         ClassTimes randomTime = new ClassTimes();
 
         randomTime.setRandomTime(this.getMeetingTimes().get(day).getDay() + ": " +
-                times.get(random.nextInt(times.size())));
+                                 times.get(random.nextInt(times.size())));
         return randomTime;
     }
 

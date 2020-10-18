@@ -13,14 +13,14 @@ import javafx.stage.Stage;
 import model.Room;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class EditRoomController {
     @FXML private TextField roomNumText;
     @FXML private TextField roomCapText;
     @FXML private Room room;
-    @FXML private ArrayList<Room> roomList;
+    @FXML private List<Room> roomList;
     @FXML private Stage stage;
     @FXML private FinalizeInputController mainController;
     @FXML private Button submit;
@@ -58,7 +58,7 @@ public class EditRoomController {
         this.mainController = controller;
     }
 
-    public void initialize(Room room, ArrayList<Room> roomList) {
+    public void initialize(Room room, List<Room> roomList) {
         this.stage.initModality(Modality.APPLICATION_MODAL);
         this.setRoom(room);
         this.roomList = roomList;
