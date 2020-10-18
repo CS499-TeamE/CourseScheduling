@@ -274,10 +274,22 @@ public class FinalizeInputController
         }
     }
 
-    public void submit(ActionEvent actionEvent) {
+    public void submit(ActionEvent actionEvent) throws IOException {
         for (Department department : departments) {
             department.printDepartmentInfo();
         }
+
+        MainController mainController = MainController.getInstance();
+        mainController.initializePopulation(departments);
+        List<Schedule> scheduleList = mainController.getScheduleList();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/OutputSchedule.fxml"));
+        Parent pane = (Parent) fxmlLoader.load();
+        ((OutputScheduleController) fxmlLoader.getController()).setStage(stage);
+        ((OutputScheduleController) fxmlLoader.getController()).initialize(departments, scheduleList);
+        Scene scene = new Scene(pane);
+        stage.setScene(scene);
+        resize();
     }
 
     public void setCourseComboBoxItems(ObservableList<Course> courseList) {
@@ -290,6 +302,11 @@ public class FinalizeInputController
 
     public void setRoomComboBoxItems(ObservableList<Room> roomList) {
         this.roomComboBox.setItems(roomList);
+    }
+
+    public void resize()
+    {
+        this.stage.sizeToScene();
     }
 
 }
