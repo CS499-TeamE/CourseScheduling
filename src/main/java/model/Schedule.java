@@ -152,10 +152,11 @@ public class Schedule
             for(PossibleClass m : possibleClassList)
             {
                 // If two classes share a meeting time and are not the same class, check the room number and instructor to see if there are conflicts
-                if(n.getMeetingTime() == m.getMeetingTime() && n.getCourse() != m.getCourse())
+                if(n.getMeetingTime().equals(m.getMeetingTime()) && n.getCourse() != m.getCourse())
                 {
                     if(n.getRoom() == m.getRoom()) conflictAmount++;
                     if(n.getProfessor() == m.getProfessor()) conflictAmount++;
+
                 }
             }
         }
@@ -167,14 +168,19 @@ public class Schedule
      */
     public double getFitness()
     {
-        if(fitnessChange == true)
-        {
-            fitness = calcFitness();
-            fitnessChange = false;
-        }
+        fitness = calcFitness();
         return fitness;
     }
 
+    public boolean isPerfect()
+    {
+        double perfect = 1.0;
+        if(fitness == perfect)
+        {
+            return true;
+        }
+        else return false;
+    }
     /**
      * Gets the list of class combinations that have been made in an example schedule
      * @return

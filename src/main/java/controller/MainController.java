@@ -65,9 +65,9 @@ public class MainController
         }
     }
 
-    synchronized private void simulateEvolution(Algorithm alg, int i)
+    private void simulateEvolution(Algorithm alg, int i)
     {
-        while(populationList.get(i).getScheduleList().get(0).getFitness() != 1 && evolutions <= Application.MAX_EVOLUTIONS)
+        while(!populationList.get(i).getScheduleList().get(0).isPerfect() && evolutions <= Application.MAX_EVOLUTIONS)
         {
             populationList.set(i,alg.evolvePopulation(populationList.get(i).sortScheduleList()));
             evolutions++;

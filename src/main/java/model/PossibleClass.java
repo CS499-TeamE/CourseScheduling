@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PossibleClass
 {
 
@@ -46,5 +49,21 @@ public class PossibleClass
         this.professor = professor;
     }
 
+    public String getJustTime()
+    {
+        String[] justTime = timeslot.split(" ");
+        String time = justTime[1] + justTime[2] + justTime[3];
+        return time;
+    }
+    public String getClassInfo()
+    {
+        String info = " Course: " + this.getCourse().getCourseId()
+                + " Max Attendance: " + this.getCourse().getMaxEnrollment()
+                + " Room: " + this.getRoom().getRoomNumber()
+                + " Room Capacity: " + this.getRoom().getRoomCapacity()
+                + " Professor: " + this.getProfessor()
+                + " Meeting Time: " + this.getJustTime();
 
+        return info;
+    }
 }
