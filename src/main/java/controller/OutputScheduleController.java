@@ -7,9 +7,11 @@ import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Department;
+import model.FilePrinter;
 import model.Schedule;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class OutputScheduleController {
@@ -70,7 +72,7 @@ public class OutputScheduleController {
         this.textArea.setText(printedSchedule);
     }
 
-    public void saveSchedules(ActionEvent actionEvent) {
+    public void saveSchedules(ActionEvent actionEvent) throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(".csv", ".csv"));
@@ -81,6 +83,17 @@ public class OutputScheduleController {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(file.getPath() + " has been saved.");
             alert.showAndWait();
+            FilePrinter writer = new FilePrinter(this.departmentComboBox.getSelectionModel()
+                    .getSelectedItem(),this.scheduleList
+                    .get(this.departmentComboBox.getSelectionModel().getSelectedIndex()),file);
+            if(file.getName().contains(".tsv"))
+            {
+                writer.tsvPrinter();
+            }
+            else
+            {
+                writer.csvPrinter();
+            }
         }
     }
 }
