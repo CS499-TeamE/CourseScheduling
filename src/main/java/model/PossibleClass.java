@@ -1,5 +1,7 @@
 package model;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,13 +59,17 @@ public class PossibleClass
     }
     public String getClassInfo()
     {
-        String info = " Course: " + this.getCourse().getCourseId()
-                + " Max Attendance: " + this.getCourse().getMaxEnrollment()
-                + " Room: " + this.getRoom().getRoomNumber()
-                + " Room Capacity: " + this.getRoom().getRoomCapacity()
-                + " Professor: " + this.getProfessor()
-                + " Meeting Time: " + this.getJustTime();
+        String beginning = this.getCourse().getCourseId()
+                + "   | " + this.getCourse().getMaxEnrollment()
+                + "                                |  " + this.getRoom().getRoomNumber()
+                + "         |  " + this.getRoom().getRoomCapacity()
+                + "                             |   ";
+        String middle = this.getProfessor().getName();
+        middle = StringUtils.rightPad(middle, 28, " ");
+        String end = "|   " + this.getJustTime();
 
-        return info;
+        return beginning.concat(middle.concat(end));
     }
+
+
 }
