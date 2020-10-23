@@ -11,7 +11,7 @@ public class Application {
     public static final double RATE_OF_CROSSOVER = 0.95;
     public static final int PARENT_SELECTION_SIZE = 5;
     public static final int ELITE_SCHEDULE_NUM = 1;
-    public static final int MAX_EVOLUTIONS = 2500;
+    public static final int MAX_EVOLUTIONS = 500;
 
     public static void main(String[] args)
     {

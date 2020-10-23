@@ -13,6 +13,16 @@ public class PossibleClass
     private Professor professor;
     private String timeslot ="";
 
+    public boolean isHasConflict() {
+        return hasConflict;
+    }
+
+    public void setHasConflict(boolean hasConflict) {
+        this.hasConflict = hasConflict;
+    }
+
+    private boolean hasConflict;
+
     public PossibleClass(int i, Professor professor, Department dept)
     {
 

@@ -281,8 +281,8 @@ public class FinalizeInputController
 
         MainController mainController = MainController.getInstance();
         mainController.initializePopulation(departments);
-        List<Schedule> scheduleList = mainController.getScheduleList();
 
+        List<Schedule> scheduleList = mainController.getScheduleList();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/OutputSchedule.fxml"));
         Parent pane = (Parent) fxmlLoader.load();
         ((OutputScheduleController) fxmlLoader.getController()).setStage(stage);
@@ -290,6 +290,8 @@ public class FinalizeInputController
         Scene scene = new Scene(pane);
         stage.setScene(scene);
         resize();
+
+
     }
 
     public void setCourseComboBoxItems(ObservableList<Course> courseList) {
