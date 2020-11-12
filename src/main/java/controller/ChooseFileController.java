@@ -34,7 +34,7 @@ public class ChooseFileController {
 
 
     private List<TextField> textFieldList = new ArrayList<>();
-    private ArrayList<String> files = new ArrayList<>();
+    private List<String> files = new ArrayList<>();
     private Stage stage;
 
     public void setStage(Stage stage)
@@ -64,7 +64,9 @@ public class ChooseFileController {
             for(TextField fileName : textFieldList)
             {
                 String filePath = fileName.getText();
-                files.add(filePath);
+                if (!files.contains(filePath)) {
+                    files.add(filePath);
+                }
                 System.out.println(filePath);
             }
 
@@ -95,6 +97,7 @@ public class ChooseFileController {
         Button newClearButton = new Button("Clear");
         Button newRemoveButton = new Button("X");
         TextField newTextField = new TextField();
+        textFieldList.add(newTextField);
 
 
         // Set actions of new buttons
@@ -111,7 +114,6 @@ public class ChooseFileController {
                 File file = fileChooser.showOpenDialog(stage);
                 if (file != null) {
                     newTextField.setText(file.getAbsolutePath());
-                    textFieldList.add(newTextField);
                 }
             }
         });
@@ -146,6 +148,20 @@ public class ChooseFileController {
 
         vBoxMid.getChildren().add(newHBox);
         resize();
+    }
+
+    public void initializeTextFields() {
+        MainController mainController = MainController.getInstance();
+        this.files = mainController.getFiles();
+        System.out.println(this.files);
+        for (String file : files) {
+            this.addInputButton.fire();
+            textFieldList.get(textFieldList.size() - 1).setText(file);
+        }
+    }
+
+    private List<String> getFiles() {
+        return this.files;
     }
 
     public void resize()

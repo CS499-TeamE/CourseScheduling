@@ -3,6 +3,9 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -17,6 +20,7 @@ import java.util.List;
 public class OutputScheduleController {
     @FXML private Stage stage;
     @FXML private Button save;
+    @FXML private Button backButton;
     @FXML private TextArea textArea;
     @FXML private ComboBox<Department> departmentComboBox;
     private List<Department> departmentList;
@@ -96,4 +100,26 @@ public class OutputScheduleController {
             }
         }
     }
+
+    public void back(ActionEvent actionEvent) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to go back? Doing so will " +
+                "lose all progress.", ButtonType.YES, ButtonType.NO);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FinalizeInput.fxml"));
+            Parent pane = (Parent) fxmlLoader.load();
+            ((FinalizeInputController) fxmlLoader.getController()).setStage(stage);
+            Scene scene = new Scene(pane);
+            stage.setScene(scene);
+            resize();
+            ((FinalizeInputController) fxmlLoader.getController()).initialize(departmentList);
+        }
+    }
+
+    public void resize()
+    {
+        this.stage.sizeToScene();
+    }
+
 }
