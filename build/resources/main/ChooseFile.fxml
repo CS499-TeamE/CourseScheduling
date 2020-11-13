@@ -10,38 +10,35 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" stylesheets="@darktheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ChooseFileController">
+<AnchorPane fx:id="anchorPane" prefHeight="384.0" prefWidth="682.0" stylesheets="@darktheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ChooseFileController">
    <children>
-      <BorderPane>
-         <bottom>
-            <ButtonBar prefHeight="45.0" prefWidth="419.0" BorderPane.alignment="CENTER">
-              <buttons>
-                  <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submit" text="Submit" translateX="-5.0" translateY="-5.0" />
-                  <Button fx:id="addInputButton" layoutX="292.0" layoutY="20.0" mnemonicParsing="false" onAction="#addInput" text="Add Input" translateX="-5.0" translateY="-5.0" />
-              </buttons>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </ButtonBar>
-         </bottom>
-         <center>
-            <VBox fx:id="vBoxMid" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox fx:id="hBoxTop" spacing="20.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <Label text="Enter Location of File Path to Input File">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </HBox>
-               </children>
-            </VBox>
-         </center>
-      </BorderPane>
+      <BorderPane prefHeight="0.0" prefWidth="0.0" />
+      <ButtonBar layoutX="263.0" layoutY="339.0" prefHeight="45.0" prefWidth="419.0">
+        <buttons>
+            <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submit" text="Submit" translateX="-5.0" translateY="-5.0" />
+            <Button fx:id="addInputButton" layoutX="292.0" layoutY="20.0" mnemonicParsing="false" onAction="#addInput" text="Add Input" translateX="-5.0" translateY="-5.0" />
+        </buttons>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </ButtonBar>
+      <HBox fx:id="hBoxTop" layoutX="219.0" layoutY="117.0" spacing="20.0">
+         <children>
+            <Label layoutX="86.0" layoutY="166.0" text="Enter Location of File Path to Input File:">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <Label layoutX="83.0" layoutY="51.0" prefHeight="63.0" prefWidth="516.0" text="SCHEDULE GENERATOR">
+         <font>
+            <Font name="System Bold" size="45.0" />
+         </font>
+      </Label>
+      <VBox fx:id="vBoxMid" layoutX="80.0" layoutY="155.0" />
    </children>
 </AnchorPane>
