@@ -69,6 +69,7 @@ public class MainController
             run = 1;
             while(!populationList.get(i).getScheduleList().get(0).isPerfect() && run <= 5)
             {
+                populationList.set(i, new Population(data.get(i), Application.INITIAL_POP_SIZE));
                 evolutions = 0;
                 Algorithm alg = new Algorithm(data.get(i));
                 simulateEvolution(alg, i);

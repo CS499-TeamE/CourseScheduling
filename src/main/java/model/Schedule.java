@@ -148,6 +148,7 @@ public class Schedule
         conflictAmount = 0;
         for (PossibleClass n  : possibleClassList)
         {
+            n.setHasConflict(false);
             if(n.getRoom().getRoomCapacity() < n.getCourse().getMaxEnrollment())
             {
                 conflictAmount++;

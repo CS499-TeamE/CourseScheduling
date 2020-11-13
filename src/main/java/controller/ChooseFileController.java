@@ -40,7 +40,6 @@ public class ChooseFileController {
     public void setStage(Stage stage)
     {
         this.stage = stage;
-
     }
 
     public void selectFile(ActionEvent actionEvent) {
@@ -58,11 +57,16 @@ public class ChooseFileController {
     }
 
     public void submit(ActionEvent actionEvent) throws IOException {
-        if ( !(textFieldList.isEmpty()) )
-        {
+        Boolean missingFiles = false;
+        for(TextField textField : textFieldList) {
+            if (textField.getText().equals("")) {
+                missingFiles = true;
+                break;
+            }
+        }
+        if (!(textFieldList.isEmpty()) && !missingFiles) {
 
-            for(TextField fileName : textFieldList)
-            {
+            for (TextField fileName : textFieldList) {
                 String filePath = fileName.getText();
                 if (!files.contains(filePath)) {
                     files.add(filePath);
@@ -84,8 +88,11 @@ public class ChooseFileController {
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Cannot submit before selecting file path.");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add("darktheme.css");
             alert.showAndWait();
         }
+
     }
     public void addInput(ActionEvent actionEvent)
     {
@@ -97,6 +104,7 @@ public class ChooseFileController {
         Button newClearButton = new Button("Clear");
         Button newRemoveButton = new Button("X");
         TextField newTextField = new TextField();
+        newTextField.clear();
         textFieldList.add(newTextField);
 
 

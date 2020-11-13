@@ -70,13 +70,13 @@ public class PossibleClass
     public String getClassInfo()
     {
         String beginning = this.getCourse().getCourseId()
-                + "   | " + this.getCourse().getMaxEnrollment()
-                + "                                |  " + this.getRoom().getRoomNumber()
-                + "         |  " + this.getRoom().getRoomCapacity()
-                + "                             |   ";
+                + "\t|\t" + this.getCourse().getMaxEnrollment()
+                + "\t\t\t\t|\t" + this.getRoom().getRoomNumber()
+                + "\t\t|\t" + this.getRoom().getRoomCapacity()
+                + "\t\t\t\t|\t";
         String middle = this.getProfessor().getName();
-        middle = StringUtils.rightPad(middle, 28, " ");
-        String end = "|   " + this.getJustTime();
+        middle = StringUtils.rightPad(middle, 20, " ");
+        String end = "\t|\t" + this.getJustTime();
 
         return beginning.concat(middle.concat(end));
     }

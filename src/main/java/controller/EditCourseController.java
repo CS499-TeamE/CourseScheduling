@@ -3,10 +3,7 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Course;
@@ -86,6 +83,8 @@ public class EditCourseController {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Empty fields");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add("darktheme.css");
             alert.showAndWait();
 
         } else {
