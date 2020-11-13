@@ -11,7 +11,8 @@ public class MainController
 
     private static List<Department> data = new ArrayList<>();
     private List<Population> populationList = new ArrayList<>();
-    private List <Schedule> scheduleList = new ArrayList<>();
+    private List<Schedule> scheduleList = new ArrayList<>();
+    private List<String> files = new ArrayList<>();
     private static MainController instance;
     private int evolutions = 0;
     boolean perfect = false;
@@ -36,8 +37,13 @@ public class MainController
      */
     public void initializeData(List<String> files)
     {
+        data.clear();
         for(String file: files)
         {
+            System.out.println(this.files.contains(file));
+            if(!this.files.contains(file)) {
+                this.files.add(file);
+            }
             ReadInputFile parser = new ReadInputFile(file);
             data.add(parser.getDepartment());
         }
@@ -96,5 +102,9 @@ public class MainController
 
     public List<Schedule> getScheduleList() {
         return scheduleList;
+    }
+
+    public List<String> getFiles() {
+        return files;
     }
 }

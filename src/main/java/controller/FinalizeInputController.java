@@ -6,13 +6,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import model.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -33,10 +36,12 @@ public class FinalizeInputController
     @FXML public Button roomEdit;
     @FXML public Button roomDelete;
     @FXML private Button submit;
+    @FXML private Button backButton;
     private List<Department> departments;
     private List<Room> roomList;
     private List<Course> courseList;
     private List<Professor> professorList;
+    private ArrayList<String> files;
 
     public FinalizeInputController() {
 
@@ -290,6 +295,22 @@ public class FinalizeInputController
         Scene scene = new Scene(pane);
         stage.setScene(scene);
         resize();
+    }
+
+    public void back(ActionEvent actionEvent) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to go back? Doing so will " +
+                "lose all progress.", ButtonType.YES, ButtonType.NO);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ChooseFile.fxml"));
+            Parent pane = (Parent) fxmlLoader.load();
+            ((ChooseFileController) fxmlLoader.getController()).setStage(stage);
+            ((ChooseFileController) fxmlLoader.getController()).initializeTextFields();
+            Scene scene = new Scene(pane);
+            stage.setScene(scene);
+            resize();
+        }
     }
 
     public void setCourseComboBoxItems(ObservableList<Course> courseList) {

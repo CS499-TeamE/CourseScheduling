@@ -66,6 +66,7 @@
                   <Font size="13.0" />
                </font>
             </Label>
+            <Button fx:id="backButton" layoutX="16.0" layoutY="362.0" mnemonicParsing="false" onAction="#back" text="Back" />
          </children>
       </AnchorPane>
       <AnchorPane maxHeight="-1.0" maxWidth="-1.0" VBox.vgrow="ALWAYS" />
