@@ -13,7 +13,7 @@ public class Schedule
     private boolean fitnessChange = true;
 
     private List<PossibleClass> possibleClassList;
-    private List<PossibleClass> filteredPossibleClassList;
+    private List<String> conflicts = new ArrayList<>();
     private Department dept;
     Random random = new Random();
 
@@ -148,15 +148,31 @@ public class Schedule
         conflictAmount = 0;
         for (PossibleClass n  : possibleClassList)
         {
-            if(n.getRoom().getRoomCapacity() < n.getCourse().getMaxEnrollment()) conflictAmount++;
+            if(n.getRoom().getRoomCapacity() < n.getCourse().getMaxEnrollment())
+            {
+                conflictAmount++;
+                conflicts.add("Room " + n.getRoom().getRoomNumber() + " does not have enough room for course " + n.getCourse().getCourseId());
+                n.setHasConflict(true);
+            }
             for(PossibleClass m : possibleClassList)
             {
                 // If two classes share a meeting time and are not the same class, check the room number and instructor to see if there are conflicts
                 if(n.getMeetingTime().equals(m.getMeetingTime()) && n.getCourse() != m.getCourse())
                 {
-                    if(n.getRoom() == m.getRoom()) conflictAmount++;
-                    if(n.getProfessor() == m.getProfessor()) conflictAmount++;
-
+                    if(n.getRoom() == m.getRoom())
+                    {
+                        conflictAmount++;
+                        conflicts.add("During " + n.getMeetingTime() + " two different courses are assigned to room " + n.getRoom());
+                        n.setHasConflict(true);
+                        m.setHasConflict(true);
+                    }
+                    if(n.getProfessor() == m.getProfessor())
+                    {
+                        conflictAmount++;
+                        conflicts.add("During " + n.getMeetingTime() + " Professor " + n.getProfessor() + " is assigned to teach two different courses");
+                        n.setHasConflict(true);
+                        m.setHasConflict(true);
+                    }
                 }
             }
         }

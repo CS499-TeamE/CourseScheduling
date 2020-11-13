@@ -24,14 +24,15 @@ public class FilePrinter
         this.file = file;
     }
 
-//    public static void main(String[] args)
-//    {
-//
-//    }
 
-    public void csvPrinter()
+    public void csvPrinter(CSVFormat csvFormat)
     {
-        try (CSVPrinter printer = new CSVPrinter(new FileWriter(file), CSVFormat.EXCEL)) {
+        try (CSVPrinter printer = new CSVPrinter(new FileWriter(file), csvFormat)) {
+            printer.printRecord("Department: ", dept.getDepartmentName(), "\n");
+            printer.printRecord("Location: ", dept.getDepartmentLocation(), "\n");
+            printer.println();
+            printer.println();
+            printer.println();
             printer.printRecord("Meeting Times/Days", "Monday", "Tuesday", "Wednesday", "Thursday");
             for(String time : dept.getMeetingTimes().get(0).getTimes())
             {
@@ -44,9 +45,24 @@ public class FilePrinter
         }
     }
 
-    public void tsvPrinter()
+    public void tsvPrinter(CSVFormat tsvFormat)
     {
+        try (CSVPrinter printer = new CSVPrinter(new FileWriter(file), tsvFormat)) {
+            printer.printRecord("Department: ", dept.getDepartmentName(), "\n");
+            printer.printRecord("Location: ", dept.getDepartmentLocation(), "\n");
+            printer.println();
+            printer.println();
+            printer.println();
+            printer.printRecord("Meeting Times/Days", "Monday", "Tuesday", "Wednesday", "Thursday");
+            for(String time : dept.getMeetingTimes().get(0).getTimes())
+            {
+                List<String> record = buildCSVRecord(time);
+                printer.printRecord(record);
+            }
 
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private static List buildCSVRecord(String meetingTime)
@@ -54,10 +70,14 @@ public class FilePrinter
         List<String> record = new ArrayList<>();
         record.add(meetingTime);
 
-        String cell1 = "";      // Format to a single cell
-        String cell2 = "\"";
-        String cell3 = "\"";
-        String cell4 = "\"";
+        String cell1 = "Course  |" + "  Max Attendance  |" + "  Room    |" + "  Room Capacity   |" + "  Professor                |" + "  Meeting Time\n" +
+                        "================================================================================\n";    // Format to a single cell
+        String cell2 = "Course  |" + "  Max Attendance  |" + "  Room    |" + "  Room Capacity   |" + "  Professor                |" + "  Meeting Time\n" +
+                        "================================================================================\n";
+        String cell3 = "Course  |" + "  Max Attendance  |" + "  Room    |" + "  Room Capacity   |" + "  Professor                |" + "  Meeting Time\n" +
+                        "================================================================================\n";
+        String cell4 = "Course  |" + "  Max Attendance  |" + "  Room    |" + "  Room Capacity   |" + "  Professor                |" + "  Meeting Time\n" +
+                        "================================================================================\n";
 
         for(PossibleClass course : schedule.getClassList()) // For each course in the schedule
         {
@@ -65,13 +85,11 @@ public class FilePrinter
             {
                 if(course.getMeetingTime().contains(dept.getMeetingTimes().get(0).getDay())) // M/W
                 {
-                    System.out.println("day 1");
                     cell1 = cell1.concat(course.getClassInfo() + "\n");
                     cell3 = cell3.concat(course.getClassInfo() + "\n");
                 }
                 else if(course.getMeetingTime().contains(dept.getMeetingTimes().get(1).getDay())) // T/TH
                 {
-                    System.out.println("day 2");
                     cell2 = cell2.concat(course.getClassInfo() + "\n");
                     cell4 = cell4.concat(course.getClassInfo() + "\n");
                 }

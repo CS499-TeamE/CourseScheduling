@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import model.Department;
 import model.FilePrinter;
 import model.Schedule;
+import org.apache.commons.csv.CSVFormat;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,7 +35,8 @@ public class OutputScheduleController {
         this.stage = stage;
     }
 
-    public void setDepartmentList(List<Department> departmentsList) {
+    public void setDepartmentList(List<Department> departmentsList)
+    {
         this.departmentList = departmentsList;
     }
 
@@ -87,16 +89,16 @@ public class OutputScheduleController {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(file.getPath() + " has been saved.");
             alert.showAndWait();
-            FilePrinter writer = new FilePrinter(this.departmentComboBox.getSelectionModel()
-                    .getSelectedItem(),this.scheduleList
-                    .get(this.departmentComboBox.getSelectionModel().getSelectedIndex()),file);
+            FilePrinter writer = new FilePrinter(this.departmentComboBox.getSelectionModel().getSelectedItem(),
+                    this.scheduleList.get(this.departmentComboBox.getSelectionModel().getSelectedIndex()),
+                    file);
             if(file.getName().contains(".tsv"))
             {
-                writer.tsvPrinter();
+                writer.tsvPrinter(CSVFormat.TDF);
             }
             else
             {
-                writer.csvPrinter();
+                writer.csvPrinter(CSVFormat.EXCEL);
             }
         }
     }

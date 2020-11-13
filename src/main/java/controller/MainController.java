@@ -16,6 +16,9 @@ public class MainController
     private static MainController instance;
     private int evolutions = 0;
     boolean perfect = false;
+    private int run = 1;
+    boolean isDone = false;
+
 
     /**
      * create a heap instance if there is not one already, otherwise return heap
@@ -63,25 +66,37 @@ public class MainController
     {
         for(int i = 0; i< data.size(); i++)
         {
-            if(i < populationList.size())
+            run = 1;
+            while(!populationList.get(i).getScheduleList().get(0).isPerfect() && run <= 5)
             {
+                evolutions = 0;
                 Algorithm alg = new Algorithm(data.get(i));
                 simulateEvolution(alg, i);
+                run ++;
             }
         }
+        isDone = true;
     }
 
     private void simulateEvolution(Algorithm alg, int i)
     {
-        while(!populationList.get(i).getScheduleList().get(0).isPerfect() && evolutions <= Application.MAX_EVOLUTIONS)
-        {
-            populationList.set(i,alg.evolvePopulation(populationList.get(i).sortScheduleList()));
+
+        while (!populationList.get(i).getScheduleList().get(0).isPerfect() && evolutions <= Application.MAX_EVOLUTIONS) {
+            populationList.set(i, alg.evolvePopulation(populationList.get(i).sortScheduleList()));
             evolutions++;
             System.out.println("evolution: " + evolutions + " with fitness high of "
                     + populationList.get(i).getScheduleList().get(0).getFitness());
 
         }
-        scheduleList.add(populationList.get(i).getScheduleList().get(0));
+        if(populationList.get(i).getScheduleList().get(0).isPerfect())
+        {
+            scheduleList.add(populationList.get(i).getScheduleList().get(0));
+        }
+        else if(run == 5)
+        {
+            scheduleList.add(populationList.get(i).getScheduleList().get(0));
+        }
+        else return;
     }
 
     private void printSchedule(Schedule schedule)
