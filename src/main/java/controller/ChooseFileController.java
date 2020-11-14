@@ -68,10 +68,10 @@ public class ChooseFileController {
 
             for (TextField fileName : textFieldList) {
                 String filePath = fileName.getText();
-                if (!files.contains(filePath)) {
+//                if (!files.contains(filePath)) {
                     files.add(filePath);
-                }
-                System.out.println(filePath);
+//                }
+                //System.out.println(filePath);
             }
 
             MainController mainController = MainController.getInstance();

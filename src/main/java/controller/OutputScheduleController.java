@@ -146,6 +146,7 @@ public class OutputScheduleController {
         alert.showAndWait();
 
         if (alert.getResult() == ButtonType.YES) {
+            MainController.getInstance().getScheduleList().clear();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FinalizeInput.fxml"));
             Parent pane = (Parent) fxmlLoader.load();
             ((FinalizeInputController) fxmlLoader.getController()).setStage(stage);

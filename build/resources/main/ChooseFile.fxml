@@ -13,11 +13,7 @@
 <AnchorPane fx:id="anchorPane" prefHeight="384.0" prefWidth="682.0" stylesheets="@darktheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ChooseFileController">
    <children>
       <BorderPane prefHeight="0.0" prefWidth="0.0" />
-      <ButtonBar layoutX="263.0" layoutY="339.0" prefHeight="45.0" prefWidth="419.0">
-        <buttons>
-            <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submit" text="Submit" translateX="-5.0" translateY="-5.0" />
-            <Button fx:id="addInputButton" layoutX="292.0" layoutY="20.0" mnemonicParsing="false" onAction="#addInput" text="Add Input" translateX="-5.0" translateY="-5.0" />
-        </buttons>
+      <ButtonBar layoutX="139.0" layoutY="242.0" prefHeight="45.0" prefWidth="419.0">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
@@ -39,6 +35,8 @@
             <Font name="System Bold" size="45.0" />
          </font>
       </Label>
-      <VBox fx:id="vBoxMid" layoutX="80.0" layoutY="155.0" />
+      <VBox fx:id="vBoxMid" layoutX="138.0" layoutY="155.0" />
+      <Button fx:id="addInputButton" layoutX="577.0" layoutY="310.0" mnemonicParsing="false" onAction="#addInput" prefHeight="25.0" prefWidth="92.0" text="Add Input" />
+      <Button fx:id="submitButton" layoutX="577.0" layoutY="345.0" mnemonicParsing="false" onAction="#submit" prefHeight="25.0" prefWidth="92.0" text="Submit" />
    </children>
 </AnchorPane>

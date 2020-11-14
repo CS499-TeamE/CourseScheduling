@@ -3,9 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
-public class Schedule
+public class Schedule implements Comparable< Schedule >
 {
     private int classAmount = 0;
     private int conflictAmount = 0;
@@ -15,6 +14,17 @@ public class Schedule
     private List<PossibleClass> possibleClassList;
     private List<String> conflicts = new ArrayList<>();
     private Department dept;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    private Integer id;
+
     Random random = new Random();
 
     /**
@@ -245,5 +255,11 @@ public class Schedule
                     + " Meeting Time: " + course.getMeetingTime());
         }
         return output;
+    }
+
+    @Override
+    public int compareTo(Schedule o)
+    {
+        return this.getId().compareTo(o.getId());
     }
 }
