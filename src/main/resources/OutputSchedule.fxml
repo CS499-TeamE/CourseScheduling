@@ -12,34 +12,33 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1023.0" stylesheets="@darktheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OutputScheduleController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1088.0" stylesheets="@darktheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OutputScheduleController">
    <children>
-      <AnchorPane prefHeight="735.0" prefWidth="1026.0">
+      <AnchorPane prefHeight="725.0" prefWidth="1102.0">
          <children>
-            <Button fx:id="save" layoutX="896.0" layoutY="685.0" mnemonicParsing="false" onAction="#saveSchedules" prefHeight="25.0" prefWidth="116.0" text="Save" />
-            <TextArea fx:id="textArea" layoutX="664.0" layoutY="259.0" prefHeight="418.0" prefWidth="349.0" />
-            <Button layoutX="885.0" layoutY="24.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.25" text="Help" />
-            <ComboBox fx:id="departmentComboBox" layoutX="663.0" layoutY="91.0" onAction="#updateTextArea" prefHeight="25.0" prefWidth="349.0" />
-            <Label layoutX="663.0" layoutY="72.0" text="Departments:">
+            <Button fx:id="save" layoutX="946.0" layoutY="685.0" mnemonicParsing="false" onAction="#saveSchedules" prefHeight="25.0" prefWidth="126.67" text="Save" />
+            <TextArea fx:id="textArea" layoutX="693.0" layoutY="256.0" prefHeight="418.0" prefWidth="379.0" />
+            <ComboBox fx:id="departmentComboBox" layoutX="693.0" layoutY="91.0" onAction="#updateTextArea" prefHeight="25.0" prefWidth="379.0" />
+            <Label layoutX="693.0" layoutY="72.0" text="Departments:">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="372.0" layoutY="14.0" text="Generated Schedules">
+            <Label layoutX="404.0" layoutY="14.0" text="Generated Schedules">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
-            <Label fx:id="thumbsUp" layoutX="720.0" layoutY="128.0" prefHeight="87.0" prefWidth="102.0">
+            <Label fx:id="thumbsUp" layoutX="787.0" layoutY="126.0" prefHeight="87.0" prefWidth="102.0">
                <graphic>
-                  <ImageView fx:id="mouseOverGreen" fitHeight="109.0" fitWidth="417.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="mouseOverGreen" fitHeight="109.0" fitWidth="417.0" layoutX="59.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../../Pictures/green.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Label>
-            <Label fx:id="thumbsDown" layoutX="841.0" layoutY="128.0" prefHeight="87.0" prefWidth="102.0">
+            <Label fx:id="thumbsDown" layoutX="903.0" layoutY="126.0" prefHeight="87.0" prefWidth="102.0">
                <graphic>
                   <ImageView fitHeight="109.0" fitWidth="417.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -48,12 +47,12 @@
                   </ImageView>
                </graphic>
             </Label>
-            <Label layoutX="664.0" layoutY="237.0" text="Errors:">
+            <Label layoutX="693.0" layoutY="237.0" text="Errors:">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <ScrollPane fx:id="scheduleScroll" layoutX="14.0" layoutY="72.0" prefHeight="638.0" prefWidth="638.0">
+            <ScrollPane fx:id="scheduleScroll" layoutX="14.0" layoutY="72.0" prefHeight="638.0" prefWidth="675.0">
               <content>
                 <AnchorPane prefWidth="640.0">
                      <children>
@@ -62,8 +61,8 @@
                   </AnchorPane>
               </content>
             </ScrollPane>
-            <Button layoutX="780.0" layoutY="685.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" text="Print" />
-            <Button fx:id="backButton" layoutX="664.0" layoutY="685.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="116.0" text="Back" />
+            <Button layoutX="819.0" layoutY="685.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.67" text="Print" />
+            <Button fx:id="backButton" layoutX="693.0" layoutY="685.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="126.67" text="Back" />
          </children>
       </AnchorPane>
    </children>

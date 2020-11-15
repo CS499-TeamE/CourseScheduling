@@ -21,6 +21,7 @@ import org.apache.commons.csv.CSVFormat;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static javafx.scene.paint.Color.RED;
@@ -73,6 +74,7 @@ public class OutputScheduleController {
             this.textFlow.getChildren().add(text);
         }
         updateIcons();
+        printErrors();
     }
 
     public void updateTextArea(ActionEvent actionEvent)
@@ -90,6 +92,7 @@ public class OutputScheduleController {
             this.textFlow.getChildren().add(text);
         }
         updateIcons();
+        printErrors();
     }
 
     private void getHeaders()
@@ -162,4 +165,14 @@ public class OutputScheduleController {
         this.stage.sizeToScene();
     }
 
+    private void printErrors()
+    {
+        List<String> errors = new ArrayList<>();
+        errors = this.scheduleList.get(this.departmentComboBox.getSelectionModel().getSelectedIndex()).getConflicts();
+
+        for(String error : errors)
+        {
+            textArea.appendText(error);
+        }
+    }
 }

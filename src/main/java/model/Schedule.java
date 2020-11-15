@@ -12,6 +12,11 @@ public class Schedule implements Comparable< Schedule >
     private boolean fitnessChange = true;
 
     private List<PossibleClass> possibleClassList;
+
+    public List<String> getConflicts() {
+        return conflicts;
+    }
+
     private List<String> conflicts = new ArrayList<>();
     private Department dept;
 
@@ -156,6 +161,7 @@ public class Schedule implements Comparable< Schedule >
     private double calcFitness()
     {
         conflictAmount = 0;
+        conflicts.clear();
         for (PossibleClass n  : possibleClassList)
         {
             n.setHasConflict(false);

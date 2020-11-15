@@ -349,6 +349,7 @@ public class FinalizeInputController
         progressBar.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
     }
 
+
     private void setStatus(String status)
     {
         statusLabel.setText(status);
