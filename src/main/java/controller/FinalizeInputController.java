@@ -6,18 +6,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import model.*;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
 
 public class FinalizeInputController
 {
@@ -36,7 +33,12 @@ public class FinalizeInputController
     @FXML public Button roomEdit;
     @FXML public Button roomDelete;
     @FXML private Button submit;
+    @FXML private Button help;
     @FXML private Button backButton;
+    @FXML private ProgressBar progressBar;
+    @FXML private ProgressIndicator progressWheel;
+    @FXML private Label statusLabel;
+
     private List<Department> departments;
     private List<Room> roomList;
     private List<Course> courseList;
@@ -57,6 +59,7 @@ public class FinalizeInputController
         this.departmentComboBox.setItems(FXCollections.observableArrayList(this.departments));
         this.setCombosDisable(true);
         this.setAllButtonsDisable(true);
+        setStatus("Schedule not generated");
     }
 
     public void updateDepartmentValues(ActionEvent actionEvent) {
@@ -278,11 +281,17 @@ public class FinalizeInputController
             this.roomDelete.setDisable(true);
         }
     }
+    public void help(ActionEvent actionEvent)
+    {
+        startProgress();
+    }
 
     public void submit(ActionEvent actionEvent) throws IOException {
+
         for (Department department : departments) {
             department.printDepartmentInfo();
         }
+
 
         MainController mainController = MainController.getInstance();
         mainController.initializePopulation(departments);
@@ -295,13 +304,13 @@ public class FinalizeInputController
         Scene scene = new Scene(pane);
         stage.setScene(scene);
         resize();
-
-
     }
 
     public void back(ActionEvent actionEvent) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to go back? Doing so will " +
                 "lose all progress.", ButtonType.YES, ButtonType.NO);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add("darktheme.css");
         alert.showAndWait();
 
         if (alert.getResult() == ButtonType.YES) {
@@ -314,6 +323,7 @@ public class FinalizeInputController
             resize();
         }
     }
+
 
     public void setCourseComboBoxItems(ObservableList<Course> courseList) {
         this.courseComboBox.setItems(courseList);
@@ -332,4 +342,16 @@ public class FinalizeInputController
         this.stage.sizeToScene();
     }
 
+    public void startProgress()
+    {
+        setStatus("Generating Schedule");
+        progressWheel.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
+        progressBar.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
+    }
+
+
+    private void setStatus(String status)
+    {
+        statusLabel.setText(status);
+    }
 }

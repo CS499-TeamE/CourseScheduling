@@ -7,22 +7,33 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Department;
 import model.FilePrinter;
+import model.PossibleClass;
 import model.Schedule;
 import org.apache.commons.csv.CSVFormat;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
+import static javafx.scene.paint.Color.RED;
 
 public class OutputScheduleController {
     @FXML private Stage stage;
     @FXML private Button save;
     @FXML private Button backButton;
     @FXML private TextArea textArea;
+    @FXML private Label thumbsUp;
+    @FXML private Label thumbsDown;
+    @FXML private TextFlow textFlow;
     @FXML private ComboBox<Department> departmentComboBox;
     private List<Department> departmentList;
     private List<Schedule> scheduleList;
@@ -51,31 +62,58 @@ public class OutputScheduleController {
         this.departmentComboBox.getSelectionModel().selectFirst();
         this.textArea.setDisable(false);
         String printedSchedule = "";
-        List<String> scheduleStringList = Schedule.getScheduleInfo(this.scheduleList.get(0));
-        for(String string : scheduleStringList) {
-            if (string == "") {
-                printedSchedule = printedSchedule + string;
-            } else {
-                printedSchedule = printedSchedule + "\n" + string;
-            }
 
+        getHeaders();
+        for(PossibleClass n : this.scheduleList.get(0).getClassList())
+        {
+            Text text = new Text(n.getClassInfo() + "\n");
+            if(n.isHasConflict() == true)
+            {
+                text.setFill(RED);
+            }
+            this.textFlow.getChildren().add(text);
         }
-        this.textArea.setText(printedSchedule);
+        updateIcons();
+        printErrors();
     }
 
-    public void updateTextArea(ActionEvent actionEvent) {
-        String printedSchedule = "";
-        List<String> scheduleStringList = Schedule.getScheduleInfo(this.scheduleList.get(
-                this.departmentComboBox.getSelectionModel().getSelectedIndex()));
-        for(String string : scheduleStringList) {
-            if (string == "") {
-                printedSchedule = printedSchedule + string;
-            } else {
-                printedSchedule = printedSchedule + "\n" + string;
-            }
+    public void updateTextArea(ActionEvent actionEvent)
+    {
+        this.textFlow.getChildren().clear();
 
+        getHeaders();
+        for(PossibleClass n : this.scheduleList.get(this.departmentComboBox.getSelectionModel().getSelectedIndex()).getClassList())
+        {
+            Text text = new Text(n.getClassInfo() + "\n");
+            if(n.isHasConflict() == true)
+            {
+                text.setFill(RED);
+            }
+            this.textFlow.getChildren().add(text);
         }
-        this.textArea.setText(printedSchedule);
+        updateIcons();
+        printErrors();
+    }
+
+    private void getHeaders()
+    {
+       Text text = new Text("Course\t|\t" + "Max Attendance\t|\t" + "Room\t|\t" + "Room Capacity\t|\t" + "Professor\t\t\t|\t" + "Meeting Time\n");
+        this.textFlow.getChildren().add(text);
+    }
+
+
+    public void updateIcons()
+    {
+        if(this.scheduleList.get(this.departmentComboBox.getSelectionModel().getSelectedIndex()).getFitness() == 1.0)
+        {
+            this.thumbsUp.setDisable(false);
+            this.thumbsDown.setDisable(true);
+        }
+        else
+        {
+            this.thumbsDown.setDisable(false);
+            this.thumbsUp.setDisable(true);
+        }
     }
 
     public void saveSchedules(ActionEvent actionEvent) throws IOException {
@@ -106,9 +144,12 @@ public class OutputScheduleController {
     public void back(ActionEvent actionEvent) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to go back? Doing so will " +
                 "lose all progress.", ButtonType.YES, ButtonType.NO);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add("darktheme.css");
         alert.showAndWait();
 
         if (alert.getResult() == ButtonType.YES) {
+            MainController.getInstance().getScheduleList().clear();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FinalizeInput.fxml"));
             Parent pane = (Parent) fxmlLoader.load();
             ((FinalizeInputController) fxmlLoader.getController()).setStage(stage);
@@ -124,4 +165,14 @@ public class OutputScheduleController {
         this.stage.sizeToScene();
     }
 
+    private void printErrors()
+    {
+        List<String> errors = new ArrayList<>();
+        errors = this.scheduleList.get(this.departmentComboBox.getSelectionModel().getSelectedIndex()).getConflicts();
+
+        for(String error : errors)
+        {
+            textArea.appendText(error);
+        }
+    }
 }

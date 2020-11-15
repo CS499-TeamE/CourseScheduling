@@ -23,7 +23,9 @@ public class StartGUI extends Application {
         primaryStage.centerOnScreen();
         primaryStage.sizeToScene();
         primaryStage.setTitle("Open Input File");
-        primaryStage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("darktheme.css");
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
