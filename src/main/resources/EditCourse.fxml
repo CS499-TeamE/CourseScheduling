@@ -32,6 +32,11 @@
                </font>
             </Label>
             <ComboBox fx:id="roomComboBox" layoutX="230.0" layoutY="235.0" prefWidth="150.0" />
+            <Label fx:id="courseGuiLabel" layoutX="240.0" layoutY="66.0" text="Label">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
             </children>
         </AnchorPane>
     </children>

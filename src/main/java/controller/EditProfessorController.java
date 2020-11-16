@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -25,6 +26,7 @@ public class EditProfessorController {
     @FXML private Button cancel;
     @FXML private Button remove;
     @FXML private Button add;
+    @FXML private Label professorGuiLabel;
     private Stage stage;
     private Professor professor;
     private List<Professor> professorList;
@@ -75,7 +77,10 @@ public class EditProfessorController {
             this.remove.setDisable(true);
         }
 
+        this.professorGuiLabel.setText("Add Professor");
+
         if (edit) {
+            this.professorGuiLabel.setText("Edit Professor");
             this.professorNameText.setText(this.professor.getName());
 
             if (this.professor.getPreference() == null) {

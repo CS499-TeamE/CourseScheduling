@@ -18,6 +18,7 @@ public class EditCourseController {
     @FXML private ComboBox<Room> roomComboBox;
     @FXML private Button submit;
     @FXML private Button cancel;
+    @FXML private Label courseGuiLabel;
     private Stage stage;
     @FXML private Course course;
     private FinalizeInputController mainController;
@@ -58,7 +59,10 @@ public class EditCourseController {
             this.roomComboBox.setDisable(true);
         }
 
+        this.courseGuiLabel.setText("Add Course");
+
         if (edit) {
+            this.courseGuiLabel.setText("Edit Course");
             this.courseIdText.setText(String.valueOf(this.course.getCourseId()));
             this.courseCapText.setText(String.valueOf(this.course.getMaxEnrollment()));
 

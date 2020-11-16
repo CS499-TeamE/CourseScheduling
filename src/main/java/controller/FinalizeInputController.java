@@ -55,6 +55,7 @@ public class FinalizeInputController
     }
 
     public void initialize(List<Department> departments) {
+        submit.setTooltip(new Tooltip("Submit department info and generate schedules."));
         this.departments = departments;
         this.departmentComboBox.setItems(FXCollections.observableArrayList(this.departments));
         this.setCombosDisable(true);

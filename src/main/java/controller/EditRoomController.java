@@ -5,10 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.DialogPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Room;
@@ -26,6 +23,7 @@ public class EditRoomController {
     @FXML private FinalizeInputController mainController;
     @FXML private Button submit;
     @FXML private Button cancel;
+    @FXML private Label roomGuiLabel;
     private boolean edit;
 
     public void addListeners() {
@@ -63,8 +61,10 @@ public class EditRoomController {
         this.stage.initModality(Modality.APPLICATION_MODAL);
         this.setRoom(room);
         this.roomList = roomList;
+        this.roomGuiLabel.setText("Add Room");
 
         if (edit) {
+            this.roomGuiLabel.setText("Edit Room");
             this.roomNumText.setText(String.valueOf(this.room.getRoomNumber()));
             this.roomCapText.setText(String.valueOf(this.room.getRoomCapacity()));
         }

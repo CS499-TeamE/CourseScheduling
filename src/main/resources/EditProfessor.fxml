@@ -35,6 +35,11 @@
             <Button fx:id="remove" layoutX="259.0" layoutY="181.0" mnemonicParsing="false" onAction="#removeCourse" prefHeight="25.0" prefWidth="62.0" text="Remove" />
             <ComboBox fx:id="availableCourses" layoutX="342.0" layoutY="181.0" prefHeight="25.0" prefWidth="84.0" />
             <Button fx:id="add" layoutX="426.0" layoutY="181.0" mnemonicParsing="false" onAction="#addCourse" text="Add" />
+            <Label fx:id="professorGuiLabel" layoutX="217.0" layoutY="74.0" text="Label">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
             </children>
         </AnchorPane>
     </children>
