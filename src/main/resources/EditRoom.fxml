@@ -25,6 +25,11 @@
                   <Font size="13.0" />
                </font>
             </Label>
+            <Label fx:id="roomGuiLabel" layoutX="240.0" layoutY="73.0" text="Label">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

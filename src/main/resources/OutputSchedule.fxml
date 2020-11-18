@@ -61,7 +61,7 @@
                   </AnchorPane>
               </content>
             </ScrollPane>
-            <Button layoutX="819.0" layoutY="685.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.67" text="Print" />
+            <Button fx:id="printButton" layoutX="819.0" layoutY="685.0" mnemonicParsing="false" onAction="#print" prefHeight="25.0" prefWidth="126.67" text="Print" />
             <Button fx:id="backButton" layoutX="693.0" layoutY="685.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="126.67" text="Back" />
          </children>
       </AnchorPane>

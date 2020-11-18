@@ -3,9 +3,7 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Course;
@@ -25,6 +23,7 @@ public class EditProfessorController {
     @FXML private Button cancel;
     @FXML private Button remove;
     @FXML private Button add;
+    @FXML private Label professorGuiLabel;
     private Stage stage;
     private Professor professor;
     private List<Professor> professorList;
@@ -53,6 +52,14 @@ public class EditProfessorController {
     }
 
     public void initialize(Professor professor, List<Professor> professorList, List<Course> courseList) {
+        this.professorNameText.setTooltip(new Tooltip("Add the name of the professor."));
+        this.taughtCourses.setTooltip(new Tooltip("Contains the list of courses this professor teaches."));
+        this.availableCourses.setTooltip(new Tooltip("Contains the list of available courses this professor can teach."));
+        this.timeComboBox.setTooltip((new Tooltip("Contains the list of available time preferences for this professor.")));
+        this.submit.setTooltip(new Tooltip("Add this professor to the list of professors."));
+        this.cancel.setTooltip(new Tooltip("Back to department editor without adding professor."));
+
+
         this.stage.initModality(Modality.APPLICATION_MODAL);
         this.setProfessor(professor);
         this.professorList = professorList;
@@ -75,7 +82,13 @@ public class EditProfessorController {
             this.remove.setDisable(true);
         }
 
+        this.professorGuiLabel.setText("Add Professor");
+
         if (edit) {
+            this.submit.setTooltip(new Tooltip("Submit changes of this course."));
+            this.cancel.setTooltip(new Tooltip("Back to department editor without editing professor."));
+            this.professorNameText.setTooltip(new Tooltip("Edit the name of the professor."));
+            this.professorGuiLabel.setText("Edit Professor");
             this.professorNameText.setText(this.professor.getName());
 
             if (this.professor.getPreference() == null) {
@@ -87,6 +100,15 @@ public class EditProfessorController {
     }
 
     public void addCourse(ActionEvent actionEvent) {
+        if (this.taughtCourses.getItems().contains(this.availableCourses.getValue())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Professor already teaches this course.");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add("darktheme.css");
+            alert.showAndWait();
+            return;
+        }
+
         this.professor.getTaughtCourses().add(this.availableCourses.getValue());
         Comparator<Course> comparator = Comparator.comparing(Course::getCourseId);
         this.professor.getTaughtCourses().sort(comparator);
@@ -114,26 +136,68 @@ public class EditProfessorController {
     }
 
     public void submit(ActionEvent actionEvent) {
-        this.professor.setName(this.professorNameText.getText());
-        this.professor.setPreference(this.timeComboBox.getValue());
+        if (this.professorNameText.getText().trim().isEmpty() || this.taughtCourses.getItems().isEmpty()) {
 
-        if (!edit) {
-            this.professorList.add(this.professor);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Cannot submit with empty fields.");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add("darktheme.css");
+            alert.showAndWait();
+
+        } else {
+            for (Professor professor : this.professorList) {
+                if (edit) {
+
+                    if (professorNameText.getText().equals(professor.getName())
+                            && !this.professor.getName().equals(professorNameText.getText())) {
+
+                        String headerText = "Professor Name: " + professorNameText.getText() + " already exists.";
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(headerText);
+                        DialogPane dialogPane = alert.getDialogPane();
+                        dialogPane.getStylesheets().add("darktheme.css");
+                        alert.showAndWait();
+                        return;
+
+                    }
+
+                } else {
+
+                    if (professorNameText.getText().equals(professor.getName())) {
+                        String headerText = "Professor Name: " + professorNameText.getText() + " already exists.";
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(headerText);
+                        DialogPane dialogPane = alert.getDialogPane();
+                        dialogPane.getStylesheets().add("darktheme.css");
+                        alert.showAndWait();
+                        return;
+                    }
+
+                }
+            }
+
+
+            this.professor.setName(this.professorNameText.getText());
+            this.professor.setPreference(this.timeComboBox.getValue());
+
+            if (!edit) {
+                this.professorList.add(this.professor);
+            }
+
+            Comparator<Professor> comparator = Comparator.comparing(Professor::getName);
+            this.professorList.sort(comparator);
+
+            this.mainController.setProfessorComboBoxItems(FXCollections.observableArrayList(this.professorList));
+            this.mainController.professorComboBox.setDisable(false);
+            this.mainController.professorEdit.setDisable(false);
+            this.mainController.professorDelete.setDisable(false);
+
+            if (this.professorList.size() == 1) {
+                this.mainController.professorComboBox.getSelectionModel().selectFirst();
+            }
+
+            this.stage.close();
         }
-
-        Comparator<Professor> comparator = Comparator.comparing(Professor::getName);
-        this.professorList.sort(comparator);
-
-        this.mainController.setProfessorComboBoxItems(FXCollections.observableArrayList(this.professorList));
-        this.mainController.professorComboBox.setDisable(false);
-        this.mainController.professorEdit.setDisable(false);
-        this.mainController.professorDelete.setDisable(false);
-
-        if (this.professorList.size() == 1) {
-            this.mainController.professorComboBox.getSelectionModel().selectFirst();
-        }
-
-        this.stage.close();
     }
 
     public void cancel(ActionEvent actionEvent) {

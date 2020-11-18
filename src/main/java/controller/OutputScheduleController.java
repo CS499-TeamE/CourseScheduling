@@ -4,6 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.print.*;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -19,8 +21,11 @@ import model.PossibleClass;
 import model.Schedule;
 import org.apache.commons.csv.CSVFormat;
 
+import javax.swing.*;
+import javax.tools.Tool;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,11 +35,13 @@ public class OutputScheduleController {
     @FXML private Stage stage;
     @FXML private Button save;
     @FXML private Button backButton;
+    @FXML private Button printButton;
     @FXML private TextArea textArea;
     @FXML private Label thumbsUp;
     @FXML private Label thumbsDown;
     @FXML private TextFlow textFlow;
     @FXML private ComboBox<Department> departmentComboBox;
+    @FXML private ScrollPane scheduleScroll;
     private List<Department> departmentList;
     private List<Schedule> scheduleList;
 
@@ -56,6 +63,12 @@ public class OutputScheduleController {
     }
 
     public void initialize(List<Department> departmentList, List<Schedule> scheduleList) {
+        this.textArea.setEditable(false);
+        this.backButton.setTooltip(new Tooltip("Go back to the Department Editor."));
+        this.save.setTooltip(new Tooltip("Save schedule as a TSV or CSV file."));
+        this.printButton.setTooltip(new Tooltip("Print the report."));
+        this.departmentComboBox.setTooltip(new Tooltip("Choose which department's schedule to view."));
+
         this.setDepartmentList(departmentList);
         this.setScheduleList(scheduleList);
         this.departmentComboBox.setItems(FXCollections.observableList(this.departmentList));
@@ -97,7 +110,7 @@ public class OutputScheduleController {
 
     private void getHeaders()
     {
-       Text text = new Text("Course\t|\t" + "Max Attendance\t|\t" + "Room\t|\t" + "Room Capacity\t|\t" + "Professor\t\t\t|\t" + "Meeting Time\n");
+        Text text = new Text("Course\t|\t" + "Max Attendance\t|\t" + "Room\t|\t" + "Room Capacity\t|\t" + "Professor\t\t\t|\t" + "Meeting Time\n");
         this.textFlow.getChildren().add(text);
     }
 
@@ -157,6 +170,25 @@ public class OutputScheduleController {
             stage.setScene(scene);
             resize();
             ((FinalizeInputController) fxmlLoader.getController()).initialize(departmentList);
+        }
+    }
+
+    public void print(ActionEvent actionEvent) {
+        JTextPane jtp = new JTextPane();
+        //jtp.setBackground(Color.white);
+        StringBuilder sb = new StringBuilder();
+        for (Node node : textFlow.getChildren()) {
+            if (node instanceof Text) {
+                sb.append(((Text) node).getText());
+            }
+        }
+        String fullText = sb.toString();
+        jtp.setText(fullText);
+        boolean show = true;
+        try {
+            jtp.print(null, null, show, null, null, show);
+        } catch (java.awt.print.PrinterException ex) {
+            ex.printStackTrace();
         }
     }
 
