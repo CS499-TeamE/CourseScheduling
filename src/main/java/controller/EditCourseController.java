@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,7 +48,19 @@ public class EditCourseController {
         this.mainController = controller;
     }
 
+    public void addListeners() {
+        courseCapText.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    courseCapText.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+    }
+
     public void initialize(Course course, List<Course> courseList, List<Room> roomList) {
+        this.addListeners();
         this.courseIdText.setTooltip(new Tooltip("Add a course ID."));
         this.courseCapText.setTooltip(new Tooltip("Add the max number of students for this course."));
         this.roomComboBox.setTooltip(new Tooltip("Contains a list of room preferences that this course can have."));
