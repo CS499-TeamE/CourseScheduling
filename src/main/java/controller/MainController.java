@@ -48,7 +48,6 @@ public class MainController
         data.clear();
         for(String file: files)
         {
-            System.out.println(this.files.contains(file));
             if(!this.files.contains(file)) {
                 this.files.add(file);
             }

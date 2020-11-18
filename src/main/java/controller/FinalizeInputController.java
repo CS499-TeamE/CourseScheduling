@@ -56,6 +56,25 @@ public class FinalizeInputController
 
     public void initialize(List<Department> departments) {
         submit.setTooltip(new Tooltip("Submit department info and generate schedules."));
+        backButton.setTooltip(new Tooltip("Go back to choose input files for generating schedules."));
+
+        departmentComboBox.setTooltip(new Tooltip("Contains a list of all the departments."));
+        roomComboBox.setTooltip(new Tooltip("Contains a list of all the rooms for the selected department."));
+        professorComboBox.setTooltip(new Tooltip("Contains a list of all the professors for the selected department."));
+        courseComboBox.setTooltip(new Tooltip("Contains a list of all the courses for the selected department."));
+
+        courseAdd.setTooltip(new Tooltip("Press this to add a new course to this department."));
+        courseEdit.setTooltip(new Tooltip("Press this to edit the currently selected course."));
+        courseDelete.setTooltip(new Tooltip("Press this to delete the currently selected course."));
+
+        professorAdd.setTooltip(new Tooltip("Press this to add a new professor to this department."));
+        professorEdit.setTooltip(new Tooltip("Press this to edit the currently selected professor."));
+        professorDelete.setTooltip(new Tooltip("Press this to delete the currently selected professor."));
+
+        roomAdd.setTooltip(new Tooltip("Press this to add a new room to this department."));
+        roomEdit.setTooltip(new Tooltip("Press this to edit the currently selected room."));
+        roomDelete.setTooltip(new Tooltip("Press this to delete the currently selected room."));
+
         this.departments = departments;
         this.departmentComboBox.setItems(FXCollections.observableArrayList(this.departments));
         this.setCombosDisable(true);
@@ -290,7 +309,41 @@ public class FinalizeInputController
     public void submit(ActionEvent actionEvent) throws IOException {
 
         for (Department department : departments) {
-            department.printDepartmentInfo();
+            if (department.getCoursesList().isEmpty()) {
+
+                String headerText = department.getDepartmentName() + " department has no courses.";
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(headerText);
+                DialogPane dialogPane = alert.getDialogPane();
+                dialogPane.getStylesheets().add("darktheme.css");
+                alert.showAndWait();
+                return;
+
+            }
+
+            if (department.getProfessorList().isEmpty()) {
+
+                String headerText = department.getDepartmentName() + " department has no professors.";
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(headerText);
+                DialogPane dialogPane = alert.getDialogPane();
+                dialogPane.getStylesheets().add("darktheme.css");
+                alert.showAndWait();
+                return;
+
+            }
+
+            if (department.getRoomsList().isEmpty()) {
+
+                String headerText = department.getDepartmentName() + " department has no rooms.";
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(headerText);
+                DialogPane dialogPane = alert.getDialogPane();
+                dialogPane.getStylesheets().add("darktheme.css");
+                alert.showAndWait();
+                return;
+
+            }
         }
 
 
@@ -315,6 +368,9 @@ public class FinalizeInputController
         alert.showAndWait();
 
         if (alert.getResult() == ButtonType.YES) {
+            MainController mainController = MainController.getInstance();
+            mainController.getData().clear();
+            departments.clear();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ChooseFile.fxml"));
             Parent pane = (Parent) fxmlLoader.load();
             ((ChooseFileController) fxmlLoader.getController()).setStage(stage);

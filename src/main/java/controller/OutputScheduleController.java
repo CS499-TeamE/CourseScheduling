@@ -22,6 +22,7 @@ import model.Schedule;
 import org.apache.commons.csv.CSVFormat;
 
 import javax.swing.*;
+import javax.tools.Tool;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -62,6 +63,12 @@ public class OutputScheduleController {
     }
 
     public void initialize(List<Department> departmentList, List<Schedule> scheduleList) {
+        this.textArea.setEditable(false);
+        this.backButton.setTooltip(new Tooltip("Go back to the Department Editor."));
+        this.save.setTooltip(new Tooltip("Save schedule as a TSV or CSV file."));
+        this.printButton.setTooltip(new Tooltip("Print the report."));
+        this.departmentComboBox.setTooltip(new Tooltip("Choose which department's schedule to view."));
+
         this.setDepartmentList(departmentList);
         this.setScheduleList(scheduleList);
         this.departmentComboBox.setItems(FXCollections.observableList(this.departmentList));

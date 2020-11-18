@@ -35,6 +35,15 @@ public class EditRoomController {
                 }
             }
         });
+
+        roomCapText.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    roomCapText.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
     }
 
     public void setRoom(Room room) {
@@ -58,12 +67,22 @@ public class EditRoomController {
     }
 
     public void initialize(Room room, List<Room> roomList) {
+        this.roomNumText.setTooltip(new Tooltip("Add a room number to this room."));
+        this.roomCapText.setTooltip(new Tooltip("Add a capacity for how many students can fit in this room."));
+        this.submit.setTooltip(new Tooltip("Add this room to the list of rooms."));
+        this.cancel.setTooltip(new Tooltip("Back to department editor without adding room."));
+
+        this.addListeners();
         this.stage.initModality(Modality.APPLICATION_MODAL);
         this.setRoom(room);
         this.roomList = roomList;
         this.roomGuiLabel.setText("Add Room");
 
         if (edit) {
+            this.roomNumText.setTooltip(new Tooltip("Edit the room number of this room."));
+            this.roomCapText.setTooltip(new Tooltip("Edit this capacity for how many students can fit in this room."));
+            this.submit.setTooltip(new Tooltip("Submit the changes to this room."));
+            this.cancel.setTooltip(new Tooltip("Back to department editor without editing room."));
             this.roomGuiLabel.setText("Edit Room");
             this.roomNumText.setText(String.valueOf(this.room.getRoomNumber()));
             this.roomCapText.setText(String.valueOf(this.room.getRoomCapacity()));
@@ -81,9 +100,44 @@ public class EditRoomController {
             alert.showAndWait();
 
         } else {
-
             int roomNum = Integer.parseInt(this.roomNumText.getText());
             int roomCapacity = Integer.parseInt(this.roomCapText.getText());
+
+            for (Room room: roomList) {
+
+                if (edit) {
+                    if (room.getRoomNumber() == roomNum && room.getRoomNumber() != this.room.getRoomNumber()) {
+                        String headerText = "Room number: " + roomNum + " already exists.";
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(headerText);
+                        DialogPane dialogPane = alert.getDialogPane();
+                        dialogPane.getStylesheets().add("darktheme.css");
+                        alert.showAndWait();
+                        return;
+                    }
+                } else {
+
+                    if (room.getRoomNumber() == roomNum) {
+                        String headerText = "Room number: " + roomNum + " already exists.";
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(headerText);
+                        DialogPane dialogPane = alert.getDialogPane();
+                        dialogPane.getStylesheets().add("darktheme.css");
+                        alert.showAndWait();
+                        return;
+                    }
+                }
+            }
+
+            if (Integer.parseInt(this.roomCapText.getText()) <= 0) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Room capacity cannot be less than or equal to 0.");
+                DialogPane dialogPane = alert.getDialogPane();
+                dialogPane.getStylesheets().add("darktheme.css");
+                alert.showAndWait();
+                return;
+            }
+
             this.room.setRoomNumber(roomNum);
             this.room.setRoomCapacity(roomCapacity);
 
