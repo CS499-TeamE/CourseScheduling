@@ -172,9 +172,23 @@ public class OutputScheduleController {
             ((FinalizeInputController) fxmlLoader.getController()).initialize(departmentList);
         }
     }
-    public void printPress(ActionEvent actionEvent)
-    {
-        print(textFlow);
+    public void backToStart(ActionEvent actionEvent) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to go back to the start? " +
+                "Doing so will lose all progress.", ButtonType.YES, ButtonType.NO);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add("darktheme.css");
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            MainController mainController = MainController.getInstance();
+            mainController.getData().clear();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ChooseFile.fxml"));
+            Parent pane = (Parent) fxmlLoader.load();
+            ((ChooseFileController) fxmlLoader.getController()).setStage(stage);
+            Scene scene = new Scene(pane);
+            stage.setScene(scene);
+            resize();
+        }
     }
 
     public void print(ActionEvent actionEvent) {
