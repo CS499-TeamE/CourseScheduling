@@ -33,7 +33,7 @@
                <graphic>
                   <ImageView fx:id="mouseOverGreen" fitHeight="109.0" fitWidth="417.0" layoutX="59.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Pictures/green.png" />
+                        <Image url="@green.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -42,7 +42,7 @@
                <graphic>
                   <ImageView fitHeight="109.0" fitWidth="417.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Pictures/red.png" />
+                        <Image url="@red.png" />
                      </image>
                   </ImageView>
                </graphic>

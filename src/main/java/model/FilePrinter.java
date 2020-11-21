@@ -13,9 +13,9 @@ import java.util.List;
 
 public class FilePrinter
 {
-    private static Department dept;
-    private static Schedule schedule;
-    private static File file;
+    private Department dept;
+    private Schedule schedule;
+    private File file;
 
     public FilePrinter(Department dept, Schedule finalSchedule, File file) throws IOException
     {
@@ -65,7 +65,7 @@ public class FilePrinter
         }
     }
 
-    private static List buildCSVRecord(String meetingTime)
+    private List buildCSVRecord(String meetingTime)
     {
         List<String> record = new ArrayList<>();
         record.add(meetingTime);
