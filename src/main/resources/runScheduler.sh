@@ -1,0 +1,1 @@
+java -jar CourseScheduler-1.0-SNAPSHOT.jar

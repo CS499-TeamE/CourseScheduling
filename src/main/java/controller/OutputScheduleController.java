@@ -1,16 +1,16 @@
 package controller;
 
+import javafx.scene.Node;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.print.*;
 import javafx.scene.Node;
+import javafx.print.PrinterJob;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
@@ -35,11 +35,11 @@ public class OutputScheduleController {
     @FXML private Stage stage;
     @FXML private Button save;
     @FXML private Button backButton;
-    @FXML private Button printButton;
     @FXML private TextArea textArea;
     @FXML private Label thumbsUp;
     @FXML private Label thumbsDown;
     @FXML private TextFlow textFlow;
+    @FXML private Button printButton;
     @FXML private ComboBox<Department> departmentComboBox;
     @FXML private ScrollPane scheduleScroll;
     private List<Department> departmentList;
@@ -92,7 +92,7 @@ public class OutputScheduleController {
 
     public void updateTextArea(ActionEvent actionEvent)
     {
-        this.textFlow.getChildren().clear();
+        textFlow.getChildren().clear();
 
         getHeaders();
         for(PossibleClass n : this.scheduleList.get(this.departmentComboBox.getSelectionModel().getSelectedIndex()).getClassList())
@@ -102,7 +102,7 @@ public class OutputScheduleController {
             {
                 text.setFill(RED);
             }
-            this.textFlow.getChildren().add(text);
+            textFlow.getChildren().add(text);
         }
         updateIcons();
         printErrors();
@@ -119,13 +119,13 @@ public class OutputScheduleController {
     {
         if(this.scheduleList.get(this.departmentComboBox.getSelectionModel().getSelectedIndex()).getFitness() == 1.0)
         {
-            this.thumbsUp.setDisable(false);
-            this.thumbsDown.setDisable(true);
+            thumbsUp.setDisable(false);
+            thumbsDown.setDisable(true);
         }
         else
         {
-            this.thumbsDown.setDisable(false);
-            this.thumbsUp.setDisable(true);
+            thumbsDown.setDisable(false);
+            thumbsUp.setDisable(true);
         }
     }
 
@@ -172,6 +172,24 @@ public class OutputScheduleController {
             ((FinalizeInputController) fxmlLoader.getController()).initialize(departmentList);
         }
     }
+    public void backToStart(ActionEvent actionEvent) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to go back to the start? " +
+                "Doing so will lose all progress.", ButtonType.YES, ButtonType.NO);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add("darktheme.css");
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            MainController mainController = MainController.getInstance();
+            mainController.getData().clear();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ChooseFile.fxml"));
+            Parent pane = (Parent) fxmlLoader.load();
+            ((ChooseFileController) fxmlLoader.getController()).setStage(stage);
+            Scene scene = new Scene(pane);
+            stage.setScene(scene);
+            resize();
+        }
+    }
 
     public void print(ActionEvent actionEvent) {
         JTextPane jtp = new JTextPane();
@@ -207,4 +225,7 @@ public class OutputScheduleController {
             textArea.appendText(error);
         }
     }
+   
+
+
 }

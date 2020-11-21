@@ -1,5 +1,6 @@
 package controller;
 
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
 
 
 public class FinalizeInputController
@@ -33,11 +35,9 @@ public class FinalizeInputController
     @FXML public Button roomEdit;
     @FXML public Button roomDelete;
     @FXML private Button submit;
-    @FXML private Button help;
     @FXML private Button backButton;
-    @FXML private ProgressBar progressBar;
-    @FXML private ProgressIndicator progressWheel;
-    @FXML private Label statusLabel;
+
+
 
     private List<Department> departments;
     private List<Room> roomList;
@@ -79,7 +79,6 @@ public class FinalizeInputController
         this.departmentComboBox.setItems(FXCollections.observableArrayList(this.departments));
         this.setCombosDisable(true);
         this.setAllButtonsDisable(true);
-        setStatus("Schedule not generated");
     }
 
     public void updateDepartmentValues(ActionEvent actionEvent) {
@@ -301,13 +300,8 @@ public class FinalizeInputController
             this.roomDelete.setDisable(true);
         }
     }
-    public void help(ActionEvent actionEvent)
-    {
-        startProgress();
-    }
 
     public void submit(ActionEvent actionEvent) throws IOException {
-
         for (Department department : departments) {
             if (department.getCoursesList().isEmpty()) {
 
@@ -399,16 +393,6 @@ public class FinalizeInputController
         this.stage.sizeToScene();
     }
 
-    public void startProgress()
-    {
-        setStatus("Generating Schedule");
-        progressWheel.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
-        progressBar.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
-    }
 
 
-    private void setStatus(String status)
-    {
-        statusLabel.setText(status);
-    }
 }

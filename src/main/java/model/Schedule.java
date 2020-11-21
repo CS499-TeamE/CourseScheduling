@@ -10,6 +10,7 @@ public class Schedule implements Comparable< Schedule >
     private int conflictAmount = 0;
     private double fitness = -1;
     private boolean fitnessChange = true;
+    private Integer id;
 
     private List<PossibleClass> possibleClassList;
 
@@ -27,8 +28,6 @@ public class Schedule implements Comparable< Schedule >
     public void setId(Integer id) {
         this.id = id;
     }
-
-    private Integer id;
 
     Random random = new Random();
 

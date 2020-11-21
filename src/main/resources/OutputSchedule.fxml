@@ -33,7 +33,7 @@
                <graphic>
                   <ImageView fx:id="mouseOverGreen" fitHeight="109.0" fitWidth="417.0" layoutX="59.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Pictures/green.png" />
+                        <Image url="@green.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -42,7 +42,7 @@
                <graphic>
                   <ImageView fitHeight="109.0" fitWidth="417.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Pictures/red.png" />
+                        <Image url="@red.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -63,6 +63,7 @@
             </ScrollPane>
             <Button fx:id="printButton" layoutX="819.0" layoutY="685.0" mnemonicParsing="false" onAction="#print" prefHeight="25.0" prefWidth="126.67" text="Print" />
             <Button fx:id="backButton" layoutX="693.0" layoutY="685.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="126.67" text="Back" />
+            <Button fx:id="backToStart" layoutX="970.0" layoutY="37.0" mnemonicParsing="false" onAction="#backToStart" prefHeight="25.0" prefWidth="102.0" text="Back to start" />
          </children>
       </AnchorPane>
    </children>
