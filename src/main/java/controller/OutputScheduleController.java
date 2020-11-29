@@ -15,10 +15,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import model.Department;
-import model.FilePrinter;
-import model.PossibleClass;
-import model.Schedule;
+import model.*;
 import org.apache.commons.csv.CSVFormat;
 
 import javax.swing.*;
@@ -201,7 +198,9 @@ public class OutputScheduleController {
             }
         }
         String fullText = sb.toString();
-        jtp.setText(fullText);
+        Printify printData = new Printify(fullText, "Computer Science");
+        jtp.setText(printData.getPrintData());
+        //jtp.setText(fullText);
         boolean show = true;
         try {
             jtp.print(null, null, show, null, null, show);
