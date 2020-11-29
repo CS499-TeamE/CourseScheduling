@@ -178,25 +178,28 @@ public class ReadInputFile
                 //----------------------------------------------------------------------
                 //gather classrooms
                 //----------------------------------------------------------------------
-                if(data.substring(0,parse2).equals("Classroom")){
-                    data=myReader.nextLine(); //read next line, this should be the start of classroom information
-                    while (!data.equals("")){
-                        this.parseClassRooms(data,delimiter);
+                //if(delimiter.equals(",")) {
+                    if (data.substring(0, parse2).equals("Classroom")) {
+                        data = myReader.nextLine(); //read next line, this should be the start of classroom information
+                        while (!data.equals("")) {
+                            this.parseClassRooms(data, delimiter);
 
-                        //if there is a next line continue to read
-                        if (myReader.hasNextLine()){
-                            data=myReader.nextLine(); //read next line;
-                        }else{
-                            break;
-                        }
+                            //if there is a next line continue to read
+                            if (myReader.hasNextLine()) {
+                                data = myReader.nextLine(); //read next line;
+                            } else {
+                                break;
+                            }
 
-                        parse2 = data.indexOf(delimiter); //find index of delimiter which separates cells for useful info
-                        if(parse2<1){ //if this row is a blank line
-                            break;
+                            parse2 = data.indexOf(delimiter); //find index of delimiter which separates cells for useful info
+                            if (parse2 < 1) { //if this row is a blank line
+                                break;
+                            }
                         }
                     }
-                }
-
+               /* }else if(delimiter.equals("\t")){
+                    System.out.println(data);
+                }*/
             }
             myReader.close(); //close file reader
 
@@ -309,8 +312,10 @@ public class ReadInputFile
 
             if(parseCourses!=-1){
                 courseNumber = courses.substring(1,parseCourses); //make string of just course number
+                //System.out.println("course number: " + courseNumber); //debug line
             }else{ //last course number in the list
                 courseNumber = courses.substring(1,courses.length()-1); //make string of just course number
+                //System.out.println("last course number: " + courseNumber); //debug line
             }
 
             //go through courses to find a match
@@ -415,8 +420,10 @@ public class ReadInputFile
      * @param args input read from command line
      */
     public static void main(String[] args) {
-        ReadInputFile rif = new ReadInputFile("D:\\Temp\\DeptData.csv");
+         //ReadInputFile rif = new ReadInputFile("D:\\Temp\\DeptData.csv");
+       // ReadInputFile rif = new ReadInputFile("src/main/resources/InputData.csv");
+        ReadInputFile rif = new ReadInputFile("src/main/resources/InputData.tsv");
+        //ReadInputFile rif = new ReadInputFile("D:\\Temp\\DeptData.tsv");
         rif.debugPrint();
     }
-
 }

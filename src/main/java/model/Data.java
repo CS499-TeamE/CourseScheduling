@@ -2,6 +2,10 @@ package model;
 
 import java.util.ArrayList;
 
+@Deprecated
+/**
+ * @deprecated use department instead
+ */
 public class Data
 {
 

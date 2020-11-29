@@ -40,6 +40,18 @@ public class Course {
     }
 
     /**
+     * Overloaded constructor for if the Course ID, Room Preference, and max enrollment is Known
+     * @param courseId string that represents Course ID
+     * @param RoomPreference int that represents Room Preference
+     * @param maxEnrollment int that represent max enrollment of students allowed for course
+     */
+    public Course(String courseId, int RoomPreference, int maxEnrollment) {
+        this.courseId = courseId;
+        this.RoomPreference = RoomPreference;
+        this.maxEnrollment = maxEnrollment;
+    }
+
+    /**
      * Returns the Course ID as a string
      * @return string that represents Course ID
      */
