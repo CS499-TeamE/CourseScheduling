@@ -24,7 +24,35 @@ public class Department {
     /**
      * Default constructor
      */
-    public Department() {
+    public Department() { }
+
+    public Department(String name){
+        this.departmentName = name;
+    }
+
+    public Department(String name, String location){
+        this.departmentName = name;
+        this.departmentLocation = location;
+    }
+
+    public Department(ArrayList<Course> coursesList){
+        this.coursesList = coursesList;
+    }
+
+    public Department(String name, ArrayList<Room> roomsList) {
+        this.departmentName = name;
+        this.roomsList = roomsList;
+    }
+
+    public Department(ArrayList<Professor> professorsList, String location){
+        this.departmentLocation = location;
+        this.ProfessorsList = professorsList;
+    }
+
+    public Department(String name, String location, ArrayList<ClassTimes> meetingTimes){
+        this.departmentName = name;
+        this.departmentLocation = location;
+        this.meetingTimes = meetingTimes;
     }
 
     /**

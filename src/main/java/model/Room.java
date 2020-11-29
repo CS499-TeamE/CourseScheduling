@@ -66,7 +66,23 @@ public class Room {
     }
 
     /**
-     * This function prints values of this class to the console
+     * Getter for building
+     * @return String representing building classroom is in
+     */
+    public String getBuilding() {
+        return building;
+    }
+
+    /**
+     * Setter for building
+     * @param building  String representing building classroom is in
+     */
+    public void setBuilding(String building) {
+        this.building = building;
+    }
+
+    /**
+     * This function prints values of this class to the console for debugging
      */
     public void printRoom() {
         System.out.println("Room '" + this.building + " " + this.roomNumber + "' has a maximum capacity of " + this.roomCapacity);
@@ -79,4 +95,6 @@ public class Room {
         }
         return String.valueOf(this.getRoomNumber());
     }
+
+
 }
