@@ -110,7 +110,7 @@ public class OutputScheduleController {
 
     private void getHeaders()
     {
-        Text text = new Text("Course\t|\t" + "Max Attendance\t|\t" + "Room\t|\t" + "Room Capacity\t|\t" + "Professor\t\t\t|\t" + "Meeting Time\n");
+        Text text = new Text("Course\t|\t" + "Max Attendance\t|\t" + "Room\t|\t" + "Room Capacity\t|\t" + "Professor\t\t\t|\t" + "Meeting Time\t\n");
         this.textFlow.getChildren().add(text);
     }
 
@@ -180,6 +180,7 @@ public class OutputScheduleController {
         alert.showAndWait();
 
         if (alert.getResult() == ButtonType.YES) {
+            MainController.getInstance().getScheduleList().clear();
             MainController mainController = MainController.getInstance();
             mainController.getData().clear();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ChooseFile.fxml"));
@@ -225,7 +226,7 @@ public class OutputScheduleController {
             textArea.appendText(error);
         }
     }
-   
+
 
 
 }
