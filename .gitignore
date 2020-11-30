@@ -1,6 +1,8 @@
-
+build/*
 *.bin
 *.lock
 .idea/workspace.xml
 *.class
-*.class
+.gradle/*
+
+
