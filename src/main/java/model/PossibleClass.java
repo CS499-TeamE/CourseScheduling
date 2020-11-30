@@ -76,7 +76,7 @@ public class PossibleClass
                 + "\t\t\t\t|\t";
         String middle = this.getProfessor().getName();
         middle = StringUtils.rightPad(middle, 20, " ");
-        String end = "\t|\t" + this.getJustTime();
+        String end = "\t|\t" + this.getMeetingTime();
 
         return beginning.concat(middle.concat(end));
     }
