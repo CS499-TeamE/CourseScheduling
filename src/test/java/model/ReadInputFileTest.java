@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * For verification of actual data, one should manually compare console output of
  * displayCSVdata and displayTSVdata tests to actual input file
  *
- * @author Ed Brown
+ * @author Team E
  */
 class ReadInputFileTest {
     //read in the two file types

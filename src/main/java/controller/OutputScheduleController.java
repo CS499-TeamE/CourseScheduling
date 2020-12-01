@@ -190,6 +190,7 @@ public class OutputScheduleController {
     }
 
     public void print(ActionEvent actionEvent) {
+        printButton.setDisable(true);//disable button
         JTextPane jtp = new JTextPane();
         //jtp.setBackground(Color.white);
         StringBuilder sb = new StringBuilder();
@@ -199,15 +200,22 @@ public class OutputScheduleController {
             }
         }
         String fullText = sb.toString();
-        Printify printData = new Printify(fullText, "Computer Science");
+        Printify printData = new Printify(fullText, this.departmentComboBox.getSelectionModel().getSelectedItem().toString());
         jtp.setText(printData.getPrintData());
+
         //jtp.setText(fullText);
         boolean show = true;
         try {
             jtp.print(null, null, show, null, null, show);
+            printButton.setDisable(false);
         } catch (java.awt.print.PrinterException ex) {
             ex.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Unable to Print");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add("darktheme.css");
+            alert.showAndWait();
         }
+        printButton.setDisable(false);//re-enable button
     }
 
     public void resize()

@@ -82,7 +82,11 @@ public class Printify {
             //Set Meeting Times
             //Meeting time is found after the first tab
             parse = courseInfo[5].indexOf("\t"); //find first delimiter
-            fClass.setTime(courseInfo[5].substring(parse+1)); //filter and assign value
+            String dayAndTime = courseInfo[5].substring(parse+1);
+            //parse out day and times
+            parse = dayAndTime.indexOf(":");
+            fClass.setDay(dayAndTime.substring(0,parse));
+            fClass.setTime(dayAndTime.substring(parse+2)); //filter and assign value
 
             this.courses.add(fClass); //add course to list
 
@@ -105,7 +109,7 @@ public class Printify {
 
         //print data for each class
         for(FinalClass fc: this.courses){
-            this.printData += fc.getCourseID() + "\t " + fc.getMax() + "       " + fc.getRoom() + "\t    " + "x/x" + "\t" + fc.getTime() + "\t  " + fc.getProf() + "\n";
+            this.printData += fc.getCourseID() + "\t " + fc.getMax() + "       " + fc.getRoom() + "\t    " + fc.getDay() + "\t" + fc.getTime() + "\t  " + fc.getProf() + "\n";
         }
     }
 

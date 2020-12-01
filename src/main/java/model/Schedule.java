@@ -19,6 +19,7 @@ public class Schedule implements Comparable< Schedule >
     }
 
     private List<String> conflicts = new ArrayList<>();
+
     private Department dept;
 
     public Integer getId() {
@@ -39,6 +40,10 @@ public class Schedule implements Comparable< Schedule >
     {
         this.dept = dept;
         possibleClassList = new ArrayList<PossibleClass>(dept.getCoursesList().size());
+    }
+
+    public Department getDept() {
+        return dept;
     }
 
     /**
