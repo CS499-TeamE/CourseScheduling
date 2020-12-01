@@ -199,7 +199,7 @@ public class OutputScheduleController {
             }
         }
         String fullText = sb.toString();
-        Printify printData = new Printify(fullText, "Computer Science");
+        Printify printData = new Printify(fullText, this.departmentComboBox.getSelectionModel().getSelectedItem().toString());
         jtp.setText(printData.getPrintData());
         //jtp.setText(fullText);
         boolean show = true;
