@@ -14,6 +14,10 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * The EditProfessorController controls the EditProfessor GUI. EditProfessor GUI is launched from the FinalizeInput GUI
+ * and is for changing the values of a currently existing professor or creating a new professor.
+ */
 public class EditProfessorController {
     @FXML private TextField professorNameText;
     @FXML private ComboBox<String> timeComboBox;
@@ -28,29 +32,52 @@ public class EditProfessorController {
     private Professor professor;
     private List<Professor> professorList;
     private List<Course> courseList;
-    private FinalizeInputController mainController;
+    private FinalizeInputController finalizeInputController;
     private boolean edit;
 
+    /**
+     * Sets the current Professor object being created or edited
+     * @param professor Professor object being created or edited
+     */
     public void setProfessor(Professor professor) {
 
         this.professor = professor;
     }
 
+    /**
+     * Sets the stage for the EditProfessorController
+     * @param stage Stage object
+     */
     public void setStage(Stage stage) {
 
         this.stage = stage;
     }
 
+    /**
+     * Sets the Edit flag for EditProfessorController. If edit is true then a professor is being edited. If edit is
+     * false then a professor is being created.
+     * @param bool a boolean object
+     */
     public void setEdit(boolean bool) {
 
         this.edit = bool;
     }
 
-    public void setMainController(FinalizeInputController controller) {
+    /**
+     * Sets the FinalizeInputController object for the EditCourseController
+     * @param controller FinalizeInputController object
+     */
+    public void setFinalizeInputController(FinalizeInputController controller) {
 
-        this.mainController = controller;
+        this.finalizeInputController = controller;
     }
 
+    /**
+     * Sets the tools tips for all buttons and text fields. Also sets the professor object, courseList, and professorList.
+     * @param professor Professor Object
+     * @param courseList List of Course objects
+     * @param professorList List of Professor objects
+     */
     public void initialize(Professor professor, List<Professor> professorList, List<Course> courseList) {
         this.professorNameText.setTooltip(new Tooltip("Add the name of the professor."));
         this.taughtCourses.setTooltip(new Tooltip("Contains the list of courses this professor teaches."));
@@ -99,6 +126,11 @@ public class EditProfessorController {
         }
     }
 
+    /**
+     * The currently selected Available Course is added to the Professor's Taught Courses. If the course is already in
+     * the Professor's taught courses, then an error window will pop up.
+     * @param actionEvent
+     */
     public void addCourse(ActionEvent actionEvent) {
         if (this.taughtCourses.getItems().contains(this.availableCourses.getValue())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -120,6 +152,10 @@ public class EditProfessorController {
         }
     }
 
+    /**
+     * Removes the selected course from the Taught Courses combobox.
+     * @param actionEvent
+     */
     public void removeCourse(ActionEvent actionEvent) {
         Course course = this.taughtCourses.getValue();
         if (this.taughtCourses.getSelectionModel().isSelected(0)) {
@@ -135,6 +171,13 @@ public class EditProfessorController {
         }
     }
 
+    /**
+     * When the submit button is pressed the input fields are checked to see that they aren't empty, there is no
+     * Professor object that already has the same name, and that the taught courses combobox is not empty. If all checks
+     * are passed then if a professor is being edited then the values will change to the new values, and if a professor
+     * is being created then the new professor with the new values made will be added to the Department's course list.
+     * @param actionEvent
+     */
     public void submit(ActionEvent actionEvent) {
         if (this.professorNameText.getText().trim().isEmpty() || this.taughtCourses.getItems().isEmpty()) {
 
@@ -187,19 +230,23 @@ public class EditProfessorController {
             Comparator<Professor> comparator = Comparator.comparing(Professor::getName);
             this.professorList.sort(comparator);
 
-            this.mainController.setProfessorComboBoxItems(FXCollections.observableArrayList(this.professorList));
-            this.mainController.professorComboBox.setDisable(false);
-            this.mainController.professorEdit.setDisable(false);
-            this.mainController.professorDelete.setDisable(false);
+            this.finalizeInputController.setProfessorComboBoxItems(FXCollections.observableArrayList(this.professorList));
+            this.finalizeInputController.professorComboBox.setDisable(false);
+            this.finalizeInputController.professorEdit.setDisable(false);
+            this.finalizeInputController.professorDelete.setDisable(false);
 
             if (this.professorList.size() == 1) {
-                this.mainController.professorComboBox.getSelectionModel().selectFirst();
+                this.finalizeInputController.professorComboBox.getSelectionModel().selectFirst();
             }
 
             this.stage.close();
         }
     }
 
+    /**
+     * When the cancel button is pressed nothing is changed and control is given back to the FinalizeInput GUI
+     * @param actionEvent
+     */
     public void cancel(ActionEvent actionEvent) {
         this.stage.close();
     }
