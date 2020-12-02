@@ -15,6 +15,10 @@ import javax.tools.Tool;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * The EditCourseController controls the EditCourse GUI. EditCourse GUI is launched from the FinalizeInput GUI and is
+ * for changing the values of a currently existing course or creating a new course.
+ */
 public class EditCourseController {
     @FXML private TextField courseIdText;
     @FXML private TextField courseCapText;
@@ -24,30 +28,50 @@ public class EditCourseController {
     @FXML private Label courseGuiLabel;
     private Stage stage;
     @FXML private Course course;
-    private FinalizeInputController mainController;
+    private FinalizeInputController finalizeInputController;
     private boolean edit;
     private List<Course> courseList;
 
+    /**
+     * Sets the current course being created or edited
+     * @param course the course being created or edited
+     */
     public void setCourse(Course course) {
 
         this.course = course;
     }
 
+    /**
+     * Sets the stage for the EditCourseController
+     * @param stage Stage object
+     */
     public void setStage(Stage stage) {
 
         this.stage = stage;
     }
 
+    /**
+     * Sets the Edit flag for EditCourseController. If edit is true then a course is being edited. If edit is false then
+     * a course is being created.
+     * @param bool a boolean object
+     */
     public void setEdit(boolean bool) {
 
         this.edit = bool;
     }
 
-    public void setMainController(FinalizeInputController controller) {
+    /**
+     * Sets the FinalizeInputController object for the EditCourseController
+     * @param controller FinalizeInputController object
+     */
+    public void setFinalizeInputController(FinalizeInputController controller) {
 
-        this.mainController = controller;
+        this.finalizeInputController = controller;
     }
 
+    /**
+     * Adds a listener to the course capacity text field so that only numeric values can be input
+     */
     public void addListeners() {
         courseCapText.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -59,6 +83,12 @@ public class EditCourseController {
         });
     }
 
+    /**
+     * Sets the tools tips for all buttons and text fields. Also sets the course object, courseList, and roomlist.
+     * @param course Course Object
+     * @param courseList List of Course objects
+     * @param roomList List of Room objects
+     */
     public void initialize(Course course, List<Course> courseList, List<Room> roomList) {
         this.addListeners();
         this.courseIdText.setTooltip(new Tooltip("Add a course ID."));
@@ -107,6 +137,13 @@ public class EditCourseController {
         }
     }
 
+    /**
+     * When the submit button is pressed the input fields are checked to see that they aren't empty and that there is no
+     * Course object that already has the same name. If all checks are passed then if a course is being edited then the
+     * values will change to the new values, and if a course is being created then the new course with the new values made
+     * will be added to the Department's course list.
+     * @param actionEvent
+     */
     public void submit(ActionEvent actionEvent) {
         if (this.courseIdText.getText() == null || this.courseIdText.getText().trim().isEmpty() ||
         this.courseCapText.getText() == null || this.courseCapText.getText().trim().isEmpty()) {
@@ -167,19 +204,23 @@ public class EditCourseController {
 
             Comparator<Course> comparator = Comparator.comparing(Course::getCourseId);
             courseList.sort(comparator);
-            this.mainController.setCourseComboBoxItems(FXCollections.observableArrayList(courseList));
-            this.mainController.courseComboBox.setDisable(false);
-            this.mainController.courseEdit.setDisable(false);
-            this.mainController.courseDelete.setDisable(false);
+            this.finalizeInputController.setCourseComboBoxItems(FXCollections.observableArrayList(courseList));
+            this.finalizeInputController.courseComboBox.setDisable(false);
+            this.finalizeInputController.courseEdit.setDisable(false);
+            this.finalizeInputController.courseDelete.setDisable(false);
 
             if (courseList.size() == 1) {
-                this.mainController.courseComboBox.getSelectionModel().selectFirst();
+                this.finalizeInputController.courseComboBox.getSelectionModel().selectFirst();
             }
 
             this.stage.close();
         }
     }
 
+    /**
+     * When the cancel button is pressed nothing is changed and control is given back to the FinalizeInput GUI
+     * @param actionEvent
+     */
     public void cancel(ActionEvent actionEvent) {
         this.stage.close();
     }
