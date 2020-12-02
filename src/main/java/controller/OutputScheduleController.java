@@ -272,6 +272,7 @@ public class OutputScheduleController {
 
     private void printErrors()
     {
+        textArea.clear();
         List<String> errors = new ArrayList<>();
         errors = this.scheduleList.get(this.departmentComboBox.getSelectionModel().getSelectedIndex()).getConflicts();
 

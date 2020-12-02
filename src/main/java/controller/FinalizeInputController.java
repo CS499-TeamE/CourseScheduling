@@ -483,7 +483,7 @@ public class FinalizeInputController
 
                     if (department.getProfessorList().get(i).getName().equals(department.getProfessorList().get(j).getName())) {
 
-                        String headerText = department.getDepartmentName() + " contains duplicate room number: " +
+                        String headerText = department.getDepartmentName() + " contains duplicate professor name: " +
                                 "" + department.getProfessorList().get(i).getName();
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(headerText);
