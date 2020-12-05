@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static javafx.scene.paint.Color.RED;
@@ -45,6 +46,7 @@ public class OutputScheduleController {
     @FXML private Button printButton;
     @FXML private ComboBox<Department> departmentComboBox;
     @FXML private ScrollPane scheduleScroll;
+    @FXML private ComboBox<String> sortByComboBox;
     private List<Department> departmentList;
     private List<Schedule> scheduleList;
 
@@ -86,6 +88,10 @@ public class OutputScheduleController {
      * @param scheduleList List of Schedule objects
      */
     public void initialize(List<Department> departmentList, List<Schedule> scheduleList) {
+        List<String> sortByOptions = Arrays.asList("Course ID", "Room Number", "Meeting Times", "Professor",
+                "Max Enrollment", "Room Capacity");
+        this.sortByComboBox.setItems(FXCollections.observableList(sortByOptions));
+        this.sortByComboBox.getSelectionModel().selectFirst();
         this.textArea.setEditable(false);
         this.backButton.setTooltip(new Tooltip("Go back to the Department Editor."));
         this.save.setTooltip(new Tooltip("Save schedule as a TSV or CSV file."));
@@ -139,6 +145,10 @@ public class OutputScheduleController {
     /**
      *  Prints out the headers of a schedule
      */
+    public void updateTextFlow(ActionEvent actionEvent) {
+        return;
+    }
+
     private void getHeaders()
     {
         Text text = new Text("Course\t|\t" + "Max Enrollment\t|\t" + "Room\t|\t" + "Room Capacity\t|\t\t" + "Meeting Time\t\t\t|\t" + "Professor\n");
@@ -154,11 +164,13 @@ public class OutputScheduleController {
         {
             thumbsUp.setDisable(false);
             thumbsDown.setDisable(true);
+            System.out.println("Made it, up");
         }
         else
         {
             thumbsDown.setDisable(false);
             thumbsUp.setDisable(true);
+            System.out.println("Made it, down");
         }
     }
 
