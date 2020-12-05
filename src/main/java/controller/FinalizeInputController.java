@@ -109,7 +109,7 @@ public class FinalizeInputController
         Comparator<Professor> professorComparator = Comparator.comparing(Professor::getName);
         this.professorList.sort(professorComparator);
         this.roomList = departmentComboBox.getValue().getRoomsList();
-        Comparator<Room> roomComparator = Comparator.comparingInt(Room::getRoomNumber);
+        Comparator<Room> roomComparator = Comparator.comparing(Room::getRoomNumber);
         this.roomList.sort(roomComparator);
         this.courseComboBox.setItems(FXCollections.observableArrayList(courseList));
         this.professorComboBox.setItems(FXCollections.observableArrayList(professorList));

@@ -70,14 +70,14 @@ public class FilePrinter
         List<String> record = new ArrayList<>();
         record.add(meetingTime);
 
-        String cell1 = "Course  |" + "  Max Attendance  |" + "  Room    |" + "  Room Capacity   |" + "  Professor                |" + "  Meeting Time\n" +
+        String cell1 = "Course  |" + "  Max Attendance  |" + "  Room    |" + "  Room Capacity   |"  + "  Meeting Time       |" + "  Professor\n" +
                         "================================================================================\n";    // Format to a single cell
-        String cell2 = "Course  |" + "  Max Attendance  |" + "  Room    |" + "  Room Capacity   |" + "  Professor                |" + "  Meeting Time\n" +
-                        "================================================================================\n";
-        String cell3 = "Course  |" + "  Max Attendance  |" + "  Room    |" + "  Room Capacity   |" + "  Professor                |" + "  Meeting Time\n" +
-                        "================================================================================\n";
-        String cell4 = "Course  |" + "  Max Attendance  |" + "  Room    |" + "  Room Capacity   |" + "  Professor                |" + "  Meeting Time\n" +
-                        "================================================================================\n";
+        String cell2 = "Course  |" + "  Max Attendance  |" + "  Room    |" + "  Room Capacity   |"  + "  Meeting Time       |" + "  Professor\n" +
+                         "================================================================================\n";    // Format to a single cell
+        String cell3 = "Course  |" + "  Max Attendance  |" + "  Room    |" + "  Room Capacity   |"  + "  Meeting Time       |" + "  Professor\n" +
+                         "================================================================================\n";    // Format to a single cell
+        String cell4 = "Course  |" + "  Max Attendance  |" + "  Room    |" + "  Room Capacity   |"  + "  Meeting Time       |" + "  Professor\n" +
+                         "================================================================================\n";    // Format to a single cell
 
         for(PossibleClass course : schedule.getClassList()) // For each course in the schedule
         {
@@ -85,13 +85,13 @@ public class FilePrinter
             {
                 if(course.getMeetingTime().contains(dept.getMeetingTimes().get(0).getDay())) // M/W
                 {
-                    cell1 = cell1.concat(course.getClassInfo() + "\n");
-                    cell3 = cell3.concat(course.getClassInfo() + "\n");
+                    cell1 = cell1.concat(course.getCSVInfo() + "\n");
+                    cell3 = cell3.concat(course.getCSVInfo() + "\n");
                 }
                 else if(course.getMeetingTime().contains(dept.getMeetingTimes().get(1).getDay())) // T/TH
                 {
-                    cell2 = cell2.concat(course.getClassInfo() + "\n");
-                    cell4 = cell4.concat(course.getClassInfo() + "\n");
+                    cell2 = cell2.concat(course.getCSVInfo() + "\n");
+                    cell4 = cell4.concat(course.getCSVInfo() + "\n");
                 }
             }
         }

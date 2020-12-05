@@ -136,7 +136,7 @@ public class EditRoomController {
             alert.showAndWait();
 
         } else {
-            int roomNum = Integer.parseInt(this.roomNumText.getText());
+            String roomNum = this.roomNumText.getText();
             int roomCapacity = Integer.parseInt(this.roomCapText.getText());
 
             for (Room room: roomList) {
@@ -181,7 +181,7 @@ public class EditRoomController {
                 roomList.add(room);
             }
 
-            Comparator<Room> comparator = Comparator.comparingInt(Room::getRoomNumber);
+            Comparator<Room> comparator = Comparator.comparing(Room::getRoomNumber);
             roomList.sort(comparator);
             this.finalizeInputController.setRoomComboBoxItems(FXCollections.observableArrayList(roomList));
             this.finalizeInputController.roomComboBox.setDisable(false);

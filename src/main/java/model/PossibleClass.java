@@ -70,16 +70,30 @@ public class PossibleClass
     public String getClassInfo()
     {
         String beginning = this.getCourse().getCourseId()
-                + "\t|\t" + this.getCourse().getMaxEnrollment()
-                + "\t\t\t\t|\t" + this.getRoom().getRoomNumber()
-                + "\t\t|\t" + this.getRoom().getRoomCapacity()
-                + "\t\t\t\t|\t";
-        String middle = this.getProfessor().getName();
-        middle = StringUtils.rightPad(middle, 20, " ");
-        String end = "\t|\t" + this.getMeetingTime();
+                + "\t|\t\t\t\t" + this.getCourse().getMaxEnrollment()
+                + "\t|\t " + this.getRoom().getRoomNumber()
+                + "\t\t|\t\t\t\t" + this.getRoom().getRoomCapacity()
+                + "\t|\t\t" + this.getMeetingTime()
+                + "\t\t|\t" + this.getProfessor().getName();
+        //String middle =
+        //middle = StringUtils.rightPad(middle, 20, " ");
+        //String end =
+
+        return beginning;
+    }
+
+    public String getCSVInfo()
+    {
+        String beginning = this.getCourse().getCourseId()
+                + "   | " + this.getCourse().getMaxEnrollment()
+                + "                                |  " + this.getRoom().getRoomNumber()
+                + "         |  " + this.getRoom().getRoomCapacity()
+                + "                             |   ";
+        String middle = this.getJustTime();
+        middle = StringUtils.rightPad(middle, 25, " ");
+        String end = "|   " + this.getProfessor().getName();
 
         return beginning.concat(middle.concat(end));
     }
-
 
 }

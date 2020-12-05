@@ -56,6 +56,11 @@ public class MainController
         }
 
     }
+
+    /**
+     * Creates a new population and GeneratorThread object that will generate the schedule for that department
+     * @param departments
+     */
     public void initializePopulation(List<Department> departments) {
         ExecutorService es = Executors.newCachedThreadPool();
 
@@ -81,34 +86,63 @@ public class MainController
         genList.clear();
     }
 
-
+    /**
+     * Prints the information of the schedule
+     * @param schedule
+     */
     private void printSchedule(Schedule schedule)
     {
         schedule.printScheduleInfo();
     }
 
+    /**
+     * Returns the list of department objects
+     * @return List<Department>
+     */
     public static List<Department> getData()
     {
         return data;
     }
 
+    /**
+     * Setter for the list of department objects
+     * @param data
+     */
     public static void setData(List<Department> data)
     {
         MainController.data = data;
     }
 
+    /**
+     * Add a new schedule to the list of current schedules
+     * @param schedule
+     */
     public void appendScheduleList(Schedule schedule)
     {
         this.scheduleList.add(schedule);
     }
+
+    /**
+     * Add a population to the list of current populations
+     * @param p
+     */
     public void addPopulationList(Population p)
     {
         populationList.add(p);
     }
+
+    /**
+     * Getter for the list of
+     * @return
+     */
     public List<Schedule> getScheduleList() {
         return scheduleList;
     }
 
+    /**
+     * Getter for the file paths the user selected on the file chooser GUI
+     * @return
+     */
     public List<String> getFiles() {
         return files;
     }

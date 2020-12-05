@@ -20,12 +20,23 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
 javafx {
     version = "14";
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 task(runMain, dependsOn: 'classes', type: JavaExec) {
-    main = 'Application'
+    main = 'model.Application'
     classpath = sourceSets.main.runtimeClasspath
+}
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'model.Application'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 

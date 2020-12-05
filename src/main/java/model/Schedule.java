@@ -81,13 +81,13 @@ public class Schedule implements Comparable< Schedule >
 
     private void handleRoom(PossibleClass n)
     {
-        if(n.getCourse().getRoomPreference() == 0)
+        if(n.getCourse().getRoomPreference() == "0")
         {
             n.setRoom(dept.getRoomsList().get(random.nextInt(dept.getRoomsList().size()))); // Get a random room if there is no preference
         }
         else
         {
-            int searchTarget = n.getCourse().getRoomPreference();
+            String searchTarget = n.getCourse().getRoomPreference();
             for (Room room : dept.getRoomsList())
             {
                 if(room.getRoomNumber() == searchTarget);
@@ -258,11 +258,12 @@ public class Schedule implements Comparable< Schedule >
         for(PossibleClass course : schedule.getClassList())
         {
             output.add(" Course: " + course.getCourse().getCourseId()
-                    + " Max Attendance: " + course.getCourse().getMaxEnrollment()
+                    + " Max Enrollment: " + course.getCourse().getMaxEnrollment()
                     + " Room: " + course.getRoom().getRoomNumber()
                     + " Room Capacity: " + course.getRoom().getRoomCapacity()
-                    + " Professor: " + course.getProfessor()
-                    + " Meeting Time: " + course.getMeetingTime());
+                    + " Meeting Time: " + course.getMeetingTime()
+                    + " Professor: " + course.getProfessor());
+
         }
         return output;
     }
