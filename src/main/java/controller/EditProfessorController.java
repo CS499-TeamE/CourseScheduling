@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class EditProfessorController {
     @FXML private TextField professorNameText;
-    @FXML private ComboBox<String> timeComboBox;
+    @FXML private TextField meetingTimeTextField;
     @FXML private ComboBox<Course> taughtCourses;
     @FXML private ComboBox<Course> availableCourses;
     @FXML private Button submit;
@@ -82,7 +82,7 @@ public class EditProfessorController {
         this.professorNameText.setTooltip(new Tooltip("Add the name of the professor."));
         this.taughtCourses.setTooltip(new Tooltip("Contains the list of courses this professor teaches."));
         this.availableCourses.setTooltip(new Tooltip("Contains the list of available courses this professor can teach."));
-        this.timeComboBox.setTooltip((new Tooltip("Contains the list of available time preferences for this professor.")));
+        this.meetingTimeTextField.setTooltip((new Tooltip("Contains the list of available time preferences for this professor.")));
         this.submit.setTooltip(new Tooltip("Add this professor to the list of professors."));
         this.cancel.setTooltip(new Tooltip("Back to department editor without adding professor."));
 
@@ -93,14 +93,15 @@ public class EditProfessorController {
         this.courseList = courseList;
         this.availableCourses.setItems(FXCollections.observableArrayList(this.courseList));
         this.availableCourses.getSelectionModel().selectFirst();
+        this.meetingTimeTextField.setText("None");
 
-        ArrayList<String> meetingTimes = new ArrayList<>();
-        String[] times = {"None", "All Tues-Thurs classes", "All Mon-Wed classes", "Morning classes only",
-                "Afternoon classes only", "Evening classes only"};
-        meetingTimes.addAll(Arrays.asList(times));
-
-        this.timeComboBox.setItems(FXCollections.observableArrayList(meetingTimes));
-        this.timeComboBox.getSelectionModel().selectFirst();
+//        ArrayList<String> meetingTimes = new ArrayList<>();
+//        String[] times = {"None", "All Tues-Thurs classes", "All Mon-Wed classes", "Morning classes only",
+//                "Afternoon classes only", "Evening classes only"};
+//        meetingTimes.addAll(Arrays.asList(times));
+//
+//        this.timeComboBox.setItems(FXCollections.observableArrayList(meetingTimes));
+//        this.timeComboBox.getSelectionModel().selectFirst();
         this.taughtCourses.setItems(FXCollections.observableArrayList(this.professor.getTaughtCourses()));
         this.taughtCourses.getSelectionModel().selectFirst();
 
@@ -118,10 +119,10 @@ public class EditProfessorController {
             this.professorGuiLabel.setText("Edit Professor");
             this.professorNameText.setText(this.professor.getName());
 
-            if (this.professor.getPreference() == null) {
-                this.timeComboBox.getSelectionModel().selectFirst();
-            } else {
-                this.timeComboBox.getSelectionModel().select(this.professor.getPreference());
+            if (this.professor.getPreference() != null) {
+//                this.meetingTimeTextField.getSelectionModel().selectFirst();
+//            } else {
+                this.meetingTimeTextField.setText(this.professor.getPreference());
             }
         }
     }
@@ -221,7 +222,7 @@ public class EditProfessorController {
 
 
             this.professor.setName(this.professorNameText.getText());
-            this.professor.setPreference(this.timeComboBox.getValue());
+            this.professor.setPreference(this.meetingTimeTextField.getText());
 
             if (!edit) {
                 this.professorList.add(this.professor);

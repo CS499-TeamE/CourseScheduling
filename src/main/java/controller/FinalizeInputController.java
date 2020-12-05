@@ -402,7 +402,7 @@ public class FinalizeInputController
      * @param actionEvent
      * @throws IOException
      */
-    public void submit(ActionEvent actionEvent) throws IOException {
+    public void submit(ActionEvent actionEvent) throws IOException, InterruptedException {
         for (Department department : departments) {
             if (department.getCoursesList().isEmpty()) {
 
