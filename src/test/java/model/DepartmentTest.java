@@ -125,7 +125,7 @@ class DepartmentTest {
         ArrayList<Room> roomsList = new ArrayList<>();
         for(int i = 0; i<10; i++){
             Room r = new Room();
-            r.setRoomNumber(i);
+            r.setRoomNumber("i");
             roomsList.add(r);
         }
 
@@ -135,7 +135,7 @@ class DepartmentTest {
         ArrayList<Room> roomsList2 = new ArrayList<>();
         for(int i = 0; i<10; i++){
             Room r = new Room();
-            r.setRoomNumber(i);
+            r.setRoomNumber("i");
             roomsList2.add(r);
         }
 
@@ -156,7 +156,7 @@ class DepartmentTest {
         ArrayList<Room> roomsList = new ArrayList<>();
         for(int i = 0; i<10; i++){
             Room r = new Room();
-            r.setRoomNumber(i);
+            r.setRoomNumber("i");
             roomsList.add(r);
         }
 
@@ -166,7 +166,7 @@ class DepartmentTest {
         ArrayList<Room> roomsList2 = new ArrayList<>();
         for(int i = 0; i<10; i++){
             Room r = new Room();
-            r.setRoomNumber(i);
+            r.setRoomNumber("i");
             roomsList2.add(r);
         }
 

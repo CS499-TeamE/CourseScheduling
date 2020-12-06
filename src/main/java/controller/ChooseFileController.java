@@ -97,7 +97,8 @@ public class ChooseFileController {
         Insets insets = new Insets(10,10,10,10);
         newHBox.setPadding(insets);
 
-
+        ScrollPane scrollPane = new ScrollPane(newHBox);
+        scrollPane.setFitToHeight(true);
         vBoxMid.getChildren().add(newHBox);
     }
 
@@ -146,6 +147,24 @@ public class ChooseFileController {
         }
 
         if (!(textFieldList.isEmpty()) && !missingFiles) {
+
+            for (int i = 0; i < textFieldList.size(); i++) {
+                for (int j = i + 1 ; j < textFieldList.size(); j++) {
+
+                    if (textFieldList.get(i).getText().equals(textFieldList.get(j).getText())) {
+
+                        String headerText = "Duplicate file path: " + textFieldList.get(i).getText();
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(headerText);
+                        DialogPane dialogPane = alert.getDialogPane();
+                        dialogPane.getStylesheets().add("darktheme.css");
+                        alert.showAndWait();
+                        return;
+
+                    }
+
+                }
+            }
 
             for (TextField fileName : textFieldList) {
                 String filePath = fileName.getText();
@@ -211,7 +230,7 @@ public class ChooseFileController {
         newTextField.clear();
         textFieldList.add(newTextField);
 
-        if (textFieldList.size() == 10) {
+        if (textFieldList.size() == 40) {
             addInputButton.setDisable(true);
         }
 

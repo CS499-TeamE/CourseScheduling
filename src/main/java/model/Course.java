@@ -11,7 +11,7 @@ public class Course {
      * Class variables
      */
     private String courseId;
-    private int RoomPreference =0;
+    private String RoomPreference = "0";
     private int maxEnrollment = 0;
 
     /**
@@ -34,7 +34,7 @@ public class Course {
      * @param courseId string that represents Course ID
      * @param RoomPreference int that represents Room Preference
      */
-    public Course(String courseId, int RoomPreference) {
+    public Course(String courseId, String RoomPreference) {
         this.courseId = courseId;
         this.RoomPreference = RoomPreference;
     }
@@ -45,7 +45,7 @@ public class Course {
      * @param RoomPreference int that represents Room Preference
      * @param maxEnrollment int that represent max enrollment of students allowed for course
      */
-    public Course(String courseId, int RoomPreference, int maxEnrollment) {
+    public Course(String courseId, String RoomPreference, int maxEnrollment) {
         this.courseId = courseId;
         this.RoomPreference = RoomPreference;
         this.maxEnrollment = maxEnrollment;
@@ -63,7 +63,7 @@ public class Course {
      * Returns the room preference of this course object as an int
      * @return int that represents room preference
      */
-    public int getRoomPreference() {
+    public String getRoomPreference() {
         return this.RoomPreference;
     }
 
@@ -79,7 +79,7 @@ public class Course {
      * Updates value of roomPreference
      * @param RoomPreference int to represent new roomPreference
      */
-    public void setRoomPreference(int RoomPreference) {
+    public void setRoomPreference(String RoomPreference) {
         this.RoomPreference = RoomPreference;
     }
 
@@ -104,7 +104,7 @@ public class Course {
      */
     public void printCourse(){
         System.out.print("\t"+this.getCourseId()); //print course ID
-        if(this.RoomPreference==0){
+        if(this.RoomPreference== "0"){
             System.out.print(": No Room Preference");
         }else{
             System.out.print(": prefers room " + this.getRoomPreference());

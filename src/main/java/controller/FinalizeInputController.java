@@ -109,7 +109,7 @@ public class FinalizeInputController
         Comparator<Professor> professorComparator = Comparator.comparing(Professor::getName);
         this.professorList.sort(professorComparator);
         this.roomList = departmentComboBox.getValue().getRoomsList();
-        Comparator<Room> roomComparator = Comparator.comparingInt(Room::getRoomNumber);
+        Comparator<Room> roomComparator = Comparator.comparing(Room::getRoomNumber);
         this.roomList.sort(roomComparator);
         this.courseComboBox.setItems(FXCollections.observableArrayList(courseList));
         this.professorComboBox.setItems(FXCollections.observableArrayList(professorList));
@@ -402,7 +402,7 @@ public class FinalizeInputController
      * @param actionEvent
      * @throws IOException
      */
-    public void submit(ActionEvent actionEvent) throws IOException {
+    public void submit(ActionEvent actionEvent) throws IOException, InterruptedException {
         for (Department department : departments) {
             if (department.getCoursesList().isEmpty()) {
 

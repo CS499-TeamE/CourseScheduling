@@ -34,15 +34,6 @@ public class EditRoomController {
      * Adds a listener to the room capacity and room number text fields so that only numeric values can be input
      */
     public void addListeners() {
-        roomNumText.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    roomNumText.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
-
         roomCapText.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -136,7 +127,7 @@ public class EditRoomController {
             alert.showAndWait();
 
         } else {
-            int roomNum = Integer.parseInt(this.roomNumText.getText());
+            String roomNum = this.roomNumText.getText();
             int roomCapacity = Integer.parseInt(this.roomCapText.getText());
 
             for (Room room: roomList) {
@@ -181,7 +172,7 @@ public class EditRoomController {
                 roomList.add(room);
             }
 
-            Comparator<Room> comparator = Comparator.comparingInt(Room::getRoomNumber);
+            Comparator<Room> comparator = Comparator.comparing(Room::getRoomNumber);
             roomList.sort(comparator);
             this.finalizeInputController.setRoomComboBoxItems(FXCollections.observableArrayList(roomList));
             this.finalizeInputController.roomComboBox.setDisable(false);

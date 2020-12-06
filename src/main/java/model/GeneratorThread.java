@@ -13,7 +13,12 @@ public class GeneratorThread implements Runnable
     private int id;
 
 
-
+    /**
+     * Public constructor
+     * @param data
+     * @param population
+     * @param i
+     */
     public GeneratorThread(Department data, Population population, int i)
     {
         this.datum = data;
@@ -21,11 +26,18 @@ public class GeneratorThread implements Runnable
         this.population = population;
     }
 
+    /**
+     * Launches the startAlgorithm method
+     */
     public void run()
     {
         startAlgorithm();
     }
 
+    /**
+     * Indents each evolution from a different thread to distinguish it
+     * @return
+     */
     private String getIndent()
     {
         String indent = "";
@@ -34,6 +46,10 @@ public class GeneratorThread implements Runnable
         return indent;
     }
 
+    /**
+     * Creates the a new population and algorithm every 350 evolutions
+     * Once it finds a schedule without errors it will export it back to the MainController
+     */
     public void startAlgorithm()
     {
 
@@ -49,6 +65,10 @@ public class GeneratorThread implements Runnable
         MainController.getInstance().appendScheduleList(schedule);
     }
 
+    /**
+     * Checks each evolution for the best schedules to see if there is one with 0 errors
+     * @param alg
+     */
     private void simulateEvolution(Algorithm alg)
     {
 

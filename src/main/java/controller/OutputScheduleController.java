@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static javafx.scene.paint.Color.RED;
@@ -45,6 +46,7 @@ public class OutputScheduleController {
     @FXML private Button printButton;
     @FXML private ComboBox<Department> departmentComboBox;
     @FXML private ScrollPane scheduleScroll;
+    @FXML private ComboBox<String> sortByComboBox;
     private List<Department> departmentList;
     private List<Schedule> scheduleList;
 
@@ -86,6 +88,10 @@ public class OutputScheduleController {
      * @param scheduleList List of Schedule objects
      */
     public void initialize(List<Department> departmentList, List<Schedule> scheduleList) {
+        List<String> sortByOptions = Arrays.asList("Course ID", "Room Number", "Meeting Times", "Professor",
+                "Max Enrollment", "Room Capacity");
+        this.sortByComboBox.setItems(FXCollections.observableList(sortByOptions));
+        this.sortByComboBox.getSelectionModel().selectFirst();
         this.textArea.setEditable(false);
         this.backButton.setTooltip(new Tooltip("Go back to the Department Editor."));
         this.save.setTooltip(new Tooltip("Save schedule as a TSV or CSV file."));
@@ -114,7 +120,8 @@ public class OutputScheduleController {
     }
 
     /**
-     *
+     * Updates the main text area with the schedule of the currently selected department
+     * first prints the headers and then the schedule
      * @param actionEvent
      */
     public void updateTextArea(ActionEvent actionEvent)
@@ -135,27 +142,43 @@ public class OutputScheduleController {
         printErrors();
     }
 
+    /**
+     *  Prints out the headers of a schedule
+     */
+    public void updateTextFlow(ActionEvent actionEvent) {
+        return;
+    }
+
     private void getHeaders()
     {
-        Text text = new Text("Course\t|\t" + "Max Attendance\t|\t" + "Room\t|\t" + "Room Capacity\t|\t" + "Professor\t\t\t|\t" + "Meeting Time\t\n");
+        Text text = new Text("Course\t|\t" + "Max Enrollment\t|\t" + "Room\t|\t" + "Room Capacity\t|\t\t" + "Meeting Time\t\t\t|\t" + "Professor\n");
         this.textFlow.getChildren().add(text);
     }
 
-
+    /**
+     *  Update the thumbs down/up depending on the currently selected schedule
+     */
     public void updateIcons()
     {
         if(this.scheduleList.get(this.departmentComboBox.getSelectionModel().getSelectedIndex()).getFitness() == 1.0)
         {
             thumbsUp.setDisable(false);
             thumbsDown.setDisable(true);
+            System.out.println("Made it, up");
         }
         else
         {
             thumbsDown.setDisable(false);
             thumbsUp.setDisable(true);
+            System.out.println("Made it, down");
         }
     }
 
+    /**
+     * Save the currently selected schedule as a .tsv or .csv
+     * @param actionEvent
+     * @throws IOException
+     */
     public void saveSchedules(ActionEvent actionEvent) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to save? " +
                 "Schedule contains errors.", ButtonType.YES, ButtonType.NO);
@@ -226,6 +249,10 @@ public class OutputScheduleController {
         }
     }
 
+    /**
+     * Print the currently selected schedule to a pdf
+     * @param actionEvent
+     */
     public void print(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to print? " +
                 "Schedule contains errors.", ButtonType.YES, ButtonType.NO);
@@ -265,11 +292,17 @@ public class OutputScheduleController {
         }
     }
 
+    /**
+     * Automatically resize the GUI window
+     */
     public void resize()
     {
         this.stage.sizeToScene();
     }
 
+    /**
+     * Print out any errors that exist in the current schedule
+     */
     private void printErrors()
     {
         textArea.clear();
