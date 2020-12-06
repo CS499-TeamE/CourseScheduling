@@ -311,6 +311,7 @@ public class OutputScheduleController {
                 }
             }
             String fullText = sb.toString();
+            //System.out.println(fullText); //debug line
             Printify printData = new Printify(fullText, this.departmentComboBox.getSelectionModel().getSelectedItem().toString());
             jtp.setText(printData.getPrintData());
 

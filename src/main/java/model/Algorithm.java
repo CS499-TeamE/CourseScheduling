@@ -13,7 +13,6 @@ import java.util.stream.IntStream;
  * chance
  */
 
-
 public class Algorithm //crossover, mutation
 {
     private Department dept;
