@@ -3,6 +3,7 @@ package model;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class PossibleClass
@@ -70,16 +71,72 @@ public class PossibleClass
     public String getClassInfo()
     {
         String beginning = this.getCourse().getCourseId()
-                + "\t|\t" + this.getCourse().getMaxEnrollment()
-                + "\t\t\t\t|\t" + this.getRoom().getRoomNumber()
-                + "\t\t|\t" + this.getRoom().getRoomCapacity()
-                + "\t\t\t\t|\t";
-        String middle = this.getProfessor().getName();
-        middle = StringUtils.rightPad(middle, 20, " ");
-        String end = "\t|\t" + this.getMeetingTime();
+                + "\t|\t\t\t\t" + this.getCourse().getMaxEnrollment()
+                + "\t|\t " + this.getRoom().getRoomNumber()
+                + "\t\t|\t\t\t\t" + this.getRoom().getRoomCapacity()
+                + "\t|\t\t" + this.getMeetingTime()
+                + "\t\t|\t" + this.getProfessor().getName();
+        //String middle =
+        //middle = StringUtils.rightPad(middle, 20, " ");
+        //String end =
+
+        return beginning;
+    }
+
+    public String getCSVInfo()
+    {
+        String beginning = this.getCourse().getCourseId()
+                + "   | " + this.getCourse().getMaxEnrollment()
+                + "                                |  " + this.getRoom().getRoomNumber()
+                + "         |  " + this.getRoom().getRoomCapacity()
+                + "                             |   ";
+        String middle = this.getJustTime();
+        middle = StringUtils.rightPad(middle, 25, " ");
+        String end = "|   " + this.getProfessor().getName();
 
         return beginning.concat(middle.concat(end));
     }
-
+    public static class CourseCompare implements Comparator<PossibleClass>
+    {
+        public int compare(PossibleClass m1, PossibleClass m2)
+        {
+            return m1.getCourse().getCourseId().compareTo(m2.getCourse().getCourseId());
+        }
+    }
+    public static class RoomCompare implements Comparator<PossibleClass>
+    {
+        public int compare(PossibleClass m1, PossibleClass m2)
+        {
+            return m1.getRoom().getRoomNumber().compareTo(m2.getRoom().getRoomNumber());
+        }
+    }
+    public static class ProfessorCompare implements Comparator<PossibleClass>
+    {
+        public int compare(PossibleClass m1, PossibleClass m2)
+        {
+            return m1.getProfessor().getName().compareTo(m2.getProfessor().getName());
+        }
+    }
+    public static class MeetingTimeCompare implements Comparator<PossibleClass>
+    {
+        public int compare(PossibleClass m1, PossibleClass m2)
+        {
+            return m1.getMeetingTime().compareTo(m2.getMeetingTime());
+        }
+    }
+    public static class EnrollmentCompare implements Comparator<PossibleClass>
+    {
+        public int compare(PossibleClass m1, PossibleClass m2)
+        {
+            return ((Integer) m1.getCourse().getMaxEnrollment()).compareTo((Integer) m2.getCourse().getMaxEnrollment());
+        }
+    }
+    public static class CapacityCompare implements Comparator<PossibleClass>
+    {
+        public int compare(PossibleClass m1, PossibleClass m2)
+        {
+            return ((Integer) m1.getRoom().getRoomCapacity()).compareTo((Integer) m2.getRoom().getRoomCapacity());
+        }
+    }
 
 }

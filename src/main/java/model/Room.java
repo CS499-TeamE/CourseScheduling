@@ -9,7 +9,7 @@ package model;
  */
 public class Room {
     //variables
-    private int roomNumber; //classroom number
+    private String roomNumber; //classroom number
     private String building; //building classroom is in
     private int roomCapacity; //maximum number of student capacity
 
@@ -17,7 +17,7 @@ public class Room {
      * Default Constructor
      */
     public Room(){
-        this.roomNumber = -1;
+        this.roomNumber = "-1";
         this.roomCapacity = -1;
         this.building = null;
     }
@@ -27,7 +27,7 @@ public class Room {
      * @param roomNumber room number of classroom
      * @param roomCapacity maximum number of desks in room
      */
-    public Room(String build, int roomNumber, int roomCapacity) {
+    public Room(String build, String roomNumber, int roomCapacity) {
         this.roomNumber = roomNumber;
         this.roomCapacity = roomCapacity;
         this.building = build;
@@ -37,7 +37,7 @@ public class Room {
      * Room number getter
      * @return string of the room number
      */
-    public int getRoomNumber() {
+    public String getRoomNumber() {
         return roomNumber;
     }
 
@@ -45,7 +45,7 @@ public class Room {
      * Room number setter
      * @param roomNumber room number of classroom
      */
-    public void setRoomNumber(int roomNumber) {
+    public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
     }
 
@@ -87,14 +87,10 @@ public class Room {
     public void printRoom() {
         System.out.println("Room '" + this.building + " " + this.roomNumber + "' has a maximum capacity of " + this.roomCapacity);
     }
-
     @Override
-    public String toString() {
-        if (this.getRoomNumber() == 0) {
-            return "No Preference";
-        }
-        return String.valueOf(this.getRoomNumber());
+    public String toString()
+    {
+        return this.getRoomNumber();
     }
-
 
 }

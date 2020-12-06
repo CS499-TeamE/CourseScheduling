@@ -22,15 +22,15 @@ class CourseTest {
     @Test
     void getRoomPreference() {
         for(int i=-10;i<1000;i++){
-            Course c = new Course("TestCourse",i);
-            assertEquals(i, c.getRoomPreference());
+            Course c = new Course("TestCourse","i");
+            assertEquals("i", c.getRoomPreference());
         }
     }
 
     @Test
     void getMaxEnrollment() {
         for(int i=-10;i<1000;i++){
-            Course c = new Course("TestCourse",121, i);
+            Course c = new Course("TestCourse","121", i);
             assertEquals(i, c.getMaxEnrollment());
         }
     }
@@ -49,8 +49,8 @@ class CourseTest {
     void setRoomPreference() {
         Course c = new Course();
         for(int i=-10;i<1000;i++){
-            c.setRoomPreference(i);
-            assertEquals(i, c.getRoomPreference());
+            c.setRoomPreference("i");
+            assertEquals("i", c.getRoomPreference());
         }
     }
 

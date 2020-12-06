@@ -277,7 +277,7 @@ public class ReadInputFile
         //search through list to assign preference
         this.courses.forEach(p-> {
             if((p.getCourseId().equals(c))){
-                p.setRoomPreference(r);
+                p.setRoomPreference("r");
             }
         });
     }
@@ -388,14 +388,13 @@ public class ReadInputFile
         int spaceParse;
         int roomCapacity;
         String building;
-        int roomNum;
+        String roomNum;
 
         parse = data.indexOf(delimiter); //find first delimiter
         String room = data.substring(0,parse); //string value of first cell read in
         spaceParse = room.indexOf(" "); //find space which separates building from room number
         building = room.substring(0,spaceParse); //separate building
-        String roomNumber = room.substring(spaceParse+1); //separates room
-        roomNum = Integer.parseInt(roomNumber); //change room to an integer
+        roomNum = room.substring(spaceParse+1); //separates room
         String roomCap = data.substring(parse+1); //the rest of the line without room number
         parse = roomCap.indexOf(delimiter);
 
