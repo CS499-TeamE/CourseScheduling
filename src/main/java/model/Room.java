@@ -87,5 +87,10 @@ public class Room {
     public void printRoom() {
         System.out.println("Room '" + this.building + " " + this.roomNumber + "' has a maximum capacity of " + this.roomCapacity);
     }
+    @Override
+    public String toString()
+    {
+        return this.getRoomNumber();
+    }
 
 }

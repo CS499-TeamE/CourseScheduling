@@ -221,7 +221,7 @@ class ReadInputFileTest {
                 flag = false;
             }
             //compare room number
-            if ((csvRoomsList.get(j).getRoomNumber())!=(tsvRoomsList.get(j).getRoomNumber())){
+            if (!(csvRoomsList.get(j).getRoomNumber()).equals(tsvRoomsList.get(j).getRoomNumber())){
                 flag = false;
             }
             //compare capacity

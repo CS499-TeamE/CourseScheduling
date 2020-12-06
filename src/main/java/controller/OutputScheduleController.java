@@ -23,9 +23,7 @@ import javax.tools.Tool;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static javafx.scene.paint.Color.RED;
 
@@ -49,6 +47,7 @@ public class OutputScheduleController {
     @FXML private ComboBox<String> sortByComboBox;
     private List<Department> departmentList;
     private List<Schedule> scheduleList;
+    List<PossibleClass> classList = new ArrayList<>();
 
     /**
      * Constructor for the OutputScheduleController
@@ -88,10 +87,9 @@ public class OutputScheduleController {
      * @param scheduleList List of Schedule objects
      */
     public void initialize(List<Department> departmentList, List<Schedule> scheduleList) {
-        List<String> sortByOptions = Arrays.asList("Course ID", "Room Number", "Meeting Times", "Professor",
+        List<String> sortByOptions = Arrays.asList("Course ID", "Room", "Meeting Times", "Professor",
                 "Max Enrollment", "Room Capacity");
         this.sortByComboBox.setItems(FXCollections.observableList(sortByOptions));
-        this.sortByComboBox.getSelectionModel().selectFirst();
         this.textArea.setEditable(false);
         this.backButton.setTooltip(new Tooltip("Go back to the Department Editor."));
         this.save.setTooltip(new Tooltip("Save schedule as a TSV or CSV file."));
@@ -122,14 +120,15 @@ public class OutputScheduleController {
     /**
      * Updates the main text area with the schedule of the currently selected department
      * first prints the headers and then the schedule
-     * @param actionEvent
+     *
      */
-    public void updateTextArea(ActionEvent actionEvent)
+    public void updateTextArea()
     {
         textFlow.getChildren().clear();
+        classList =  this.scheduleList.get(this.departmentComboBox.getSelectionModel().getSelectedIndex()).getClassList();
 
         getHeaders();
-        for(PossibleClass n : this.scheduleList.get(this.departmentComboBox.getSelectionModel().getSelectedIndex()).getClassList())
+        for(PossibleClass n : classList)
         {
             Text text = new Text(n.getClassInfo() + "\n");
             if(n.isHasConflict() == true)
@@ -145,7 +144,46 @@ public class OutputScheduleController {
     /**
      *  Prints out the headers of a schedule
      */
-    public void updateTextFlow(ActionEvent actionEvent) {
+    public void updateTextFlow(ActionEvent actionEvent)
+    {
+        String sortBy = this.sortByComboBox.getSelectionModel().getSelectedItem();
+
+        List<PossibleClass> unsorted = this.scheduleList.get(this.departmentComboBox.getSelectionModel().getSelectedIndex()).getClassList();
+
+        switch (sortBy)
+        {
+            case "Course ID":
+                PossibleClass.CourseCompare courseCompare = new PossibleClass.CourseCompare();
+                Collections.sort(unsorted, courseCompare);
+                updateTextArea();
+                break;
+            case "Max Enrollment":
+                PossibleClass.EnrollmentCompare enrollmentCompare = new PossibleClass.EnrollmentCompare();
+                Collections.sort(unsorted, enrollmentCompare);
+                updateTextArea();
+                break;
+            case "Room":
+                PossibleClass.RoomCompare roomCompare = new PossibleClass.RoomCompare();
+                Collections.sort(unsorted, roomCompare);
+                updateTextArea();
+                break;
+            case "Room Capacity":
+                PossibleClass.CapacityCompare capacityCompare = new PossibleClass.CapacityCompare();
+                Collections.sort(unsorted, capacityCompare);
+                updateTextArea();
+                break;
+            case "Meeting Times":
+                PossibleClass.MeetingTimeCompare meetingTimeCompare = new PossibleClass.MeetingTimeCompare();
+                Collections.sort(unsorted, meetingTimeCompare);
+                updateTextArea();
+                break;
+            case "Professor":
+                PossibleClass.ProfessorCompare professorCompare = new PossibleClass.ProfessorCompare();
+                Collections.sort(unsorted, professorCompare);
+                updateTextArea();
+                break;
+
+        }
         return;
     }
 
