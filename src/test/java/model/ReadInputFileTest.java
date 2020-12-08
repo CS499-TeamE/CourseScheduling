@@ -230,6 +230,7 @@ class ReadInputFileTest {
             //compare room number
             if (! (csvRoomsList.get(j).getRoomNumber()).equals(tsvRoomsList.get(j).getRoomNumber())){
                 System.out.println("Error in room number.."+csvRoomsList.get(j).getRoomNumber()+"..vs.."+tsvRoomsList.get(j).getRoomNumber());
+
                 flag = false;
             }
             //compare capacity
