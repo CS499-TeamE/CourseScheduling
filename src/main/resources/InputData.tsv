@@ -1,47 +1,47 @@
 Department: Computer Science	
 Location: Technology Hall	
 	
-Courses Offered	Testing random info heere	
+Courses Offered	Enter Course ID followed by a colon then a space and then the max enrollment	Only one course per cell	For example 'CS 102: 40'	Can enter any number of courses on a line	At the end of courses offered section enter a blank line	
 	
-CS 104: 30 people	CS 120: 30 people	CS 137: 20 people	CS 143: 25 people	CS 144: 60 people	
-CS 149: 30 people	CS 166: 30 people	CS 178: 30 people	CS 203: 30 people	CS 218: 30 people	
-CS 219: 30 people	CS 233: 30 people	CS 236: 30 people	CS 241: 30 people	CS 280: 30 people	
-CS 284: 30 people	CS 300: 30 people	CS 307: 30 people	CS 311: 30 people	CS 317: 30 people	
-CS 318: 30 people	CS 326: 30 people	CS 329: 30 people	CS 339: 30 people	CS 342: 30 people	
-CS 355: 30 people	CS 374: 30 people	CS 376: 30 people	CS 378: 30 people	CS 386: 30 people	
-CS 399: 30 people	CS 407: 30 people	CS 420: 30 people	CS 425: 30 people	CS 449: 30 people	
-CS 454: 30 people	CS 489: 30 people	CS 491: 30 people	CS 514: 30 people	CS 522: 30 people	
-CS 524: 30 people	CS 530: 30 people	CS 560: 30 people	CS 586: 30 people	CS 591: 40 people	
-	
-	
-Classroom Preferences:	
-CS 149 must be taught in Technology Hall	room 133	
+CS 104: 30	CS 120: 30	CS 137: 20	CS 143: 25	CS 144: 60	
+CS 149: 30	CS 166: 30	CS 178: 30	CS 203: 30	CS 218: 30	
+CS 219: 30	CS 233: 30	CS 236: 30	CS 241: 30	CS 280: 30	
+CS 284: 30	CS 300: 30	CS 307: 30	CS 311: 30	CS 317: 30	
+CS 318: 30	CS 326: 30	CS 329: 30	CS 339: 30	CS 342: 30	
+CS 355: 30	CS 374: 30	CS 376: 30	CS 378: 30	CS 386: 30	
+CS 399: 30	CS 407: 30	CS 420: 30	CS 425: 30	CS 449: 30	
+CS 454: 30	CS 489: 30	CS 491: 30	CS 514: 30	CS 522: 30	
+CS 524: 30	CS 530: 30	CS 560: 30	CS 586: 30	CS 591: 40	
 	
 	
-Faculty Assignments:	
-Dr. Able	 CS 137	 CS 284	 CS 300 - Preference:None	
-Dr. Brovo	 CS 329	 CS 489	 CS 560 - Preference:None	
-Dr. Charlie	 CS 144	 CS 241	 CS 326 - Preference:Evening classes only	
-Dr. Dog	 CS 342	 CS 425	 CS 586 - Preference:None	
-Dr. Echo	 CS 143	 CS 218	 CS 311 - Preference:None	
-Dr. Foxtrot	 CS 307	 CS 491	 CS 522 - Preference:Evening classes only	
-Dr. Golf	 CS 104	 CS 233	 CS 378 - Preference:None	
-Dr. Hotel	 CS 376	 CS 449	 CS 591 - Preference:Evening classes only	
-Dr. India	 CS 149	 CS 219	 CS 317 - Preference:None	
-Dr. Juliet	 CS 399	 CS 420	 CS 524 - Preference:None	
-Dr. Kilo	 CS 166	 CS 203	 CS 355 - Preference:None	
-Dr. Lima	 CS 374	 CS 407	 CS 530 - Preference:Evening classes only	
-Dr. Mike	 CS 178	 CS 236	 CS 386 - Preference:None	
-Dr. November	 CS 339	 CS 454	 CS 514 - Preference:None	
-Dr. Oscar	 CS 120	 CS 280	 CS 318 - Preference:None	
+Classroom Preferences:	Each preference will be on its own line	In the first cell enter the course ID	In the second cell enter the class room	Add a blank line after this section	
+CS 149	OKT 155	
 	
 	
-Class Times:	
-M/W:	8:00 - 9:20	9:40 - 11:00	11:20 - 12:40	1:00 - 2:20	2:40 - 4:00	4:20 - 5:40	6:00 - 7:20
-T/R:	8:00 - 9:20	9:40 - 11:00	11:20 - 12:40	1:00 - 2:20	2:40 - 4:00	4:20 - 5:40	6:00 - 7:20
+Faculty Assignments:	Each faculty should should have their own line.	Enter faculty name into first cell	Enter any number of classes that the faculty member can teach, each in their own cell	Enter faculty member's preference into a cell starting with 'Preference:' and then add their preference	Continue to add faculty and add a blank line once everyone has been added	
+Dr. Able	CS 137	CS 284	CS 300	Preference:Any classroom on the first floor	
+Dr. Brovo	CS 329	CS 489	CS 560	Preference:None	
+Dr. Charlie	CS 144	CS 241	CS 326	Preference:Evening classes only	
+Dr. Dog	CS 342	CS 425	CS 586	Preference:None	
+Dr. Echo	CS 143	CS 218	CS 311	Preference:None	
+Dr. Foxtrot	CS 307	CS 491	CS 522	Preference:Evening classes only	
+Dr. Golf	CS 104	CS 233	CS 378	Preference:None	
+Dr. Hotel	CS 376	CS 449	CS 591	Preference:Evening classes only	
+Dr. India	CS 149	CS 219	CS 317	Preference:None	
+Dr. Juliet	CS 399	CS 420	CS 524	Preference:None	
+Dr. Kilo	CS 166	CS 203	CS 355	Preference:None	
+Dr. Lima	CS 374	CS 407	CS 530	Preference:Evening classes only	
+Dr. Mike	CS 178	CS 236	CS 386	Preference:None	
+Dr. November	CS 339	CS 454	CS 514	Preference:None	
+Dr. Oscar	CS 120	CS 280	CS 318	Preference:None	
 	
 	
-Classroom	Capacity	
+Class Times:	Each line will represent available days of the week a class could be taught on	First cell of a line will represent days a course could be taught on	Subsequent cells will represent class times on those days	Enter a blank line to end class times section	
+M/W	8:00 - 9:20	9:40 - 11:00	11:20 - 12:40	1:00 - 2:20	2:40 - 4:00	4:20 - 5:40	6:00 - 7:20	
+T/R	8:00 - 9:20	9:40 - 11:00	11:20 - 12:40	1:00 - 2:20	2:40 - 4:00	4:20 - 5:40	6:00 - 7:20	
+	
+	
+Classroom	Capacity	Each line will represent a class room	The first cell on the cell will be the room number	And the second cell will be the max occupancy of the room	End this section with a blank line	
 OKT 101	30	
 OKT 104	40	
 OKT 105	60	
