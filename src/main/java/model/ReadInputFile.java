@@ -127,7 +127,6 @@ public class ReadInputFile
                             break;
                         }
                     }
-
                 }
 
                 //----------------------------------------------------------------------
@@ -234,9 +233,7 @@ public class ReadInputFile
             c.setCourseId(courseData.substring(0,parse)); //set course ID
 
             // 3. Extract max enrollment
-            courseData = courseData.substring(parse+1);
-            parse = courseData.indexOf("people");
-            courseData = courseData.substring(1,parse-1);
+            courseData = courseData.substring(parse+2);
             c.setMaxStudents(Integer.parseInt(courseData));
 
             // 4. Add course to ArrayList and create next substring for processing
@@ -255,29 +252,22 @@ public class ReadInputFile
     private void parseCoursePreferences(String courseInfo,String delimiter){
         //variables
         String c; //course number with preference
-        int r; //room number of class room preference
+        String r; //room number of class room preference
+        String cells[] = courseInfo.split(delimiter); //split data by delimiter
 
-        //determine course number
-        int parse = courseInfo.indexOf(" must");
-        c = courseInfo.substring(0,parse);
+        //1. Determine course number
+        //Should always be first cell
+        c = cells[0];
 
-        //determine room
-        parse = courseInfo.indexOf(delimiter);
-        courseInfo = courseInfo.substring(parse+1);
-        parse = courseInfo.indexOf("room");
-        courseInfo = courseInfo.substring(parse+5);
-        parse = courseInfo.indexOf(delimiter);
-        if(parse==-1){
-            r = Integer.parseInt(courseInfo);
-        }else {
-            r = Integer.parseInt(courseInfo.substring(0,parse));
-        }
-        //System.out.println(c + " prefers room " + r); //debug line
+        //2. Determine room
+        //Should always be second cell
+        r = cells[1];
 
         //search through list to assign preference
         this.courses.forEach(p-> {
             if((p.getCourseId().equals(c))){
-                p.setRoomPreference("r");
+                p.setRoomPreference(r);
+                //System.out.println("Preference found " + p.getCourseId()); //debug line
             }
         });
     }
@@ -291,53 +281,39 @@ public class ReadInputFile
     private void parseProfInfo(String data, String delimiter){
         Professor p = new Professor(); //create new faculty object
 
-        //parse into three strings (1. Name   2. Courses    3. Preferences)
-        int parseLeft = data.indexOf(delimiter); //find index of first delimiter
-        int parseRight = data.indexOf("-"); //find index of first "-"
-        int parsePref = data.indexOf(":"); //find index of first ":"
+        String cells[] = data.split(delimiter); //split data by delimiter
+        //debug loop to see what each cell looks like
+        //for (String l: cells){
+        //    System.out.println(l);
+        //}
 
-        // 1. Faculty name
-        String name = data.substring(0, parseLeft);
-        p.setName(name);
+        //1. Faculty Name
+        //Which is always the first cell
+        p.setName(cells[0]);
 
-        // 2. Courses
-        String courses = data.substring(parseLeft+1, parseRight); //make a string of just the courses
-        //System.out.println(courses); //debug line
-
-        int parseCourses;
-        do{
-            String courseNumber;
-            parseCourses = courses.indexOf(delimiter);
-            //System.out.println("parsing value: " + parseCourses); //debug line
-
-            if(parseCourses!=-1){
-                courseNumber = courses.substring(1,parseCourses); //make string of just course number
-                //System.out.println("course number: " + courseNumber); //debug line
-            }else{ //last course number in the list
-                courseNumber = courses.substring(1,courses.length()-1); //make string of just course number
-                //System.out.println("last course number: " + courseNumber); //debug line
-            }
-
-            //go through courses to find a match
-            this.courses.forEach(pair-> {
-                if((pair.getCourseId().equals(courseNumber))){
-                    p.addCourse(pair); //if found add course to professors list
+        //2. Courses & Preference
+        //Should be subsequent cells after faculty name
+        for(int i=1; i<cells.length; i++){
+            if (cells[i].length() != 0){ //if its not a blank cell
+                int parsePref = cells[i].indexOf(":"); //find index of first ":"
+                //if ':' is found then its a preference line
+                //System.out.println("Parse number is.." + parsePref); //debug line
+                if(parsePref == -1){
+                    //add course
+                    //go through courses to find a match
+                    String courseNumb = cells[i];
+                    this.courses.forEach(pair-> {
+                        if((pair.getCourseId().equals(courseNumb))){
+                            p.addCourse(pair); //if found add course to professors list
+                        }
+                    });
+                }else{
+                    //add preference
+                    String preference = cells[i].substring(parsePref+1);
+                    p.setPreference(preference);
                 }
-            });
-
-            //Filter out class that was just added and recalculate parse position
-            courses = courses.substring(parseCourses+1);
-            //System.out.println(courses +" + parsing value: " + parseCourses); //debug line
-        }while(parseCourses!=-1);
-
-        // 3. Preferences
-        String preference = data.substring(parsePref+1);
-        parseCourses = preference.indexOf(delimiter);
-        if (parseCourses != -1) {
-            preference = preference.substring(0, parseCourses);
+            }
         }
-        p.setPreference(preference);
-        //System.out.println(p.getPreference()); //debug line
 
         // 4. Add professor to list
         professors.add(p);
@@ -351,29 +327,20 @@ public class ReadInputFile
     private void parseClassTimes(String data, String delimiter){
         ClassTimes t = new ClassTimes(); //create new class times object
 
-        //Determine Days of the Week
-        int parse = data.indexOf(delimiter); //find first delimiter
-        t.setDay(data.substring(0,parse-1)); //set class days
-        //System.out.println(t.getDay()); //debug line
+        String cells[] = data.split(delimiter); //split data by delimiter
 
-        String sub = data.substring(parse+1); //filter days of week out of string
+        //1. Days of the week
+        //This should always be the first cell
+        t.setDay(cells[0]);
 
-        //Add class times
-        do{ //as long as there is still a delimiter
-            parse = sub.indexOf(delimiter); //find next delimiter
-
-            if (parse<1){//save in last class time
-                t.addTime(sub);
-                //System.out.println("Adding " + sub); //debug line
-            }else{
-                String newTime = sub.substring(0,parse); //make a string of the class time
-                //System.out.println("Adding " + newTime); //debug line
-                t.addTime(newTime); //add time to class object
-                sub = sub.substring(parse+1); //filter out the class time that was just added
+        //2. Class Times
+        //Class times should occupy the rest of the line
+        for(int i=1; i<cells.length; i++){
+            if (cells[i].length() != 0) { //if its not a blank cell
+                t.addTime(cells[i]); //add time to class object
             }
-           // System.out.println("Processing " + sub); //debug line
-        }while (parse != -1);
-        //t.printClassTimes(); //debug line
+        }
+
         times.add(t); //add ClassTimes object to ArrayList
     }
 
@@ -419,10 +386,9 @@ public class ReadInputFile
      * @param args input read from command line
      */
     public static void main(String[] args) {
-         //ReadInputFile rif = new ReadInputFile("D:\\Temp\\DeptData.csv");
-       // ReadInputFile rif = new ReadInputFile("src/main/resources/InputData.csv");
+        //ReadInputFile rif = new ReadInputFile("src/main/resources/InputData.csv");
         ReadInputFile rif = new ReadInputFile("src/main/resources/InputData.tsv");
-        //ReadInputFile rif = new ReadInputFile("D:\\Temp\\DeptData.tsv");
+
         rif.debugPrint();
     }
 }

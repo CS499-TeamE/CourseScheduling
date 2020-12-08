@@ -107,7 +107,7 @@ public class Course {
         if(this.RoomPreference== "0"){
             System.out.print(": No Room Preference");
         }else{
-            System.out.print(": prefers room " + this.getRoomPreference());
+            System.out.print(": prefers room '" + this.getRoomPreference()+"'");
         }
         System.out.println(". Max enrollment of " + this.getMaxEnrollment());
     }

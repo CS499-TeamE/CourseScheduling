@@ -37,19 +37,19 @@ class ReadInputFileTest {
         boolean flag = true;
         //if course IDs to not equal change flag
         if( ! (a.getCourseId()).equals(b.getCourseId()) ){
-            System.out.println(a.getCourseId());
+            System.out.println(".."+a.getCourseId()+"..");
             flag = false;
         }
 
         //if course preferences doesn't match change flag
-        if( (a.getRoomPreference()) != (b.getRoomPreference()) ){
-            System.out.println(a.getCourseId());
+        if( ! (a.getRoomPreference()).equals(b.getRoomPreference()) ){
+            System.out.println("Preference issue with.."+a.getCourseId()+"..");
             flag = false;
         }
 
         //if max enrollments are different, change flag
         if ( a.getMaxEnrollment() != b.getMaxEnrollment()){
-            System.out.println(a.getCourseId());
+            System.out.println("Max enrollement issue with.."+a.getCourseId()+"..");
             flag = false;
         }
 
@@ -148,11 +148,13 @@ class ReadInputFileTest {
             //make sure both lists have the same number of courses
             if( csvCoursesList.size()!=tsvCoursesList.size() ){
                 flag = false;
+                System.out.println("Error in course size with " + csvProfessors.get(i).getName());
             }
             //go through each course and make sure they are the same
             for(int ii = 0; ii<csvCoursesList.size(); ii++){
                 if(!(compareCourses(csvCoursesList.get(ii),tsvCoursesList.get(ii)))){
                     flag=false;
+                    System.out.println("Error in course numbers with " + csvProfessors.get(i).getName());
                 }
             }
 
@@ -160,6 +162,7 @@ class ReadInputFileTest {
             if(! ((csvProfessors.get(i).getPreference()).equals(tsvProfessors.get(i).getPreference()))){
                 System.out.println(csvProfessors.get(i).getName() + "\t" + csvProfessors.get(i).getPreference() + " vs " + tsvProfessors.get(i).getPreference());
                 flag = false;
+                System.out.println("Error in preferences with " + csvProfessors.get(i).getName());
             }
         }
         assertEquals(true, flag);
@@ -182,18 +185,21 @@ class ReadInputFileTest {
         for( int j = 0; j< csvMeetingTimes.size(); j++){
             //compare days
             if( !(csvMeetingTimes.get(j).getDay()).equals(tsvMeetingTimes.get(j).getDay())){
+                System.out.println("Error with class times.."+csvMeetingTimes.get(j).getDay()+"..vs.."+tsvMeetingTimes.get(j).getDay()+"..");
                 flag = false;
             }
 
             //compare size of times
             if( csvMeetingTimes.get(j).getTimes().size() != tsvMeetingTimes.get(j).getTimes().size()){
                 System.out.println(csvMeetingTimes.get(j).getDay()+":\t"+csvMeetingTimes.get(j).getTimes().size()+" vs "+ tsvMeetingTimes.get(j).getTimes().size());
+                System.out.println("Error with class time size of array");
                 flag = false;
             }
 
             //compare actual times
             for(int k=0; k<csvMeetingTimes.get(j).getTimes().size(); k++){
                 if( !(csvMeetingTimes.get(j).getTimes().get(k)).equals(tsvMeetingTimes.get(j).getTimes().get(k))){
+                    System.out.println("Error is actual times.."+csvMeetingTimes.get(j).getTimes().get(k)+"..vs.."+tsvMeetingTimes.get(j).getTimes().get(k)+"..");
                     flag = false;
                 }
             }
@@ -218,14 +224,18 @@ class ReadInputFileTest {
         for( int j = 0; j< csvRoomsList.size(); j++){
             //compare building
             if( !(csvRoomsList.get(j).getBuilding()).equals(tsvRoomsList.get(j).getBuilding())){
+                System.out.println("Error in building");
                 flag = false;
             }
             //compare room number
-            if (!(csvRoomsList.get(j).getRoomNumber()).equals(tsvRoomsList.get(j).getRoomNumber())){
+            if (! (csvRoomsList.get(j).getRoomNumber()).equals(tsvRoomsList.get(j).getRoomNumber())){
+                System.out.println("Error in room number.."+csvRoomsList.get(j).getRoomNumber()+"..vs.."+tsvRoomsList.get(j).getRoomNumber());
+
                 flag = false;
             }
             //compare capacity
             if((csvRoomsList.get(j).getRoomCapacity())!=(csvRoomsList.get(j).getRoomCapacity())){
+                System.out.println("Error in capacity");
                 flag = false;
             }
         }

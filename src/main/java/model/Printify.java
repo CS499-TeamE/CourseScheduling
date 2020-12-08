@@ -26,7 +26,7 @@ public class Printify {
      */
     public Printify(String inData, String dept){
         this.origData = inData;
-        System.out.println(inData);
+        //System.out.println(inData); //debug line
         this.department = dept;
         collect(); //parse data
         Collections.sort(courses); //sort data
