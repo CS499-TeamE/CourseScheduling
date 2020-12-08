@@ -26,6 +26,18 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 import static javafx.scene.paint.Color.RED;
+/**
+ * FUTURE ADAPTATIONS AND IMPROVEMENTS - Searching for conflicts across departments (Released requirement)
+ * ---------------------------------------------------------------------------------
+ * This class can, in the future, be quickly adapted to provide additional functionality to the program.
+ * Currently the program only displays errors and conflicts from within that department. Say you had
+ * two or more departments that occupied the same rooms at different hours, that would not be detected as
+ * a possible error by our program. In order to address this a future adaptation could grab the data
+ * structure from each of the schedules in scheduleList and compare them against one another for errors.
+ * Due to time constraints we were not able to implement this but it would be fairly straightforward to
+ * add it in the future if further improvements were desired.
+ *
+ */
 
 /**
  * The OutputScheduleController controls the OutputSchedule GUI. The OutputSchedule GUI displays the schedules that were
@@ -189,7 +201,7 @@ public class OutputScheduleController {
 
     private void getHeaders()
     {
-        Text text = new Text("Course\t|\t" + "Max Enrollment\t|\t" + "Room\t|\t" + "Room Capacity\t|\t\t" + "Meeting Time\t\t\t|\t" + "Professor\n");
+        Text text = new Text("Course\t|\t" + "Max Enrollment\t|\t" + "Room\t\t|\t" + "Room Capacity\t|\t\t" + "Meeting Time\t\t\t|\t" + "Professor\n");
         this.textFlow.getChildren().add(text);
     }
 
@@ -350,7 +362,7 @@ public class OutputScheduleController {
 
         for(String error : errors)
         {
-            textArea.appendText(error);
+            textArea.appendText(error + "\n");
         }
     }
 

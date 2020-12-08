@@ -40,7 +40,7 @@ public class MainController
 
     /**
      *  Takes in the files from the user and passes that to the parser to obtain the data
-     *  Data is then used to create a new population of sudo random schedules
+     *  data is then used to create a new population of sudo random schedules
      * @param files
      */
     public void initializeData(List<String> files)

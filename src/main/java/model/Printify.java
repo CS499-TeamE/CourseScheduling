@@ -133,12 +133,12 @@ public class Printify {
 
         //set headers
         this.printData += "      \tMax\n";
-        this.printData += "Course\tEnrl     Room\t    Days\tTimes\t  Instructor\n";
-        this.printData += "----------\t------    --------\t    ---------\t-------------\t  --------------\n";
+        this.printData += "Course\tEnrl     Room\t        Days\tTimes\t  Instructor\n";
+        this.printData += "----------\t------    ------------    -------\t-------------\t  --------------\n";
 
         //print data for each class
         for(FinalClass fc: this.courses){
-            this.printData += fc.getCourseID() + "\t " + fc.getMax() + "       " + fc.getRoom() + "\t    " + fc.getDay() + "\t" + fc.getTime() + "\t  " + fc.getProf() + "\n";
+            this.printData += fc.getCourseID() + "\t " + fc.getMax() + "     " + fc.getRoom() + "     " + fc.getDay() + "\t" + fc.getTime() + "\t  " + fc.getProf() + "\n";
         }
     }
 

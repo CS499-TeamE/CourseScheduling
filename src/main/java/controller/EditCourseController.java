@@ -102,7 +102,7 @@ public class EditCourseController {
         this.courseList = courseList;
         this.roomComboBox.setItems(FXCollections.observableArrayList(roomList));
         Room emptyRoom = new Room();
-        emptyRoom.setRoomNumber("0");
+        emptyRoom.setRoomNumber("None");
         this.roomComboBox.getItems().add(emptyRoom);
         this.roomComboBox.getSelectionModel().select(emptyRoom);
 
@@ -122,10 +122,10 @@ public class EditCourseController {
             this.courseIdText.setText(String.valueOf(this.course.getCourseId()));
             this.courseCapText.setText(String.valueOf(this.course.getMaxEnrollment()));
 
-            if (this.course.getRoomPreference() != "0") {
+            if (!this.course.getRoomPreference().equals("0")) {
                 Room roomPreference = null;
                 for (Room room : roomList) {
-                    if (room.getRoomNumber() == course.getRoomPreference()) {
+                    if (room.getRoomNumber().equals(course.getRoomPreference())) {
                         roomPreference = room;
                         break;
                     }

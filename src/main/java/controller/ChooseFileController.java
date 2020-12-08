@@ -169,6 +169,17 @@ public class ChooseFileController {
             for (TextField fileName : textFieldList) {
                 String filePath = fileName.getText();
                 if (!files.contains(filePath)) {
+                    String[] filePathSplit = filePath.split("\\.");
+                    if (!filePathSplit[filePathSplit.length - 1].equals("csv") &&
+                            !filePathSplit[filePathSplit.length - 1].equals("tsv")) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        String header = filePath + " is not a .csv or .tsv file.";
+                        alert.setHeaderText(header);
+                        DialogPane dialogPane = alert.getDialogPane();
+                        dialogPane.getStylesheets().add("darktheme.css");
+                        alert.showAndWait();
+                        return;
+                    }
                     files.add(filePath);
                 }
                 //System.out.println(filePath);

@@ -4,6 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * FUTURE ADAPTATIONS AND IMPROVEMENTS - Implementing tiered preferences for certain faculty (Released requirement)
+ * ---------------------------------------------------------------------------------
+ * This class can, in the future, be quickly adapted to provide additional functionality to the program.
+ * Currently our program implements the teacher preferences as a free-form text string and does not
+ * try and parse that for the algorithm. Being able to allow the user to enter anything into the
+ * preference and then handle it would be a time consuming process to add into our algorithm.
+ * Due to this time constraint, the customer has released this requirement from the statement of work.
+ *
+ */
+
 public class Schedule implements Comparable< Schedule >
 {
     private int classAmount = 0;
@@ -81,7 +92,7 @@ public class Schedule implements Comparable< Schedule >
 
     private void handleRoom(PossibleClass n)
     {
-        if(n.getCourse().getRoomPreference() == "0")
+        if(n.getCourse().getRoomPreference().equals("0"))
         {
             n.setRoom(dept.getRoomsList().get(random.nextInt(dept.getRoomsList().size()))); // Get a random room if there is no preference
         }
@@ -90,7 +101,7 @@ public class Schedule implements Comparable< Schedule >
             String searchTarget = n.getCourse().getRoomPreference();
             for (Room room : dept.getRoomsList())
             {
-                if(room.getRoomNumber() == searchTarget);
+                if((room.getRoomNumber()).equals(searchTarget))
                 {
                     n.setRoom(room);
                 }

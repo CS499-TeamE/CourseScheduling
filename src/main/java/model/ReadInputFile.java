@@ -215,7 +215,7 @@ public class ReadInputFile
     }
 
     /**
-     * Parse Course Data takes input string and extracts course numbers.
+     * Parse Course data takes input string and extracts course numbers.
      * This assumes that commas are not used as values
      * @param courseInfo line from the input stream and parses around commas to get course data
      * @param delimiter delimiter character from file type
@@ -370,7 +370,7 @@ public class ReadInputFile
         }
         roomCapacity = Integer.parseInt(roomCap); //change capacity value to an integer
 
-        Room r = new Room(building,roomNum,roomCapacity); //make new room object
+        Room r = new Room(building,(building + " " + roomNum),roomCapacity); //make new room object
         rooms.add(r); //add to ArrayList
     }
 
